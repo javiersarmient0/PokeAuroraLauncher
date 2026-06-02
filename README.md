@@ -1,13 +1,7 @@
 
-<img src="https://zelthoriaismp.cloud/Launcher/assets/logo.png" alt="Logo" width="450">
 
-# Hasta Studios Launcher
+# Poke Aurora Launcher
 
-A cracked fork of helios launcher.
-
-![Launcher Screenshot](https://zelthoriaismp.cloud/launcher2.png)
-
-![Launcher Screenshot 2](https://zelthoriaismp.cloud/launcher1.png)
 
 ## Features
 
