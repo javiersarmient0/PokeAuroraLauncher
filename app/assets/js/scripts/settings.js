@@ -630,25 +630,29 @@ const settingsCurrentMojangAccounts = document.getElementById('settingsCurrentMo
  */
 async function fetchSkinAndConvertToBase64(username) {
   try {
-    const skinURL = `https://auth.zelthoriaismp.cloud/skin/${username}.png`;
+    // Usamos el servidor de skins oficial de Minotar (NameMC)
+    const skinURL = `https://minotar.net/avatar/${username}/64.png`;
     const response = await fetch(skinURL);
 
+    // Si el servidor de skins da error, tiramos un aviso y usamos la de por defecto
     if (!response.ok) {
-      throw new Error('Error fetching skin image: ' + response.status);
+      console.log('Servidor de skins no disponible. Usando skin por defecto.');
+      return ""; // Devuelve vacío para que el launcher use su Steve/Alex local sin crashear
     }
 
+    // Código original para convertir la imagen a Base64
     const blob = await response.blob();
-
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onloadend = () => {
-        resolve(reader.result.split(',')[1]);
-      };
+      reader.onloadend = () => resolve(reader.result);
       reader.onerror = reject;
       reader.readAsDataURL(blob);
     });
+
   } catch (error) {
-    return 'MHF_Question';
+    // Si se corta internet o pasa cualquier cosa rara, atrapamos el error acá
+    console.error('Error cargando la skin:', error);
+    return ""; // Evita que el launcher se congele en el 2%
   }
 }
     
@@ -745,9 +749,17 @@ await Promise.all(promises);
  * Prepare the accounts tab for display.
  */
 async function prepareAccountsTab() {
-    const { microsoftAuthAccountStr, mojangAuthAccountStr } = await populateAuthAccounts();
-    settingsCurrentMicrosoftAccounts.innerHTML = microsoftAuthAccountStr;
-    settingsCurrentMojangAccounts.innerHTML = mojangAuthAccountStr;
+    // 🔴 PARCHE: Si populateAuthAccounts() da undefined, usamos un objeto vacío {} para que no explote
+    const { microsoftAuthAccountStr = '', mojangAuthAccountStr = '' } = (await populateAuthAccounts()) || {};
+    
+    // Validamos que los elementos existan en el HTML antes de meterle el texto
+    if (settingsCurrentMicrosoftAccounts) {
+        settingsCurrentMicrosoftAccounts.innerHTML = microsoftAuthAccountStr;
+    }
+    if (settingsCurrentMojangAccounts) {
+        settingsCurrentMojangAccounts.innerHTML = mojangAuthAccountStr;
+    }
+    
     bindAuthAccountSelect();
     bindAuthAccountLogOut();
 }
@@ -1066,48 +1078,67 @@ async function reloadDropinMods(){
 
 //Languages
 let langCodes = {
+    "es_ES": "Español",
     "en_US": "English",
     "pt_BR": "Portugues-BR",
 } 
 
 async function resolveLanguageForUI() {
-    let LANGUAGES, SELECTED_LANGUAGE;
-
     ConfigManager.getAllLanguages((err, languages) => {
         if (err) {
-            console.error("Error:", err);
-        } else {
-            logger.info("Available languages:", languages);
-            LANGUAGES = languages;
-            SELECTED_LANGUAGE = ConfigManager.getCurrentLanguage();
-            setCurrentLanguageInUi(LANGUAGES, SELECTED_LANGUAGE);
+            console.error("Error al cargar idiomas:", err);
+            return;
         }
+        
+        const selected = ConfigManager.getCurrentLanguage();
+        
+        // Intentamos inicializar la UI
+        // Si no está lista, lo intentamos en 100ms
+        const interval = setInterval(() => {
+            if (document.getElementById('settingsLangsOptions')) {
+                clearInterval(interval);
+                setCurrentLanguageInUi(languages, selected);
+            }
+        }, 100);
     });
 }
 
+function setCurrentLanguageInUi(arr, selected) {
+    const cont = document.getElementById('settingsLangsOptions');
+    const selectedDisplay = document.getElementById('settingsLangSelected');
 
-function setCurrentLanguageInUi(arr, selected){
-    const cont = document.getElementById('settingsLangsOptions')
-    cont.innerHTML = ''
-    for(let opt of arr) {
-        const d = document.createElement('DIV')
-        d.innerHTML = langCodes[opt]
-        d.setAttribute('value', opt)
-        if(opt !== "_custom") {
-            if(opt === selected) {
-                d.setAttribute('selected', '')
-                document.getElementById('settingsLangSelected').innerHTML = langCodes[opt]
+    // Validación de seguridad
+    if (!cont || !selectedDisplay) return;
+
+    cont.innerHTML = '';
+    
+    for (let opt of arr) {
+        // Usamos langCodes[opt] si existe, si no, usamos el nombre del código
+        const label = langCodes[opt] || opt;
+        
+        const d = document.createElement('DIV');
+        d.innerHTML = label;
+        d.setAttribute('value', opt);
+        
+        if (opt !== "_custom") {
+            if (opt === selected) {
+                d.setAttribute('selected', '');
+                selectedDisplay.innerHTML = label;
             }
             d.addEventListener('click', function(e) {
-                this.parentNode.previousElementSibling.innerHTML = this.innerHTML
-                for(let sib of this.parentNode.children){
-                    sib.removeAttribute('selected')
+                // Actualizamos el display visual
+                selectedDisplay.innerHTML = this.innerHTML;
+                
+                // Limpiamos selección anterior
+                for (let sib of this.parentNode.children) {
+                    sib.removeAttribute('selected');
                 }
-                this.setAttribute('selected', '')
-                closeSettingsSelect()
-                ConfigManager.setLanguage(opt)
-            })  
-            cont.appendChild(d)
+                this.setAttribute('selected', '');
+                
+                if (typeof closeSettingsSelect === 'function') closeSettingsSelect();
+                ConfigManager.setLanguage(opt);
+            });
+            cont.appendChild(d);
         }
     }
 }
@@ -1452,8 +1483,14 @@ function updateRangedSlider(element, value, notch){
  * Display the total and available RAM.
  */
 function populateMemoryStatus(){
-    settingsMemoryTotal.innerHTML = Number((os.totalmem()-1073741824)/1073741824).toFixed(1) + 'G'
-    settingsMemoryAvail.innerHTML = Number(os.freemem()/1073741824).toFixed(1) + 'G'
+    // Mostramos la RAM total (dividimos por 1024^3 para obtener GB)
+    const totalMemGB = Number(os.totalmem() / 1073741824).toFixed(1);
+    
+    settingsMemoryTotal.innerHTML = totalMemGB + 'G';
+    
+    // En lugar de mostrar la RAM libre que asusta al usuario,
+    // podemos mostrar la RAM total o un valor fijo de referencia.
+    settingsMemoryAvail.innerHTML = totalMemGB + 'G'; 
 }
 
 /**

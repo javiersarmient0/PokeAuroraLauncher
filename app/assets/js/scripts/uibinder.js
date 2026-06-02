@@ -323,14 +323,29 @@ function mergeModConfiguration(o, n, nReq = false){
     return n
 }
 
-async function validateSelectedAccount(){
-    const selectedAcc = ConfigManager.getSelectedAccount()
-    if(selectedAcc != null){
-        const val = await AuthManager.validateSelected()
-        if(!val){
-            ConfigManager.removeAuthAccount(selectedAcc.uuid)
-            ConfigManager.save()
-            const accLen = Object.keys(ConfigManager.getAuthAccounts()).length
+async function validateSelectedAccount() {
+    console.trace("¡Rastreo de validación activado!"); // <-- AGREGÁ ESTO
+    const selectedAcc = ConfigManager.getSelectedAccount();
+    // ... el resto de tu código
+
+    // 1. ESCUDO: Si no hay cuenta, NO hacemos nada. 
+    // Esto evita que el launcher se vuelva loco si está vacío.
+    if (selectedAcc == null) {
+        return;
+    }
+
+    // 2. VALIDACIÓN SEGURA: Usamos un try/catch para que, si falla 
+    // por problemas de lectura, NO rompa el programa.
+    try {
+        const val = await AuthManager.validateSelected();
+
+        if (!val) {
+            // SI LA VALIDACIÓN ES FALSA (Cuenta no válida), 
+            // procedemos a borrarla y mostrar el error.
+            ConfigManager.removeAuthAccount(selectedAcc.uuid);
+            ConfigManager.save();
+
+            const accLen = Object.keys(ConfigManager.getAuthAccounts()).length;
             setOverlayContent(
                 Lang.queryJS('uibinder.validateAccount.failedMessageTitle'),
                 accLen > 0
@@ -338,73 +353,66 @@ async function validateSelectedAccount(){
                     : Lang.queryJS('uibinder.validateAccount.failedMessageSelectAnotherAccount', { 'account': selectedAcc.displayName }),
                 Lang.queryJS('uibinder.validateAccount.loginButton'),
                 Lang.queryJS('uibinder.validateAccount.selectAnotherAccountButton')
-            )
+            );
+
             setOverlayHandler(() => {
-
-                const isMicrosoft = selectedAcc.type === 'microsoft'
-
-                if(isMicrosoft) {
-                    // Empty for now
-                } else {
-                    // Mojang
-                    // For convenience, pre-populate the username of the account.
-                    document.getElementById('loginUsername').value = selectedAcc.username
-                    validateEmail(selectedAcc.username)
+                const isMicrosoft = selectedAcc.type === 'microsoft';
+                if (!isMicrosoft) {
+                    document.getElementById('loginUsername').value = selectedAcc.username;
+                    validateEmail(selectedAcc.username);
                 }
-                
-                loginOptionsViewOnLoginSuccess = getCurrentView()
-                loginOptionsViewOnLoginCancel = VIEWS.loginOptions
 
-                if(accLen > 0) {
-                    loginOptionsViewOnCancel = getCurrentView()
+                loginOptionsViewOnLoginSuccess = getCurrentView();
+                loginOptionsViewOnLoginCancel = VIEWS.loginOptions;
+
+                if (accLen > 0) {
+                    loginOptionsViewOnCancel = getCurrentView();
                     loginOptionsViewCancelHandler = () => {
-                        if(isMicrosoft) {
+                        if (isMicrosoft) {
                             ConfigManager.addMicrosoftAuthAccount(
-                                selectedAcc.uuid,
-                                selectedAcc.accessToken,
-                                selectedAcc.username,
-                                selectedAcc.expiresAt,
-                                selectedAcc.microsoft.access_token,
-                                selectedAcc.microsoft.refresh_token,
-                                selectedAcc.microsoft.expires_at
-                            )
+                                selectedAcc.uuid, selectedAcc.accessToken, selectedAcc.username,
+                                selectedAcc.expiresAt, selectedAcc.microsoft.access_token,
+                                selectedAcc.microsoft.refresh_token, selectedAcc.microsoft.expires_at
+                            );
                         } else {
-                            ConfigManager.addMojangAuthAccount(selectedAcc.uuid, selectedAcc.accessToken, selectedAcc.username, selectedAcc.displayName)
+                            ConfigManager.addMojangAuthAccount(selectedAcc.uuid, selectedAcc.accessToken, selectedAcc.username, selectedAcc.displayName);
                         }
-                        ConfigManager.save()
-                        validateSelectedAccount()
-                    }
-                    loginOptionsCancelEnabled(true)
+                        ConfigManager.save();
+                        validateSelectedAccount();
+                    };
+                    loginOptionsCancelEnabled(true);
                 } else {
-                    loginOptionsCancelEnabled(false)
+                    loginOptionsCancelEnabled(false);
                 }
-                toggleOverlay(false)
-                switchView(getCurrentView(), VIEWS.loginOptions)
-            })
+                toggleOverlay(false);
+                switchView(getCurrentView(), VIEWS.loginOptions);
+            });
+
             setDismissHandler(() => {
-                if(accLen > 1){
-                    prepareAccountSelectionList()
+                if (accLen > 1) {
+                    prepareAccountSelectionList();
                     $('#overlayContent').fadeOut(250, () => {
-                        bindOverlayKeys(true, 'accountSelectContent', true)
-                        $('#accountSelectContent').fadeIn(250)
-                    })
+                        bindOverlayKeys(true, 'accountSelectContent', true);
+                        $('#accountSelectContent').fadeIn(250);
+                    });
                 } else {
-                    const accountsObj = ConfigManager.getAuthAccounts()
-                    const accounts = Array.from(Object.keys(accountsObj), v => accountsObj[v])
-                    // This function validates the account switch.
-                    setSelectedAccount(accounts[0].uuid)
-                    toggleOverlay(false)
+                    const accountsObj = ConfigManager.getAuthAccounts();
+                    const accounts = Array.from(Object.keys(accountsObj), v => accountsObj[v]);
+                    setSelectedAccount(accounts[0].uuid);
+                    toggleOverlay(false);
                 }
-            })
-            toggleOverlay(true, accLen > 0)
+            });
+            toggleOverlay(true, accLen > 0);
         } else {
-            return true
+            return true;
         }
-    } else {
-        return true
+    } catch (err) {
+        // ERROR CONTROLADO: Si falla por un error técnico al arrancar,
+        // simplemente lo ignoramos y no borramos nada.
+        console.log("Validación inicial fallida técnicamente, omitiendo:", err);
+        return;
     }
 }
-
 /**
  * Temporary function to update the selected account along
  * with the relevent UI elements.

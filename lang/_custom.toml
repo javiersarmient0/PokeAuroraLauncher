@@ -1,31 +1,36 @@
 # Custom Language File for Launcher Customizer
 
 [ejs.app]
-title = "Hasta Studios Launcher"
+title = "Poke Aurora Launcher"
 
 [ejs.landing]
-mediaGitHubURL = "https://zelthoriaismp.cloud"
-mediaTwitterURL = "https://x.com/Zelthoriaismp87"
-mediaInstagramURL = "https://www.tiktok.com/@_zsmp_"
-mediaYouTubeURL = "https://youtube.com/@zsmpofc?si=bEThHknf_WXB7wqp"
-mediaDiscordURL = "https://discord.gg/zNWUXdt"
+mediaGitHubURL = ""
+mediaTwitterURL = ""
+mediaInstagramURL = ""
+mediaYouTubeURL = ""
+mediaDiscordURL = ""
 
 [ejs.settings]
-sourceGithubLink = "https://github.com/Shisuiicaro/HastaStudiosLauncher"
-supportLink = "https://github.com/Shisuiicaro/HastaStudiosLauncher/issues"
-selectLanguage = "Select a Language"
-changeLanguageTitle = "Change the launcher language"
-changeLanguageDesc = "You can change the language in the list below. This text will not change if you change the language so you can find your wayback here to change it back"
+selectLanguage = "Seleccionar Idioma"
+changeLanguageTitle = "Cambiar el idioma del launcher"
+changeLanguageDesc = "Puedes cambiar el idioma desde la lista de abajo. Este texto permanecerá en español para que siempre puedas volver a esta sección si deseas cambiarlo nuevamente."
 
 [ejs.welcome]
-welcomeHeader = "WELCOME TO ZSMP"
+welcomeHeader = "BIENVENIDO A POKÉAURORA"
+
 welcomeDescription = """
-Welcome to ZSMP, where your Minecraft adventure begins! Immerse yourself in a world of endless possibilities and unforgettable experiences on the best SMP server you can imagine. Join our vibrant community of players and embark on epic quests, build amazing creations, and forge lasting friendships.
+¡Bienvenido a PokéAurora Cobblemon!
 
-But wait, there's more! To join in the fun, just hop onto our Discord server to self-register and gain access to our exclusive realm of emotions. Whether you're a seasoned explorer or a novice builder, ZSMP welcomes players of all skill levels.
+Prepárate para comenzar una aventura única donde el mundo de Minecraft y Pokémon se unen en una experiencia inolvidable. Explora regiones, captura Pokémon, forma tu equipo ideal, desafía a otros entrenadores y descubre todos los secretos que esconde PokéAurora.
 
-So, what are you waiting for? Click "Continue" and let the adventures begin!
+Nuestra comunidad está formada por entrenadores de todos los niveles, desde principiantes hasta verdaderos maestros Pokémon. Aquí encontrarás eventos, misiones, economía, sistemas exclusivos y una experiencia diseñada para que cada aventura sea especial.
+
+Antes de comenzar, asegúrate de unirte a nuestro servidor de Discord para completar tu registro y mantenerte informado sobre anuncios, eventos y novedades.
+
+Tu viaje Pokémon está a punto de comenzar.
+
+¡Haz clic en "CONTINUAR" y comienza tu aventura!
 """
 
 [ejs.overlay]
-changedLanguageHeader = "You changed the previous language"
+changedLanguageHeader = "El idioma del launcher ha sido actualizado"

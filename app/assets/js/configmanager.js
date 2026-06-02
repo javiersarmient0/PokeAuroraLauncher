@@ -1,6 +1,6 @@
 const fs   = require('fs-extra')
 const isDev          = require('./isdev')
-const { LoggerUtil } = require('hasta-core')
+const { LoggerUtil } = require('helios-core')
 const os   = require('os')
 const path = require('path')
 const app = require('@electron/remote').app
@@ -9,7 +9,7 @@ const logger = LoggerUtil.getLogger('ConfigManager')
 
 const sysRoot = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 
-const dataPath = path.join(sysRoot, '.HastaStudiosLauncher')
+const dataPath = path.join(sysRoot, '.PokeAuroraLauncher')
 
 const launcherDir = app.getPath('userData')
 
@@ -89,7 +89,7 @@ const DEFAULT_CONFIG = {
         launcher: {
             resWidth: 1920,
             resHeight: 1080,
-            language: 'en_US',
+            language: 'es_ES',
             allowPrerelease: false,
             dataDirectory: dataPath
         }

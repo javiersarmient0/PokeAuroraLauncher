@@ -1,3 +1,9 @@
+// Parche de red para Node 22 (Prioriza IPv4 para evitar delays y fallos de conexión)
+const dns = require('dns');
+if (dns.setDefaultResultOrder) {
+    dns.setDefaultResultOrder('ipv4first');
+}
+
 const remoteMain = require('@electron/remote/main')
 remoteMain.initialize()
 
@@ -229,16 +235,17 @@ let win
 function createWindow() {
 
     win = new BrowserWindow({
-     width: 1500,
-     minWidth: 1255,
-     height: 844,
-     minHeight: 704,
+        width: 1500,
+        minWidth: 1255,
+        height: 844,
+        minHeight: 704,
         icon: getPlatformIcon('SealCircle'),
         frame: false,
         webPreferences: {
             preload: path.join(__dirname, 'app', 'assets', 'js', 'preloader.js'),
             nodeIntegration: true,
-            contextIsolation: false
+            contextIsolation: false,
+            webSecurity: false // <--- ¡AGREGÁ ESTA LÍNEA ACÁ!
         },
         backgroundColor: '#000000'
     })

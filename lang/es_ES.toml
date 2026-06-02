@@ -1,0 +1,399 @@
+[ejs.landing]
+updateAvailableTooltip = "Actualización disponible"
+usernamePlaceholder = "Nombre de usuario"
+usernameEditButton = "Editar"
+settingsTooltip = "Configuración"
+serverStatus = "SERVIDOR"
+serverStatusPlaceholder = "DESCONECTADO"
+mojangStatus = "ESTADO DEL SERVIDOR"
+mojangStatusTooltipTitle = "Servicios"
+mojangStatusNETitle = "No esencial"
+newsButton = "NOTICIAS"
+launchButton = "JUGAR"
+launchButtonPlaceholder = "• Ningún servidor seleccionado"
+launchDetails = "Iniciando..."
+newsNavigationStatus = "{currentPage} de {totalPages}"
+newsErrorLoadSpan = "Cargando noticias..."
+newsErrorFailedSpan = "No se pudieron cargar las noticias"
+newsErrorRetryButton = "Reintentar"
+newsErrorNoneSpan = "No hay noticias disponibles"
+
+[ejs.login]
+loginCancelText = "Cancelar"
+loginSubheader = "INICIAR SESIÓN"
+
+loginEmailError = "* Valor no válido"
+loginEmailPlaceholder = "NOMBRE DE USUARIO"
+
+loginPasswordError = "* Obligatorio"
+loginPasswordPlaceholder = "CONTRASEÑA"
+
+loginForgotPasswordLink = "https://auth.zelthoriaismp.cloud/auth/forgot/"
+loginForgotPasswordText = "¿Olvidaste tu contraseña?"
+
+loginRememberMeText = "Recordarme"
+
+loginButtonText = "INICIAR SESIÓN"
+
+loginPasswordDisclaimer1 = "Tus datos están protegidos mediante una conexión segura. y nunca se almacena en el launcher."
+loginPasswordDisclaimer2 = "Recuerda utilizar /register dentro del servidor."
+
+[ejs.loginOptions]
+loginOptionsTitle = "Opciones de Inicio de Sesión"
+
+loginWithMicrosoft = "Iniciar sesión con Microsoft"
+loginWithMojang = "Iniciar sesión con Nick"
+
+cancelButton = "Cancelar"
+
+[ejs.overlay]
+serverSelectHeader = "Servidores Disponibles"
+serverSelectConfirm = "Seleccionar"
+serverSelectCancel = "Cancelar"
+
+accountSelectHeader = "Seleccionar una Cuenta"
+accountSelectConfirm = "Seleccionar"
+accountSelectCancel = "Cancelar"
+
+[ejs.settings]
+navHeaderText = "Configuración"
+navAccount = "Cuenta"
+navMinecraft = "Minecraft"
+navMods = "Mods"
+navJava = "Java"
+navLauncher = "Launcher"
+navAbout = "Acerca de"
+navUpdates = "Actualizaciones"
+navDone = "Guardar"
+
+syncGameLang = "Usar el mismo idioma para el juego y el launcher"
+
+tabAccountHeaderText = "Configuración de la Cuenta"
+tabAccountHeaderDesc = "Añade nuevas cuentas o administra las existentes."
+
+microsoftAccount = "Microsoft"
+addMicrosoftAccount = "+ Añadir Cuenta de Microsoft"
+
+mojangAccount = "PokéAurora"
+addMojangAccount = "+ Añadir Cuenta de Poké Aurora"
+
+minecraftTabHeaderText = "Configuración de Minecraft"
+minecraftTabHeaderDesc = "Opciones relacionadas con el inicio del juego."
+
+gameResolutionTitle = "Resolución del Juego"
+launchFullscreenTitle = "Iniciar en pantalla completa"
+autoConnectTitle = "Conectarse automáticamente al servidor al iniciar"
+launchDetachedTitle = "Ejecutar el juego por separado del launcher"
+launchDetachedDesc = "Si esta opción está desactivada, al cerrar el launcher también se cerrará el juego."
+
+tabModsHeaderText = "Configuración de Mods"
+tabModsHeaderDesc = "Activa o desactiva mods."
+
+switchServerButton = "Cambiar"
+requiredMods = "Mods Obligatorios"
+optionalMods = "Mods Opcionales"
+
+dropinMods = "Mods Adicionales"
+addMods = "Añadir Mods"
+dropinRefreshNote = "(Pulsa F5 para actualizar)"
+
+shaderpacks = "Paquetes de Shaders"
+shaderpackDesc = "Activa o desactiva shaders. Ten en cuenta que los shaders requieren una computadora potente para funcionar correctamente. También puedes añadir paquetes personalizados aquí."
+selectShaderpack = "Seleccionar Shader"
+
+tabJavaHeaderText = "Configuración de Java"
+tabJavaHeaderDesc = "Administra la configuración de Java (avanzado)."
+
+memoryTitle = "Memoria"
+maxRAM = "RAM Máxima"
+minRAM = "RAM Mínima"
+memoryDesc = "Se recomienda asignar al menos 5 GB de RAM. Establecer la RAM mínima y máxima al mismo valor puede ayudar a reducir los tirones de rendimiento."
+
+memoryTotalTitle = "Total"
+memoryAvailableTitle = "Disponible"
+
+javaExecutableTitle = "Ejecutable de Java"
+javaExecSelDialogTitle = "Seleccionar Ejecutable de Java"
+javaExecSelButtonText = "Seleccionar Archivo"
+javaExecDesc = "El ejecutable de Java se verifica antes de iniciar el juego."
+javaPathDesc = "La ruta debe terminar en <strong>{pathSuffix}</strong>."
+
+jvmOptsTitle = "Opciones Adicionales de JVM"
+jvmOptsDesc = "Opciones que se aplicarán a la JVM durante la ejecución. No incluyas <em>-Xms</em> ni <em>-Xmx</em>."
+
+launcherTabHeaderText = "Configuración del Launcher"
+launcherTabHeaderDesc = "Opciones relacionadas con el launcher."
+
+allowPrereleaseTitle = "Permitir Versiones de Prueba"
+allowPrereleaseDesc = "Las versiones de prueba incluyen funciones nuevas que pueden no haber sido completamente verificadas o integradas.<br>Esta opción permanecerá activa si utilizas una versión de prueba."
+
+dataDirectoryTitle = "Directorio de Datos"
+selectDataDirectory = "Seleccionar Directorio de Datos"
+chooseFolder = "Seleccionar Carpeta"
+dataDirectoryDesc = "Todos los archivos del juego y las instalaciones locales de Java se almacenarán en este directorio.<br>Las capturas de pantalla y los mundos guardados se almacenarán en la carpeta de la instancia correspondiente."
+
+aboutTabHeaderText = "Acerca de"
+aboutTabHeaderDesc = "Consulta información y notas de la versión actual."
+
+aboutTitle = "{appName}"
+stableRelease = "Versión Estable"
+versionText = "Versión "
+
+sourceGithub = "Código Fuente (GitHub)"
+support = "Soporte"
+devToolsConsole = "Consola de Desarrollo"
+
+releaseNotes = "Notas de la Versión"
+changelog = "Registro de Cambios"
+noReleaseNotes = "No hay notas disponibles"
+viewReleaseNotes = "Ver Notas de la Versión en GitHub"
+
+launcherUpdatesHeaderText = "Actualizaciones del Launcher"
+launcherUpdatesHeaderDesc = "Descarga, instala y consulta las actualizaciones del launcher."
+
+checkForUpdates = "Buscar Actualizaciones"
+whatsNew = "Novedades"
+updateReleaseNotes = "Notas de la Actualización"
+
+[ejs.waiting]
+waitingText = "Esperando autenticación de Microsoft..."
+
+[ejs.welcome]
+continueButton = "CONTINUAR"
+
+[js.discord]
+waiting = "Esperando Discord..."
+state = "Servidor: {shortId}"
+
+[js.index]
+microsoftLoginTitle = "Iniciar sesión con Microsoft"
+microsoftLogoutTitle = "Cerrar sesión de Microsoft"
+
+[js.login]
+login = "INICIAR SESIÓN"
+loggingIn = "INICIANDO SESIÓN"
+success = "ÉXITO"
+tryAgain = "Reintentar"
+
+[js.login.error]
+invalidValue = "* Valor no válido"
+requiredValue = "* Obligatorio"
+
+[js.login.error.unknown]
+title = "Error Desconocido al Iniciar Sesión"
+desc = "Se produjo un error inesperado. Consulta la consola para obtener más información."
+
+[js.landing.launch]
+pleaseWait = "Iniciando..."
+failureTitle = "Error al Iniciar el Juego"
+failureText = "Consulta la consola (CTRL + Shift + I) para obtener más información."
+okay = "Aceptar"
+
+[js.landing.selectedAccount]
+noAccountSelected = "Ninguna Cuenta Seleccionada"
+
+[js.landing.selectedServer]
+noSelection = "Ningún Servidor Seleccionado"
+loading = "Cargando..."
+
+[js.landing.serverStatus]
+server = "SERVIDOR"
+offline = "DESCONECTADO"
+players = "JUGADORES"
+
+[js.landing.systemScan]
+checking = "Verificando el sistema..."
+noCompatibleJava = "No se encontró una instalación compatible de Java"
+installJavaMessage = "Para iniciar Minecraft, necesitas una instalación de Java de 64 bits. ¿Deseas que instalemos una copia automáticamente?"
+installJava = "Instalar Java"
+installJavaManually = "Instalar Manualmente"
+javaDownloadPrepare = "Preparando la descarga de Java..."
+javaDownloadFailureTitle = "Error al Descargar Java"
+javaDownloadFailureText = "Consulta la consola (CTRL + Shift + I) para obtener más información."
+javaRequired = "Java es Necesario<br>para Iniciar"
+javaRequiredMessage = 'Se requiere una instalación válida de Java {major} x64 para iniciar el juego.<br><br>Consulta nuestra <a href="https://github.com/dscalzi/HeliosLauncher/wiki/Java-Management#manually-installing-a-valid-version-of-java">Guía de Administración de Java</a> para obtener instrucciones de instalación manual.'
+javaRequiredDismiss = "Entendido"
+javaRequiredCancel = "Volver"
+
+[js.landing.downloadJava]
+findJdkFailure = "No se pudo encontrar una distribución de OpenJDK."
+javaDownloadCorruptedError = "El archivo JDK descargado está dañado o incompleto."
+extractingJava = "Extrayendo Java..."
+javaInstalled = "¡Java instalado correctamente!"
+
+[js.landing.dlAsync]
+loadingServerInfo = "Cargando información del servidor..."
+fatalError = "Error Fatal"
+unableToLoadDistributionIndex = "No se pudo cargar el índice de distribución. Consulta la consola (CTRL + Shift + I) para obtener más información."
+pleaseWait = "Espere..."
+errorDuringLaunchTitle = "Error al Iniciar el Juego"
+seeConsoleForDetails = "Consulta la consola (CTRL + Shift + I) para obtener más información."
+validatingFileIntegrity = "Verificando la integridad de los archivos..."
+errorDuringFileVerificationTitle = "Error durante la Verificación de Archivos"
+downloadingFiles = "Descargando archivos..."
+errorDuringFileDownloadTitle = "Error durante la Descarga de Archivos"
+preparingToLaunch = "Preparando el inicio..."
+launchingGame = "Iniciando Minecraft..."
+launchWrapperNotDownloaded = "No se pudo descargar correctamente un archivo esencial para iniciar el juego.<br><br>Como resultado, Minecraft no puede ejecutarse.<br><br>Intenta desactivar temporalmente tu antivirus y vuelve a iniciar el launcher.<br><br>Si el problema persiste, contacta con el equipo de soporte de PokéAurora."
+doneEnjoyServer = "¡Todo listo! Disfruta tu aventura en PokéAurora."
+checkConsoleForDetails = "Consulta la consola (CTRL + Shift + I) para obtener más información."
+
+[js.landing.news]
+checking = "Buscando noticias..."
+
+[js.landing.discord]
+loading = "Iniciando Minecraft..."
+joining = "Uniéndose al mundo de PokéAurora"
+joined = "Explorando PokéAurora"
+
+[js.overlay]
+dismiss = "Cerrar"
+
+[js.settings.fileSelectors]
+executables = "Archivos Ejecutables"
+allFiles = "Todos los Archivos"
+
+[js.settings.mstfLogin]
+errorTitle = "Algo Salió Mal"
+errorMessage = "La autenticación con Microsoft falló. Inténtalo nuevamente."
+okButton = "Aceptar"
+
+[js.settings.mstfLogout]
+errorTitle = "Algo Salió Mal"
+errorMessage = "No se pudo cerrar la sesión de Microsoft. Inténtalo nuevamente."
+okButton = "Aceptar"
+
+[js.settings.authAccountSelect]
+selectButton = "Seleccionar Cuenta"
+selectedButton = "Cuenta Seleccionada ✓"
+
+[js.settings.authAccountLogout]
+lastAccountWarningTitle = "Aviso<br>Esta es tu Última Cuenta"
+lastAccountWarningMessage = "Para utilizar el launcher, debes tener iniciada sesión en al menos una cuenta. Si continúas, deberás volver a iniciar sesión más tarde.<br><br>¿Estás seguro de que deseas cerrar sesión?"
+confirmButton = "Sí, Cerrar Sesión"
+cancelButton = "Cancelar"
+
+[js.settings.authAccountPopulate]
+username = "Nombre de Usuario"
+uuid = "UUID"
+selectAccount = "Seleccionar Cuenta"
+selectedAccount = "Cuenta Seleccionada ✓"
+logout = "Cerrar Sesión"
+
+[js.settings.dropinMods]
+removeButton = "Eliminar"
+deleteFailedTitle = "No se pudo eliminar<br>el Mod Adicional {fullName}"
+deleteFailedMessage = "Verifica que el archivo no esté siendo utilizado y vuelve a intentarlo."
+failedToggleTitle = "No se pudo cambiar el estado<br>de uno o más Mods Adicionales"
+okButton = "Aceptar"
+
+[js.settings.serverListing]
+mainServer = "Servidor Principal"
+
+[js.settings.java]
+selectedJava = "Seleccionado: Java {version} ({vendor})"
+invalidSelection = "Selección No Válida"
+requiresJava = "Requiere Java {major} x64."
+availableOptions = "Versiones Disponibles de Java {major} (HotSpot VM)"
+
+[js.settings.about]
+preReleaseTitle = "Versión de Prueba"
+stableReleaseTitle = "Versión Estable"
+releaseNotesFailed = "No se pudieron cargar las notas de la versión."
+
+[js.settings.updates]
+newReleaseTitle = "Nueva Versión Disponible"
+newPreReleaseTitle = "Nueva Versión de Prueba Disponible"
+
+downloadingButton = "Descargando..."
+
+downloadButton = "Descargar desde GitHub<span style='font-size: 10px;color: gray;text-shadow: none !important;'>Cierra el launcher y ejecuta el archivo descargado para actualizar.</span>"
+
+latestVersionTitle = "Estás utilizando la versión más reciente"
+
+checkForUpdatesButton = "Buscar Actualizaciones"
+checkingForUpdatesButton = "Buscando Actualizaciones..."
+
+[js.settings.msftLogin]
+errorTitle = "Error de Inicio de Sesión con Microsoft"
+errorMessage = "No se pudo autenticar tu cuenta de Microsoft. Inténtalo nuevamente."
+okButton = "Aceptar"
+
+[js.uibinder.startup]
+fatalErrorTitle = "Error Fatal: No se pudo cargar el Índice de Distribución"
+fatalErrorMessage = "No se pudo establecer una conexión con nuestros servidores para descargar el índice de distribución y tampoco se encontró una copia local disponible.<br><br>El índice de distribución es un archivo esencial que contiene la información más reciente del servidor. El launcher no puede iniciarse sin él. Verifica tu conexión a Internet y vuelve a iniciar la aplicación."
+closeButton = "Cerrar"
+
+[js.uibinder.validateAccount]
+failedMessageTitle = "No se pudo actualizar el inicio de sesión"
+failedMessage = "No fue posible actualizar la sesión de <strong>{account}</strong>. Selecciona otra cuenta o vuelve a iniciar sesión."
+failedMessageSelectAnotherAccount = "No fue posible actualizar la sesión de <strong>{account}</strong>. Vuelve a iniciar sesión."
+loginButton = "Iniciar Sesión"
+selectAnotherAccountButton = "Seleccionar Otra Cuenta"
+
+[js.uicore.autoUpdate]
+checkingForUpdateButton = "Buscando Actualizaciones..."
+installNowButton = "Instalar Ahora"
+checkForUpdatesButton = "Buscar Actualizaciones"
+
+[js.auth.microsoft.error]
+noProfileTitle = "Error al Iniciar Sesión:<br>Perfil No Configurado"
+noProfileDesc = "Tu cuenta de Microsoft aún no tiene un perfil de Minecraft configurado. Si compraste el juego recientemente o lo obtuviste mediante Xbox Game Pass, debes configurar tu perfil en <a href=\"https://minecraft.net/\">Minecraft.net</a>.<br><br>Si todavía no compraste el juego, también puedes hacerlo desde <a href=\"https://minecraft.net/\">Minecraft.net</a>."
+
+noXboxAccountTitle = "Error al Iniciar Sesión:<br>Sin Cuenta Xbox"
+noXboxAccountDesc = "Tu cuenta de Microsoft no tiene una cuenta de Xbox asociada."
+
+xblBannedTitle = "Error al Iniciar Sesión:<br>Xbox Live No Disponible"
+xblBannedDesc = "Tu cuenta de Microsoft pertenece a un país donde Xbox Live no está disponible o se encuentra restringido."
+
+under18Title = "Error al Iniciar Sesión:<br>Se Requiere Aprobación Parental"
+under18Desc = "Las cuentas de usuarios menores de 18 años deben formar parte de una familia administrada por un adulto."
+
+unknownTitle = "Error Desconocido al Iniciar Sesión"
+unknownDesc = "Se produjo un error inesperado. Consulta la consola para obtener más información."
+
+[js.auth.mojang.error]
+methodNotAllowedTitle = "Error Interno:<br>Método No Permitido"
+methodNotAllowedDesc = "Método no permitido. Por favor, reporta este error."
+
+notFoundTitle = "Error Interno:<br>No Encontrado"
+notFoundDesc = "No se encontró el servicio de autenticación. Por favor, reporta este problema."
+
+accountMigratedTitle = "Error al Iniciar Sesión:<br>Cuenta Migrada"
+accountMigratedDesc = "Intentaste iniciar sesión con una cuenta migrada. Intenta nuevamente utilizando el correo electrónico de la cuenta."
+
+invalidCredentialsTitle = "Error al Iniciar Sesión:<br>Credenciales Inválidas"
+invalidCredentialsDesc = "El correo electrónico, nombre de usuario o contraseña son incorrectos. Inténtalo nuevamente."
+
+invalidUserTitle = "Error al Iniciar Sesión:<br>Cuenta No Encontrada"
+invalidUserDesc = "La cuenta con la que intentas iniciar sesión no existe. Puedes crear una cuenta en <a href=\"https://auth.zelthoriaismp.cloud/auth/register\">PokéAurora</a>."
+
+tooManyAttemptsTitle = "Error al Iniciar Sesión:<br>Demasiados Intentos"
+tooManyAttemptsDesc = "Se detectaron demasiados intentos de inicio de sesión recientemente. Inténtalo nuevamente más tarde."
+
+invalidTokenTitle = "Error al Iniciar Sesión:<br>Token Inválido"
+invalidTokenDesc = "El token de acceso proporcionado no es válido."
+
+tokenHasProfileTitle = "Error al Iniciar Sesión:<br>El Token Ya Tiene un Perfil"
+tokenHasProfileDesc = "El token de acceso ya tiene un perfil asignado. La selección de perfiles aún no está disponible."
+
+credentialsMissingTitle = "Error al Iniciar Sesión:<br>Credenciales Incompletas"
+credentialsMissingDesc = "No se proporcionó un usuario o contraseña válidos, o la contraseña tiene menos de 3 caracteres."
+
+invalidSaltVersionTitle = "Error al Iniciar Sesión:<br>Versión de Salt Inválida"
+invalidSaltVersionDesc = "La versión de salt proporcionada no es válida."
+
+unsupportedMediaTypeTitle = "Error Interno:<br>Tipo de Contenido No Compatible"
+unsupportedMediaTypeDesc = "El tipo de contenido enviado no es compatible. Por favor, reporta este error."
+
+accountGoneTitle = "Error al Iniciar Sesión:<br>Cuenta Migrada"
+accountGoneDesc = "Esta cuenta fue migrada a una cuenta de Microsoft. Inicia sesión utilizando Microsoft."
+
+unreachableTitle = "Error al Iniciar Sesión:<br>Servicio No Disponible"
+unreachableDesc = "No fue posible conectar con los servidores de autenticación. Verifica tu conexión a Internet e inténtalo nuevamente."
+
+gameNotPurchasedTitle = "Error al Iniciar Sesión:<br>Minecraft No Comprado"
+gameNotPurchasedDesc = "La cuenta con la que intentas iniciar sesión no posee una copia de Minecraft. Puedes adquirirlo en <a href=\"https://minecraft.net/\">Minecraft.net</a>."
+
+unknownErrorTitle = "Error Desconocido al Iniciar Sesión"
+unknownErrorDesc = "Se produjo un error inesperado. Consulta la consola para obtener más información."

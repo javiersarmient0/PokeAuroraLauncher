@@ -2,8 +2,8 @@ const AdmZip                = require('adm-zip')
 const child_process         = require('child_process')
 const crypto                = require('crypto')
 const fs                    = require('fs-extra')
-const { LoggerUtil }        = require('hasta-core')
-const { getMojangOS, isLibraryCompatible, mcVersionAtLeast }  = require('hasta-core/common')
+const { LoggerUtil }        = require('helios-core')
+const { getMojangOS, isLibraryCompatible, mcVersionAtLeast }  = require('helios-core/common')
 const { Type }              = require('helios-distribution-types')
 const os                    = require('os')
 const path                  = require('path')
@@ -368,7 +368,7 @@ class ProcessBuilder {
 
         // Java Arguments
         if(process.platform === 'darwin'){
-            args.push('-Xdock:name=HastaStudiosLauncher')
+            args.push('-Xdock:name=PokeAuroraLauncher')
             args.push('-Xdock:icon=' + path.join(__dirname, '..', 'images', 'minecraft.icns'))
         }
         args.push('-Xmx' + ConfigManager.getMaxRAM(this.server.rawServer.id))
@@ -462,13 +462,13 @@ class ProcessBuilder {
             if(isDev){
                 
             if (current.type === 'microsoft') {
-                args.push('-Xdock:name=HastaStudioslauncher')
+                args.push('-Xdock:name=PokeAuroraLauncher')
                 args.push('-Xdock:icon=' + path.join(__dirname, '..', 'images', 'minecraft.icns'))
                 args.push('-Xmx' + ConfigManager.getMaxRAM(this.server.rawServer.id))
                 args.push('-Xms' + ConfigManager.getMinRAM(this.server.rawServer.id))
                 args = args.concat(ConfigManager.getJVMOptions(this.server.rawServer.id))
             } else {
-            args.push('-Xdock:name=HastaStudioslauncher')
+            args.push('-Xdock:name=PokeAuroraLauncher')
             args.push('-Xdock:icon=' + path.join(__dirname, '..', 'images', 'minecraft.icns'))
             args.push('-Xmx' + ConfigManager.getMaxRAM(this.server.rawServer.id))
             args.push('-Xms' + ConfigManager.getMinRAM(this.server.rawServer.id))
@@ -484,13 +484,13 @@ class ProcessBuilder {
         }
     } else {
         if (current.type === 'microsoft') {
-            args.push('-Xdock:name=HastaStudioslauncher')
+            args.push('-Xdock:name=PokeAuroraLauncher')
             args.push('-Xdock:icon=' + path.join(__dirname, '..', 'images', 'minecraft.icns'))
             args.push('-Xmx' + ConfigManager.getMaxRAM(this.server.rawServer.id))
             args.push('-Xms' + ConfigManager.getMinRAM(this.server.rawServer.id))
             args = args.concat(ConfigManager.getJVMOptions(this.server.rawServer.id))
         } else {
-        args.push('-Xdock:name=HastaStudioslauncher')
+        args.push('-Xdock:name=PokeAuroraLauncher')
         args.push('-Xdock:icon=' + path.join(__dirname, '..', 'images', 'minecraft.icns'))
         args.push('-Xmx' + ConfigManager.getMaxRAM(this.server.rawServer.id))
         args.push('-Xms' + ConfigManager.getMinRAM(this.server.rawServer.id))
@@ -643,7 +643,7 @@ class ProcessBuilder {
                             val = args[i].replace(argDiscovery, tempNativePath)
                             break
                         case 'launcher_name':
-                            val = args[i].replace(argDiscovery, 'HastaStudioslauncher')
+                            val = args[i].replace(argDiscovery, 'PokeAuroraLauncher')
                             break
                         case 'launcher_version':
                             val = args[i].replace(argDiscovery, this.launcherVersion)

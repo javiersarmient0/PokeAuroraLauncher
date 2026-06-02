@@ -1,10 +1,10 @@
-const { DistributionAPI } = require('hasta-core/common')
+const { DistributionAPI } = require('helios-core/common')
 
 const ConfigManager = require('./configmanager')
 
 // Old WesterosCraft url.
 // exports.REMOTE_DISTRO_URL = 'https://zelthoriaismp.cloud/nebula/distribution.json'
-exports.REMOTE_DISTRO_URL = 'https://zelthoriaismp.cloud/nebula/distribution.json'
+exports.REMOTE_DISTRO_URL = 'https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/distribution.json'
 
 const api = new DistributionAPI(
     ConfigManager.getLauncherDirectory(),
@@ -14,4 +14,4 @@ const api = new DistributionAPI(
     false
 )
 
-exports.DistroAPI = api
+exports.DistroAPI = api     

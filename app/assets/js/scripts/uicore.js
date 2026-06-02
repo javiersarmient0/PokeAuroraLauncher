@@ -9,7 +9,7 @@ const $                              = require('jquery')
 const {ipcRenderer, shell, webFrame} = require('electron')
 const remote                         = require('@electron/remote')
 const isDev                          = require('./assets/js/isdev')
-const { LoggerUtil }                 = require('hasta-core')
+const { LoggerUtil }                 = require('helios-core')
 const Lang                           = require('./assets/js/langloader')
 
 const loggerUICore             = LoggerUtil.getLogger('UICore')

@@ -4,7 +4,7 @@ const path = require('path')
 const toml = require('toml')
 const merge = require('lodash.merge')
 
-const defaultLang = "en_US"
+const defaultLang = "es_ES"
 let config = null
 let lang
 

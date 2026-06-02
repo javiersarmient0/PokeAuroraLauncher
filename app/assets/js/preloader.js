@@ -1,3 +1,8 @@
+// Parche de red para la interfaz (Node 22)
+const dns = require('dns');
+if (dns.setDefaultResultOrder) {
+    dns.setDefaultResultOrder('ipv4first');
+}
 const {ipcRenderer}  = require('electron')
 const fs             = require('fs-extra')
 const os             = require('os')
@@ -7,9 +12,9 @@ const launcherDir    = path.join(require('@electron/remote').app.getPath('userDa
 const ConfigManager  = require('./configmanager')
 const { DistroAPI }  = require('./distromanager')
 const LangLoader     = require('./langloader')
-const { LoggerUtil } = require('hasta-core')
+const { LoggerUtil } = require('helios-core')
 // eslint-disable-next-line no-unused-vars
-const { HeliosDistribution } = require('hasta-core/common')
+const { HeliosDistribution } = require('helios-core/common')
 
 const logger = LoggerUtil.getLogger('Preloader')
 
@@ -67,6 +72,6 @@ fs.remove(path.join(os.tmpdir(), ConfigManager.getTempNativeFolder()), (err) => 
     }
 })
 
-//reload username
-ConfigManager.reloadUsername();
-setInterval(ConfigManager.reloadUsername, 60*1000)
+// //reload username
+// ConfigManager.reloadUsername();
+// setInterval(ConfigManager.reloadUsername, 60*1000)

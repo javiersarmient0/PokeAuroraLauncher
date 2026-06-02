@@ -1,41 +1,66 @@
 ﻿/**
  * AuthManager
- * 
- * This module aims to abstract login procedures. Results from Mojang's REST api
- * are retrieved through our Mojang module. These results are processed and stored,
- * if applicable, in the config using the ConfigManager. All login procedures should
- * be made through this module.
- * 
- * @module authmanager
+ * * Este módulo maneja los inicios de sesión (Premium y No Premium integrados).
  */
-// Requirements
-const ConfigManager          = require('./configmanager')
-const { LoggerUtil }         = require('hasta-core')
-const { RestResponseStatus } = require('hasta-core/common')
-const { MojangRestAPI, MojangErrorCode } = require('hasta-core/mojang')
-const { MicrosoftAuth, MicrosoftErrorCode } = require('hasta-core/microsoft')
-const { AZURE_CLIENT_ID }    = require('./ipcconstants')
-const uuid = require('uuid');
-const crypto = require('crypto');
 
+const ConfigManager          = require('./configmanager')
+const { LoggerUtil }         = require('helios-core')
+const { RestResponseStatus } = require('helios-core/common')
+const { MojangRestAPI, MojangErrorCode } = require('helios-core/mojang')
+const { MicrosoftAuth, MicrosoftErrorCode } = require('helios-core/microsoft')
+const { AZURE_CLIENT_ID }    = require('./ipcconstants')
+const Lang = require('./langloader')
+
+// Agregados para el sistema No Premium
+const crypto = require('crypto');
 
 const log = LoggerUtil.getLogger('AuthManager')
 
-// Functions
+// --- Mensajes de Error de Helios ---
+
+function microsoftErrorDisplayable(errorCode) {
+    switch (errorCode) {
+        case MicrosoftErrorCode.NO_PROFILE:
+            return { title: Lang.queryJS('auth.microsoft.error.noProfileTitle'), desc: Lang.queryJS('auth.microsoft.error.noProfileDesc') }
+        case MicrosoftErrorCode.NO_XBOX_ACCOUNT:
+            return { title: Lang.queryJS('auth.microsoft.error.noXboxAccountTitle'), desc: Lang.queryJS('auth.microsoft.error.noXboxAccountDesc') }
+        case MicrosoftErrorCode.XBL_BANNED:
+            return { title: Lang.queryJS('auth.microsoft.error.xblBannedTitle'), desc: Lang.queryJS('auth.microsoft.error.xblBannedDesc') }
+        case MicrosoftErrorCode.UNDER_18:
+            return { title: Lang.queryJS('auth.microsoft.error.under18Title'), desc: Lang.queryJS('auth.microsoft.error.under18Desc') }
+        case MicrosoftErrorCode.UNKNOWN:
+            return { title: Lang.queryJS('auth.microsoft.error.unknownTitle'), desc: Lang.queryJS('auth.microsoft.error.unknownDesc') }
+    }
+}
+
+function mojangErrorDisplayable(errorCode) {
+    switch(errorCode) {
+        case MojangErrorCode.ERROR_METHOD_NOT_ALLOWED: return { title: Lang.queryJS('auth.mojang.error.methodNotAllowedTitle'), desc: Lang.queryJS('auth.mojang.error.methodNotAllowedDesc') }
+        case MojangErrorCode.ERROR_NOT_FOUND: return { title: Lang.queryJS('auth.mojang.error.notFoundTitle'), desc: Lang.queryJS('auth.mojang.error.notFoundDesc') }
+        case MojangErrorCode.ERROR_USER_MIGRATED: return { title: Lang.queryJS('auth.mojang.error.accountMigratedTitle'), desc: Lang.queryJS('auth.mojang.error.accountMigratedDesc') }
+        case MojangErrorCode.ERROR_INVALID_CREDENTIALS: return { title: Lang.queryJS('auth.mojang.error.invalidCredentialsTitle'), desc: Lang.queryJS('auth.mojang.error.invalidCredentialsDesc') }
+        case MojangErrorCode.ERROR_RATELIMIT: return { title: Lang.queryJS('auth.mojang.error.tooManyAttemptsTitle'), desc: Lang.queryJS('auth.mojang.error.tooManyAttemptsDesc') }
+        case MojangErrorCode.ERROR_INVALID_TOKEN: return { title: Lang.queryJS('auth.mojang.error.invalidTokenTitle'), desc: Lang.queryJS('auth.mojang.error.invalidTokenDesc') }
+        case MojangErrorCode.ERROR_ACCESS_TOKEN_HAS_PROFILE: return { title: Lang.queryJS('auth.mojang.error.tokenHasProfileTitle'), desc: Lang.queryJS('auth.mojang.error.tokenHasProfileDesc') }
+        case MojangErrorCode.ERROR_CREDENTIALS_MISSING: return { title: Lang.queryJS('auth.mojang.error.credentialsMissingTitle'), desc: Lang.queryJS('auth.mojang.error.credentialsMissingDesc') }
+        case MojangErrorCode.ERROR_INVALID_SALT_VERSION: return { title: Lang.queryJS('auth.mojang.error.invalidSaltVersionTitle'), desc: Lang.queryJS('auth.mojang.error.invalidSaltVersionDesc') }
+        case MojangErrorCode.ERROR_UNSUPPORTED_MEDIA_TYPE: return { title: Lang.queryJS('auth.mojang.error.unsupportedMediaTypeTitle'), desc: Lang.queryJS('auth.mojang.error.unsupportedMediaTypeDesc') }
+        case MojangErrorCode.ERROR_GONE: return { title: Lang.queryJS('auth.mojang.error.accountGoneTitle'), desc: Lang.queryJS('auth.mojang.error.accountGoneDesc') }
+        case MojangErrorCode.ERROR_UNREACHABLE: return { title: Lang.queryJS('auth.mojang.error.unreachableTitle'), desc: Lang.queryJS('auth.mojang.error.unreachableDesc') }
+        case MojangErrorCode.ERROR_NOT_PAID: return { title: Lang.queryJS('auth.mojang.error.gameNotPurchasedTitle'), desc: Lang.queryJS('auth.mojang.error.gameNotPurchasedDesc') }
+        case MojangErrorCode.UNKNOWN: return { title: Lang.queryJS('auth.mojang.error.unknownErrorTitle'), desc: Lang.queryJS('auth.mojang.error.unknownErrorDesc') }
+        default: throw new Error(`Unknown error code: ${errorCode}`)
+    }
+}
+
+// --- Funciones de Login ---
 
 /**
- * Add a Mojang account. This will authenticate the given username with Mojang's
- * authserver. The resultant data will be stored as an auth account in the
- * configuration database.
- * 
- * @param {string} username The account username (email if migrated).
- * @param {string} password The account password.
- * @returns {Promise.<Object>} Promise which resolves the resolved authenticated account object.
+ * LOGIN NO PREMIUM (Tu código original injertado aquí)
  */
 exports.addAccount = async function(username) {
     try {
         let userId = null;
-
         const hash = crypto.createHash('md5');
         hash.update(username);
         userId = hash.digest('hex');
@@ -52,26 +77,53 @@ exports.addAccount = async function(username) {
     }
 };
 
+/**
+ * LOGIN MOJANG (Premium viejos)
+ */
+exports.addMojangAccount = async function(username, password) {
+    try {
+        const response = await MojangRestAPI.authenticate(username, password, ConfigManager.getClientToken())
+        if(response.responseStatus === RestResponseStatus.SUCCESS) {
+            const session = response.data
+            if(session.selectedProfile != null){
+                const ret = ConfigManager.addMojangAuthAccount(session.selectedProfile.id, session.accessToken, username, session.selectedProfile.name)
+                if(ConfigManager.getClientToken() == null){
+                    ConfigManager.setClientToken(session.clientToken)
+                }
+                ConfigManager.save()
+                return ret
+            } else {
+                return Promise.reject(mojangErrorDisplayable(MojangErrorCode.ERROR_NOT_PAID))
+            }
+        } else {
+            return Promise.reject(mojangErrorDisplayable(response.mojangErrorCode))
+        }
+    } catch (err){
+        log.error(err)
+        return Promise.reject(mojangErrorDisplayable(MojangErrorCode.UNKNOWN))
+    }
+}
+
 const AUTH_MODE = { FULL: 0, MS_REFRESH: 1, MC_REFRESH: 2 }
 
 /**
- * Perform the full MS Auth flow in a given mode.
- * 
- * AUTH_MODE.FULL = Full authorization for a new account.
- * AUTH_MODE.MS_REFRESH = Full refresh authorization.
- * AUTH_MODE.MC_REFRESH = Refresh of the MC token, reusing the MS token.
- * 
- * @param {string} entryCode FULL-AuthCode. MS_REFRESH=refreshToken, MC_REFRESH=accessToken
- * @param {*} authMode The auth mode.
- * @returns An object with all auth data. AccessToken object will be null when mode is MC_REFRESH.
+ * LOGIN MICROSOFT (El oficial que sí funciona hoy en día)
  */
 async function fullMicrosoftAuthFlow(entryCode, authMode) {
     try {
-
         let accessTokenRaw
         let accessToken
         if(authMode !== AUTH_MODE.MC_REFRESH) {
-            const accessTokenResponse = await MicrosoftAuth.getAccessToken(entryCode, authMode === AUTH_MODE.MS_REFRESH, AZURE_CLIENT_ID)
+            
+            // --- PEGALO ACÁ, REEMPLAZANDO LA LÍNEA ANTIGUA ---
+            const accessTokenResponse = await MicrosoftAuth.getAccessToken(
+                entryCode, 
+                authMode === AUTH_MODE.MS_REFRESH, 
+                AZURE_CLIENT_ID, 
+                ['XboxLive.signin', 'offline_access']
+            );
+            // --------------------------------------------------
+
             if(accessTokenResponse.responseStatus === RestResponseStatus.ERROR) {
                 return Promise.reject(microsoftErrorDisplayable(accessTokenResponse.microsoftErrorCode))
             }
@@ -105,37 +157,28 @@ async function fullMicrosoftAuthFlow(entryCode, authMode) {
             mcToken: mcTokenResponse.data,
             mcProfile: mcProfileResponse.data
         }
-    } catch(err) {
+   } catch(err) {
+        // 🔥 PARCHE DE DETECCIÓN CRUCIAL
+        console.error("====== ERROR CRÍTICO EN FLOW DE MICROSOFT ======");
+        console.error(err);
+        console.error("================================================");
+        
         log.error(err)
         return Promise.reject(microsoftErrorDisplayable(MicrosoftErrorCode.UNKNOWN))
     }
 }
 
-/**
- * Calculate the expiry date. Advance the expiry time by 10 seconds
- * to reduce the liklihood of working with an expired token.
- * 
- * @param {number} nowMs Current time milliseconds.
- * @param {number} epiresInS Expires in (seconds)
- * @returns 
- */
 function calculateExpiryDate(nowMs, epiresInS) {
     return nowMs + ((epiresInS-10)*1000)
 }
 
-/**
- * Add a Microsoft account. This will pass the provided auth code to Mojang's OAuth2.0 flow.
- * The resultant data will be stored as an auth account in the configuration database.
- * 
- * @param {string} authCode The authCode obtained from microsoft.
- * @returns {Promise.<Object>} Promise which resolves the resolved authenticated account object.
- */
+
 exports.addMicrosoftAccount = async function(authCode) {
 
     const fullAuth = await fullMicrosoftAuthFlow(authCode, AUTH_MODE.FULL)
 
-    // Advance expiry by 10 seconds to avoid close calls.
-    const now = new Date().getTime()
+    // ESTA ES LA LÍNEA QUE FALTA O ESTÁ MAL
+    const now = new Date().getTime() 
 
     const ret = ConfigManager.addMicrosoftAuthAccount(
         fullAuth.mcProfile.id,
@@ -150,33 +193,33 @@ exports.addMicrosoftAccount = async function(authCode) {
 
     return ret
 }
-
-/**
- * Remove a Mojang account. This will invalidate the access token associated
- * with the account and then remove it from the database.
- * 
- * @param {string} uuid The UUID of the account to be removed.
- * @returns {Promise.<void>} Promise which resolves to void when the action is complete.
- */
-exports.removeMojangAccount = function(uuid) {
+exports.removeMojangAccount = async function(uuid){
     try {
-        ConfigManager.removeAuthAccount(uuid);
-        ConfigManager.save();
-        return Promise.resolve();
-    } catch (err) {
-        log.error('Error while removing account', err);
-        return Promise.reject(err);
+        const authAcc = ConfigManager.getAuthAccount(uuid)
+        
+        // 🛠️ PARCHE NO-PREMIUM: Si la cuenta es offline, la borramos directo sin llamar a Mojang
+        if (authAcc.accessToken === 'sry') {
+            ConfigManager.removeAuthAccount(uuid)
+            ConfigManager.save()
+            return Promise.resolve()
+        }
+
+        // Si es una cuenta Mojang real (antigua), sigue su flujo normal
+        const response = await MojangRestAPI.invalidate(authAcc.accessToken, ConfigManager.getClientToken())
+        if(response.responseStatus === RestResponseStatus.SUCCESS) {
+            ConfigManager.removeAuthAccount(uuid)
+            ConfigManager.save()
+            return Promise.resolve()
+        } else {
+            log.error('Error while removing account', response.error)
+            return Promise.reject(response.error)
+        }
+    } catch (err){
+        log.error('Error while removing account', err)
+        return Promise.reject(err)
     }
 }
 
-
-/**
- * Remove a Microsoft account. It is expected that the caller will invoke the OAuth logout
- * through the ipc renderer.
- * 
- * @param {string} uuid The UUID of the account to be removed.
- * @returns {Promise.<void>} Promise which resolves to void when the action is complete.
- */
 exports.removeMicrosoftAccount = async function(uuid){
     try {
         ConfigManager.removeAuthAccount(uuid)
@@ -188,76 +231,88 @@ exports.removeMicrosoftAccount = async function(uuid){
     }
 }
 
-
-/**
- * Validate the selected account with Microsoft's authserver. If the account is not valid,
- * we will attempt to refresh the access token and update that value. If that fails, a
- * new login will be required.
- * 
- * @returns {Promise.<boolean>} Promise which resolves to true if the access token is valid,
- * otherwise false.
- */
-async function validateSelectedMicrosoftAccount(){
+async function validateSelectedMojangAccount(){
     const current = ConfigManager.getSelectedAccount()
+    const response = await MojangRestAPI.validate(current.accessToken, ConfigManager.getClientToken())
+
+    if(response.responseStatus === RestResponseStatus.SUCCESS) {
+        const isValid = response.data
+        if(!isValid){
+            const refreshResponse = await MojangRestAPI.refresh(current.accessToken, ConfigManager.getClientToken())
+            if(refreshResponse.responseStatus === RestResponseStatus.SUCCESS) {
+                const session = refreshResponse.data
+                ConfigManager.updateMojangAuthAccount(current.uuid, session.accessToken)
+                ConfigManager.save()
+            } else {
+                return false
+            }
+            return true
+        } else {
+            return true
+        }
+    }
+}
+
+async function validateSelectedMicrosoftAccount() {
+    const current = ConfigManager.getSelectedAccount();
+    
+    // Si no hay cuenta, terminamos la función inmediatamente sin lanzar errores
+    if (!current) {
+        return false;
+    }
+    
+    // Si la cuenta existe pero no tiene el objeto microsoft, tampoco hacemos nada
+    if (!current.microsoft) {
+        return false;
+    }
+
     const now = new Date().getTime()
     const mcExpiresAt = current.expiresAt
     const mcExpired = now >= mcExpiresAt
 
-    if(!mcExpired) {
-        return true
-    }
-
-    // MC token expired. Check MS token.
+    if(!mcExpired) { return true }
 
     const msExpiresAt = current.microsoft.expires_at
     const msExpired = now >= msExpiresAt
 
     if(msExpired) {
-        // MS expired, do full refresh.
         try {
             const res = await fullMicrosoftAuthFlow(current.microsoft.refresh_token, AUTH_MODE.MS_REFRESH)
-
             ConfigManager.updateMicrosoftAuthAccount(
-                current.uuid,
-                res.mcToken.access_token,
-                res.accessToken.access_token,
-                res.accessToken.refresh_token,
-                calculateExpiryDate(now, res.accessToken.expires_in),
-                calculateExpiryDate(now, res.mcToken.expires_in)
+                current.uuid, res.mcToken.access_token, res.accessToken.access_token, res.accessToken.refresh_token,
+                calculateExpiryDate(now, res.accessToken.expires_in), calculateExpiryDate(now, res.mcToken.expires_in)
             )
             ConfigManager.save()
             return true
-        } catch(err) {
-            return false
-        }
+        } catch(_err) { return false }
     } else {
-        // Only MC expired, use existing MS token.
         try {
             const res = await fullMicrosoftAuthFlow(current.microsoft.access_token, AUTH_MODE.MC_REFRESH)
-
             ConfigManager.updateMicrosoftAuthAccount(
-                current.uuid,
-                res.mcToken.access_token,
-                current.microsoft.access_token,
-                current.microsoft.refresh_token,
-                current.microsoft.expires_at,
-                calculateExpiryDate(now, res.mcToken.expires_in)
+                current.uuid, res.mcToken.access_token, current.microsoft.access_token, current.microsoft.refresh_token,
+                current.microsoft.expires_at, calculateExpiryDate(now, res.mcToken.expires_in)
             )
             ConfigManager.save()
             return true
-        }
-        catch(err) {
-            return false
-        }
+        } catch(_err) { return false }
     }
 }
 
 exports.validateSelected = async function(){
     const current = ConfigManager.getSelectedAccount()
 
+    // ESCUDO: Si no hay cuenta, salimos inmediatamente sin lanzar error
+    if (!current) {
+        console.log("No hay cuenta seleccionada, esperando...");
+        return false; 
+    }
+
+    // SI HAY CUENTA: Validamos según el tipo
     if(current.type === 'microsoft') {
+        // Le damos 1 segundo extra de gracia por si el disco está lento
+        await new Promise(resolve => setTimeout(resolve, 1000));
         return await validateSelectedMicrosoftAccount()
     } else {
-        return true;
+        return await validateSelectedMojangAccount()
     }
 }

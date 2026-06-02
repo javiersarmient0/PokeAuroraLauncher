@@ -1,5 +1,5 @@
 // Work in progress
-const { LoggerUtil } = require('hasta-core')
+const { LoggerUtil } = require('helios-core')
 
 const logger = LoggerUtil.getLogger('DiscordWrapper')
 

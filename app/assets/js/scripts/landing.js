@@ -6,18 +6,18 @@ const { URL }                 = require('url')
 const {
     MojangRestAPI,
     getServerStatus
-}                             = require('hasta-core/mojang')
+}                             = require('helios-core/mojang')
 const {
     RestResponseStatus,
     isDisplayableError,
     validateLocalFile
-}                             = require('hasta-core/common')
+}                             = require('helios-core/common')
 const {
     FullRepair,
     DistributionIndexProcessor,
     MojangIndexProcessor,
     downloadFile
-}                             = require('hasta-core/dl')
+}                             = require('helios-core/dl')
 const {
     validateSelectedJvm,
     ensureJavaDirIsRoot,
@@ -25,7 +25,7 @@ const {
     discoverBestJvmInstallation,
     latestOpenJDK,
     extractJdk
-}                             = require('hasta-core/java')
+}                             = require('helios-core/java')
 
 // Internal Requirements
 const DiscordWrapper          = require('./assets/js/discordwrapper')
@@ -419,16 +419,25 @@ async function dlAsync(login = true) {
 
     fullRepairModule.spawnReceiver()
 
-    fullRepairModule.childProcess.on('error', (err) => {
-        loggerLaunchSuite.error('Error during launch', err)
-        showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringLaunchTitle'), err.message || Lang.queryJS('landing.dlAsync.errorDuringLaunchText'))
-    })
-    fullRepairModule.childProcess.on('close', (code, _signal) => {
-        if(code !== 0){
-            loggerLaunchSuite.error(`Full Repair Module exited with code ${code}, assuming error.`)
-            showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringLaunchTitle'), Lang.queryJS('landing.dlAsync.seeConsoleForDetails'))
-        }
-    })
+fullRepairModule.childProcess.on('error', (err) => {
+    loggerLaunchSuite.error('Error during launch', err)
+    
+    // Alerta para cuando el proceso tira un error directo
+    setOverlayTitle(Lang.queryJS('landing.dlAsync.errorDuringLaunchTitle'))
+    setOverlayDescription(err.message || Lang.queryJS('landing.dlAsync.errorDuringLaunchText'))
+    toggleOverlay(true)
+})
+
+fullRepairModule.childProcess.on('close', (code, _signal) => {
+    if(code !== 0){
+        loggerLaunchSuite.error(`Full Repair Module exited with code ${code}, assuming error.`)
+        
+        // Alerta corregida para cuando el proceso se cierra inesperadamente (ej. por un 404)
+        setOverlayTitle(Lang.queryJS('landing.dlAsync.errorDuringLaunchTitle'))
+        setOverlayDescription(Lang.queryJS('landing.dlAsync.seeConsoleForDetails'))
+        toggleOverlay(true)
+    }
+})
 
     loggerLaunchSuite.info('Validating files.')
     setLaunchDetails(Lang.queryJS('landing.dlAsync.validatingFileIntegrity'))
@@ -454,11 +463,12 @@ async function dlAsync(login = true) {
                 setDownloadPercentage(percent)
             })
             setDownloadPercentage(100)
-        } catch(err) {
-            loggerLaunchSuite.error('Error during file download.')
-            showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringFileDownloadTitle'), err.displayable || Lang.queryJS('landing.dlAsync.seeConsoleForDetails'))
-            return
-        }
+        } catch (err) {
+    console.error("--- DETALLE DEL ERROR DE DESCARGA ---");
+    console.error(err);
+    // showLaunchFailure(...) <- Comenta esta línea poniendo // al inicio
+    alert("Error al descargar. Revisa la consola (Ctrl+Shift+I)."); 
+}
     } else {
         loggerLaunchSuite.info('No invalid files, skipping download.')
     }
@@ -898,7 +908,7 @@ async function loadNews(){
     const promise = new Promise((resolve, reject) => {
         
         const newsFeed = distroData.rawDistribution.rss
-        const newsHost = new URL(newsFeed).origin + '/'
+        const newsHost = new URL(newsFeed).origin + 'https://discord.com/users/javiersarmient0'
         $.ajax({
             url: newsFeed,
             success: (data) => {
