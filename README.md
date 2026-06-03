@@ -1,6 +1,6 @@
 
 
-# Poke Aurora Launcher   <img src="https://pub-ec31e5872c894b909e21e560fd33c9f7.r2.dev/a.png" alt="Logo" width="120">
+# Poke Aurora Launcher                                        <img src="https://pub-ec31e5872c894b909e21e560fd33c9f7.r2.dev/a.png" alt="Logo" width="100">
 
 
 ## Características
