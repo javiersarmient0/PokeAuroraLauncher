@@ -5,7 +5,7 @@
   "description": "Launcher Oficial de Poke Aurora",
   "author": "Poke Aurora",
   "license": "UNLICENSED",
-  "homepage": "https://github.com/javiersarmient0/Poke-Aurora",
+  "homepage": "https://github.com/javiersarmient0/PokeAuroraLauncher",
   "bugs": {
     "url": "https://discord.gg/zsmp"
   },
@@ -48,6 +48,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/javiersarmient0/Poke-Aurora.git"
+    "url": "git+https://github.com/javiersarmient0/PokeAuroraLauncher.git"
   }
 }
