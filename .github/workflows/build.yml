@@ -1,29 +1,38 @@
-name: Build and Release
+name: Build
 
-# Se ejecuta SOLO cuando publicas una Release en GitHub
-on:
-  release:
-    types: [published]
+on: push
 
 jobs:
   release:
-    runs-on: windows-latest
+    runs-on: ${{ matrix.os }}
+
     permissions:
       contents: write
 
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Set up Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: 3.x
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
+        shell: bash
 
-      - name: Build for Windows
+      - name: Build
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run dist 
+        run: npm run dist
+        shell: bash
