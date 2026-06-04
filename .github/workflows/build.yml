@@ -26,4 +26,4 @@ jobs:
       - name: Build for Windows
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run dist
+        run: npm run dist 
