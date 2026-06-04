@@ -28,7 +28,7 @@ loginEmailPlaceholder = "NOMBRE DE USUARIO"
 loginPasswordError = "* Obligatorio"
 loginPasswordPlaceholder = "CONTRASEÑA"
 
-loginForgotPasswordLink = "https://auth.zelthoriaismp.cloud/auth/forgot/"
+loginForgotPasswordLink = "https://discord.gg/DFxgS7a9J6"
 loginForgotPasswordText = "¿Olvidaste tu contraseña?"
 
 loginRememberMeText = "Recordarme"
@@ -74,8 +74,8 @@ tabAccountHeaderDesc = "Añade nuevas cuentas o administra las existentes."
 microsoftAccount = "Microsoft"
 addMicrosoftAccount = "+ Añadir Cuenta de Microsoft"
 
-mojangAccount = "PokéAurora"
-addMojangAccount = "+ Añadir Cuenta de Poké Aurora"
+mojangAccount = "PokeAurora"
+addMojangAccount = "+ Añadir Cuenta de PokeAurora"
 
 minecraftTabHeaderText = "Configuración de Minecraft"
 minecraftTabHeaderDesc = "Opciones relacionadas con el inicio del juego."
@@ -234,8 +234,8 @@ downloadingFiles = "Descargando archivos..."
 errorDuringFileDownloadTitle = "Error durante la Descarga de Archivos"
 preparingToLaunch = "Preparando el inicio..."
 launchingGame = "Iniciando Minecraft..."
-launchWrapperNotDownloaded = "No se pudo descargar correctamente un archivo esencial para iniciar el juego.<br><br>Como resultado, Minecraft no puede ejecutarse.<br><br>Intenta desactivar temporalmente tu antivirus y vuelve a iniciar el launcher.<br><br>Si el problema persiste, contacta con el equipo de soporte de PokéAurora."
-doneEnjoyServer = "¡Todo listo! Disfruta tu aventura en PokéAurora."
+launchWrapperNotDownloaded = "No se pudo descargar correctamente un archivo esencial para iniciar el juego.<br><br>Como resultado, Minecraft no puede ejecutarse.<br><br>Intenta desactivar temporalmente tu antivirus y vuelve a iniciar el launcher.<br><br>Si el problema persiste, contacta con el equipo de soporte de PokeAurora."
+doneEnjoyServer = "¡Todo listo! Disfruta tu aventura en PokeAurora."
 checkConsoleForDetails = "Consulta la consola (CTRL + Shift + I) para obtener más información."
 
 [js.landing.news]
@@ -243,8 +243,8 @@ checking = "Buscando noticias..."
 
 [js.landing.discord]
 loading = "Iniciando Minecraft..."
-joining = "Uniéndose al mundo de PokéAurora"
-joined = "Explorando PokéAurora"
+joining = "Uniéndose al mundo de PokeAurora"
+joined = "Explorando PokeAurora"
 
 [js.overlay]
 dismiss = "Cerrar"
@@ -364,9 +364,6 @@ accountMigratedDesc = "Intentaste iniciar sesión con una cuenta migrada. Intent
 
 invalidCredentialsTitle = "Error al Iniciar Sesión:<br>Credenciales Inválidas"
 invalidCredentialsDesc = "El correo electrónico, nombre de usuario o contraseña son incorrectos. Inténtalo nuevamente."
-
-invalidUserTitle = "Error al Iniciar Sesión:<br>Cuenta No Encontrada"
-invalidUserDesc = "La cuenta con la que intentas iniciar sesión no existe. Puedes crear una cuenta en <a href=\"https://auth.zelthoriaismp.cloud/auth/register\">PokéAurora</a>."
 
 tooManyAttemptsTitle = "Error al Iniciar Sesión:<br>Demasiados Intentos"
 tooManyAttemptsDesc = "Se detectaron demasiados intentos de inicio de sesión recientemente. Inténtalo nuevamente más tarde."

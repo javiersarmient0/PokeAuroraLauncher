@@ -12,16 +12,22 @@ let activity
 
 exports.initRPC = function(genSettings, servSettings, initialDetails = Lang.queryJS('discord.waiting')){
     client = new Client({ transport: 'ipc' })
+    logger.info('Intentando conectar con Discord...');
 
+    // Definimos la estructura base de la actividad
     activity = {
-        details: initialDetails,
-        state: Lang.queryJS('discord.state', {shortId: servSettings.shortId}),
-        largeImageKey: servSettings.largeImageKey,
-        largeImageText: servSettings.largeImageText,
-        smallImageKey: genSettings.smallImageKey,
-        smallImageText: genSettings.smallImageText,
+        details: "Jugando a PokeAurora",
+        state: "PokeAurora Launcher",
+        largeImageKey: "logo_aurora",
+        largeImageText: "PokeAurora",
         startTimestamp: new Date().getTime(),
-        instance: false
+        instance: false,
+        buttons: [
+            {
+                label: "Unirse al servidor",
+                url: "https://discord.gg/hg58gR59" 
+            }
+        ]
     }
 
     client.on('ready', () => {
@@ -29,7 +35,7 @@ exports.initRPC = function(genSettings, servSettings, initialDetails = Lang.quer
         client.setActivity(activity)
     })
     
-    client.login({clientId: genSettings.clientId}).catch(error => {
+    client.login({clientId: '1511180208693055488'}).catch(error => {
         if(error.message.includes('ENOENT')) {
             logger.info('Unable to initialize Discord Rich Presence, no client detected.')
         } else {
@@ -39,7 +45,18 @@ exports.initRPC = function(genSettings, servSettings, initialDetails = Lang.quer
 }
 
 exports.updateDetails = function(details){
+    if (!client) return
+    
+    // Al actualizar, aseguramos que la estructura de la actividad se mantenga
     activity.details = details
+    // Forzamos los botones en cada actualización para asegurar que aparezcan
+    activity.buttons = [
+        {
+            label: "Unirse al servidor",
+            url: "https://discord.gg/hg58gR59" 
+        }
+    ]
+    
     client.setActivity(activity)
 }
 

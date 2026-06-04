@@ -16,10 +16,10 @@ changeLanguageTitle = "Cambiar el idioma del launcher"
 changeLanguageDesc = "Puedes cambiar el idioma desde la lista de abajo. Este texto permanecerá en español para que siempre puedas volver a esta sección si deseas cambiarlo nuevamente."
 
 [ejs.welcome]
-welcomeHeader = "BIENVENIDO A POKÉAURORA"
+welcomeHeader = "BIENVENIDO A POKEAURORA"
 
 welcomeDescription = """
-¡Bienvenido a PokéAurora Cobblemon!
+¡Bienvenido a PokeAurora Cobblemon!
 
 Prepárate para comenzar una aventura única donde el mundo de Minecraft y Pokémon se unen en una experiencia inolvidable. Explora regiones, captura Pokémon, forma tu equipo ideal, desafía a otros entrenadores y descubre todos los secretos que esconde PokéAurora.
 

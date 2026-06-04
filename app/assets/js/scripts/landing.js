@@ -378,6 +378,7 @@ const MIN_LINGER = 5000
 
 async function dlAsync(login = true) {
 
+
     // Login parameter is temporary for debug purposes. Allows testing the validation/downloads without
     // launching the game.
 
@@ -555,17 +556,18 @@ fullRepairModule.childProcess.on('close', (code, _signal) => {
 
             setLaunchDetails(Lang.queryJS('landing.dlAsync.doneEnjoyServer'))
 
-            // Init Discord Hook
-            if(distro.rawDistribution.discord != null && serv.rawServer.discord != null){
-                DiscordWrapper.initRPC(distro.rawDistribution.discord, serv.rawServer.discord)
-                hasRPC = true
-                proc.on('close', (code, signal) => {
-                    loggerLaunchSuite.info('Shutting down Discord Rich Presence..')
-                    DiscordWrapper.shutdownRPC()
-                    hasRPC = false
-                    proc = null
-                })
-            }
+
+DiscordWrapper.initRPC({ clientId: '1511180208693055488' }, {})
+hasRPC = true
+DiscordWrapper.updateDetails('Explorando el Launcher') 
+DiscordWrapper.updateState('Esperando para jugar')
+
+proc.on('close', (code, signal) => {
+    loggerLaunchSuite.info('Shutting down Discord Rich Presence..')
+    DiscordWrapper.shutdownRPC()
+    hasRPC = false
+    proc = null
+})
 
         } catch(err) {
 
@@ -908,7 +910,15 @@ async function loadNews(){
     const promise = new Promise((resolve, reject) => {
         
         const newsFeed = distroData.rawDistribution.rss
-        const newsHost = new URL(newsFeed).origin + 'https://discord.com/users/javiersarmient0'
+        
+        // CORRECCIÓN: Usamos un bloque try/catch para evitar que un error de URL detenga el launcher
+        let newsHost = ''
+        try {
+            newsHost = new URL(newsFeed).origin
+        } catch (e) {
+            loggerLanding.error('Error al procesar la URL del RSS, ignorando host:', e)
+        }
+
         $.ajax({
             url: newsFeed,
             success: (data) => {
@@ -916,7 +926,7 @@ async function loadNews(){
                 const articles = []
 
                 for(let i=0; i<items.length; i++){
-                // JQuery Element
+                    // JQuery Element
                     const el = $(items[i])
 
                     // Resolve date.
