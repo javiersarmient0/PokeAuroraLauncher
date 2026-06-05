@@ -4,8 +4,8 @@ usernamePlaceholder = "Nombre de usuario"
 usernameEditButton = "Editar"
 settingsTooltip = "Configuración"
 serverStatus = "SERVIDOR"
-serverStatusPlaceholder = "DESCONECTADO"
-mojangStatus = "ESTADO DEL SERVIDOR"
+serverStatusPlaceholder = "--"
+mojangStatus = "POKEAURORA"
 mojangStatusTooltipTitle = "Servicios"
 mojangStatusNETitle = "No esencial"
 newsButton = "NOTICIAS"
@@ -198,7 +198,7 @@ loading = "Cargando..."
 
 [js.landing.serverStatus]
 server = "SERVIDOR"
-offline = "DESCONECTADO"
+offline = "--"
 players = "JUGADORES"
 
 [js.landing.systemScan]

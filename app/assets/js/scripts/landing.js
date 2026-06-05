@@ -177,14 +177,16 @@ function updateSelectedServer(serv){
     }
     ConfigManager.setSelectedServer(serv != null ? serv.rawServer.id : null)
     ConfigManager.save()
-    server_selection_button.innerHTML = '&#8226; ' + (serv != null ? serv.rawServer.name : Lang.queryJS('landing.noSelection'))
+ server_selection_button.innerHTML = '&#8226; ' +
+    (serv != null ? serv.rawServer.name : Lang.queryJS('landing.noSelection'))
     if(getCurrentView() === VIEWS.settings){
         animateSettingsTabRefresh()
     }
     setLaunchEnabled(serv != null)
 }
 // Real text is set in uibinder.js on distributionIndexDone.
-server_selection_button.innerHTML = '&#8226; ' + Lang.queryJS('landing.selectedServer.loading')
+server_selection_button.innerHTML = '&#8226; ' +
+    Lang.queryJS('landing.selectedServer.loading')
 server_selection_button.onclick = async e => {
     e.target.blur()
     await toggleServerSelection(true)
@@ -198,17 +200,25 @@ const refreshServerStatus = async (fade = false) => {
     let pLabel = Lang.queryJS('landing.serverStatus.server')
     let pVal = Lang.queryJS('landing.serverStatus.offline')
 
-    try {
+try {
+    const servStat = await getServerStatus(47, serv.hostname, serv.port)
 
-        const servStat = await getServerStatus(47, serv.hostname, serv.port)
-        console.log(servStat)
-        pLabel = Lang.queryJS('landing.serverStatus.players')
-        pVal = servStat.players.online + '/' + servStat.players.max
-
-    } catch (err) {
-        loggerLanding.warn('Unable to refresh server status, assuming offline.')
-        loggerLanding.debug(err)
+    const icon = document.getElementById('mojang_status_icon')
+    if(icon){
+        icon.style.color = '#43b581'
     }
+
+    pLabel = Lang.queryJS('landing.serverStatus.players')
+    pVal = servStat.players.online + '/' + servStat.players.max
+
+} catch(err) {
+
+    const icon = document.getElementById('mojang_status_icon')
+    if(icon){
+        icon.style.color = '#ff5555'
+    }
+
+}
     if(fade){
         $('#server_status_wrapper').fadeOut(250, () => {
             document.getElementById('landingPlayerLabel').innerHTML = pLabel

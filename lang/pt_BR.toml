@@ -4,8 +4,8 @@ usernamePlaceholder = "Nome de usuário"
 usernameEditButton = "Editar"
 settingsTooltip = "Configurações"
 serverStatus = "SERVIDOR"
-serverStatusPlaceholder = "OFFLINE"
-mojangStatus = "ZELTHORIAI SMP"
+serverStatusPlaceholder = "--"
+mojangStatus = "POKEAURORA"
 mojangStatusTooltipTitle = "Serviços"
 mojangStatusNETitle = "Não&nbsp;Essencial"
 newsButton = "NOTÍCIAS"
@@ -35,7 +35,7 @@ loginPasswordDisclaimer2 = "Lembre-se de usar /register no servidor."
 [ejs.loginOptions]
 loginOptionsTitle = "Opções de Login"
 loginWithMicrosoft = "Login com Microsoft"
-loginWithMojang = "Login com No-Premium"
+loginWithMojang = "Login com Nick"
 cancelButton = "Cancelar"
 
 [ejs.overlay]
@@ -61,8 +61,8 @@ tabAccountHeaderText = "Configurações da Conta"
 tabAccountHeaderDesc = "Adicione novas contas ou gerencie as existentes."
 microsoftAccount = "Microsoft"
 addMicrosoftAccount = "+ Adicionar Conta Microsoft"
-Conta Mojang = "PokeAurora"
-Adicionar Conta Mojang = "+ Adicionar conta como não premium"
+mojangAccount = "PokeAurora"
+addMojangAccount = "+ Adicionar Conta PokeAurora"
 minecraftTabHeaderText = "Configurações do Minecraft"
 minecraftTabHeaderDesc = "Opções relacionadas ao lançamento do jogo."
 gameResolutionTitle = "Resolução do Jogo"
@@ -166,7 +166,7 @@ loading = "Carregando.."
 
 [js.landing.serverStatus]
 server = "SERVIDOR"
-offline = "OFFLINE"
+offline = "--"
 players = "JOGADORES"
 
 [js.landing.systemScan]
@@ -211,8 +211,8 @@ checking = "Verificando Notícias"
 
 [js.landing.discord]
 loading = "Carregando jogo.."
-joining = "Entrando nos reinos de zelthoriai"
-joined = "Explorando a ilha de zelthoriai!"
+joining = "Entrando no servidor PokeAurora"
+joined = "Explorando PokeAurora"
 
 [js.overlay]
 dismiss = "Dispensar"
@@ -322,7 +322,6 @@ accountMigratedDesc = "Você tentou fazer login com uma conta migrada. Tente nov
 invalidCredentialsTitle = "Erro Durante o Login:<br>Credenciais Inválidas"
 invalidCredentialsDesc = "O email/nome de usuário ou senha que você digitou está incorreto. Por favor, tente novamente."
 invalidUserTitle = "Erro Durante o Login:<br>Conta não Encontrada"
-invalidUserDesc = "A conta que você está tentando fazer login não existe. Você pode criar uma conta em <a href=\"https://auth.zelthoriaismp.cloud/auth/register\">Zelthoriaismp.cloud</a>."
 tooManyAttemptsTitle = "Erro Durante o Login:<br>Muitas Tentativas"
 tooManyAttemptsDesc = "Houve muitas tentativas de login com esta conta recentemente. Por favor, tente novamente mais tarde."
 invalidTokenTitle = "Erro Durante o Login:<br>Token Inválido"
