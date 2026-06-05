@@ -14,6 +14,7 @@ const loginForm             = document.getElementById('loginForm')
 
 // Control variable.
 let lu = false;
+let isLoggingIn = false;
 
 /**
  * Show a login error.
@@ -131,56 +132,86 @@ loginCancelButton.onclick = (e) => {
 loginForm.onsubmit = () => { return false; };
 
 // Bind login button behavior.
-loginButton.addEventListener('click', () => {
-    // Disable form.
-    formDisabled(true);
+loginButton.addEventListener('click', async () => {
 
-    // Show loading stuff.
+    if (isLoggingIn) return;
+    isLoggingIn = true;
+
+    formDisabled(true);
     loginLoading(true);
 
-    AuthManager.addAccount(loginUsername.value).then((value) => {
+    try {
+        const value = await AuthManager.addAccount(loginUsername.value);
+
         updateSelectedAccount(value);
-        loginButton.innerHTML = loginButton.innerHTML.replace(Lang.queryJS('login.loggingIn'), Lang.queryJS('login.success'));
+
+        loginButton.innerHTML = loginButton.innerHTML.replace(
+            Lang.queryJS('login.loggingIn'),
+            Lang.queryJS('login.success')
+        );
+
         $('.circle-loader').toggleClass('load-complete');
         $('.checkmark').toggle();
-        setTimeout(() => {
-            switchView(VIEWS.login, loginViewOnSuccess, 500, 500, async () => {
-                if(loginViewOnSuccess === VIEWS.settings){
+
+        setTimeout(async () => {
+
+            await switchView(VIEWS.login, loginViewOnSuccess, 500, 500, async () => {
+
+                if (loginViewOnSuccess === VIEWS.settings) {
                     await prepareSettings();
                 }
-                loginViewOnSuccess = VIEWS.landing; // Reset this for good measure.
-                loginCancelEnabled(false); // Reset this for good measure.
-                loginViewCancelHandler = null; // Reset this for good measure.
+
+                loginViewOnSuccess = VIEWS.landing;
+                loginCancelEnabled(false);
+                loginViewCancelHandler = null;
                 loginUsername.value = '';
+
                 $('.circle-loader').toggleClass('load-complete');
                 $('.checkmark').toggle();
+
                 loginLoading(false);
-                loginButton.innerHTML = loginButton.innerHTML.replace(Lang.queryJS('login.success'), Lang.queryJS('login.login'));
+                loginButton.innerHTML = loginButton.innerHTML.replace(
+                    Lang.queryJS('login.success'),
+                    Lang.queryJS('login.login')
+                );
+
+                isLoggingIn = false;
                 formDisabled(false);
                 lu = false;
                 checkLoginButtonEnabled();
             });
+
         }, 1000);
-    }).catch((displayableError) => {
+
+    } catch (displayableError) {
+
+        isLoggingIn = false;
         loginLoading(false);
 
         let actualDisplayableError;
-        if(isDisplayableError(displayableError)) {
+
+        if (isDisplayableError(displayableError)) {
             msftLoginLogger.error('Error while logging in.', displayableError);
             actualDisplayableError = displayableError;
         } else {
-            // Uh oh.
-            msftLoginLogger.error('Unhandled error during login.', displayableError);
+            console.log("FULL LOGIN ERROR:", displayableError);
+            console.log("STRINGIFIED:", JSON.stringify(displayableError, null, 2));
             actualDisplayableError = Lang.queryJS('login.error.unknown');
         }
 
-        setOverlayContent(actualDisplayableError.title, actualDisplayableError.desc, Lang.queryJS('login.tryAgain'));
+        setOverlayContent(
+            actualDisplayableError.title,
+            actualDisplayableError.desc,
+            Lang.queryJS('login.tryAgain')
+        );
+
         setOverlayHandler(() => {
             formDisabled(false);
             toggleOverlay(false);
             lu = false;
             checkLoginButtonEnabled();
         });
+
         toggleOverlay(true);
-    });
+    }
 });

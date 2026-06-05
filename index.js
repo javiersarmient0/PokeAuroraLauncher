@@ -112,13 +112,14 @@ ipcMain.handle(SHELL_OPCODE.TRASH_ITEM, async (event, ...args) => {
 app.disableHardwareAcceleration()
 
 
-const REDIRECT_URI_PREFIX = 'https://login.microsoftonline.com/common/oauth2/nativeclient?'
+const REDIRECT_URI_PREFIX = 'https://login.microsoftonline.com/common/oauth2/nativeclient' 
 
 // Microsoft Auth Login
 let msftAuthWindow
 let msftAuthSuccess
 let msftAuthViewSuccess
 let msftAuthViewOnClose
+
 ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
     if (msftAuthWindow) {
         ipcEvent.reply(MSFT_OPCODE.REPLY_LOGIN, MSFT_REPLY_TYPE.ERROR, MSFT_ERROR.ALREADY_OPEN, msftAuthViewOnClose)
@@ -127,13 +128,17 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
     msftAuthSuccess = false
     msftAuthViewSuccess = arguments_[0]
     msftAuthViewOnClose = arguments_[1]
+    
     msftAuthWindow = new BrowserWindow({
         title: LangLoader.queryJS('index.microsoftLoginTitle'),
         backgroundColor: '#222222',
         width: 520,
         height: 600,
         frame: true,
-        icon: getPlatformIcon('SealCircle')
+        icon: getPlatformIcon('SealCircle'),
+        webPreferences: {
+            partition: 'persist:microsoft-auth' 
+        }
     })
 
     msftAuthWindow.on('closed', () => {
@@ -146,26 +151,41 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
         }
     })
 
-    msftAuthWindow.webContents.on('did-navigate', (_, uri) => {
+ 
+    const handleNavigation = (event, uri) => {
         if (uri.startsWith(REDIRECT_URI_PREFIX)) {
-            let queries = uri.substring(REDIRECT_URI_PREFIX.length).split('#', 1).toString().split('&')
-            let queryMap = {}
+            if (event) event.preventDefault() 
 
-            queries.forEach(query => {
-                const [name, value] = query.split('=')
-                queryMap[name] = decodeURI(value)
+            let queryMap = {}
+            const urlObj = new URL(uri)
+
+            urlObj.searchParams.forEach((v, k) => {
+                queryMap[k] = v
             })
 
-            ipcEvent.reply(MSFT_OPCODE.REPLY_LOGIN, MSFT_REPLY_TYPE.SUCCESS, queryMap, msftAuthViewSuccess)
+            if (urlObj.hash) {
+                const hashParams = new URLSearchParams(urlObj.hash.substring(1))
+                hashParams.forEach((v, k) => {
+                    queryMap[k] = v
+                })
+            }
 
-            msftAuthSuccess = true
-            msftAuthWindow.close()
-            msftAuthWindow = null
+            if (!msftAuthSuccess) {
+                msftAuthSuccess = true
+                ipcEvent.reply(MSFT_OPCODE.REPLY_LOGIN, MSFT_REPLY_TYPE.SUCCESS, queryMap, msftAuthViewSuccess)
+                
+                if (msftAuthWindow && !msftAuthWindow.isDestroyed()) {
+                    msftAuthWindow.close()
+                }
+            }
         }
-    })
+    }
+
+    msftAuthWindow.webContents.on('will-redirect', handleNavigation)
+    msftAuthWindow.webContents.on('will-navigate', handleNavigation)
 
     msftAuthWindow.removeMenu()
-    msftAuthWindow.loadURL(`https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize?prompt=select_account&client_id=${AZURE_CLIENT_ID}&response_type=code&scope=XboxLive.signin%20offline_access&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient&cobrandid=8058f65d-ce06-4c30-9559-473c9275a65d`)
+    msftAuthWindow.loadURL(`https://login.microsoftonline.com/consumers/oauth2/v2.0/authorize?prompt=select_account&client_id=${AZURE_CLIENT_ID}&response_type=code&scope=XboxLive.signin%20offline_access&redirect_uri=https://login.microsoftonline.com/common/oauth2/nativeclient`)
 })
 
 // Microsoft Auth Logout

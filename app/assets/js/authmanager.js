@@ -10,6 +10,7 @@ const { MojangRestAPI, MojangErrorCode } = require('helios-core/mojang')
 const { MicrosoftAuth, MicrosoftErrorCode } = require('helios-core/microsoft')
 const { AZURE_CLIENT_ID }    = require('./ipcconstants')
 const Lang = require('./langloader')
+let microsoftAuthInProgress = false;
 
 // Agregados para el sistema No Premium
 const crypto = require('crypto');
@@ -175,36 +176,44 @@ function calculateExpiryDate(nowMs, epiresInS) {
 
 exports.addMicrosoftAccount = async function(authCode) {
 
-    const fullAuth = await fullMicrosoftAuthFlow(authCode, AUTH_MODE.FULL)
+    if (microsoftAuthInProgress) {
+        return Promise.reject("Microsoft auth already in progress");
+    }
 
-    // ESTA ES LA LÍNEA QUE FALTA O ESTÁ MAL
-    const now = new Date().getTime() 
+    microsoftAuthInProgress = true;
 
-    const ret = ConfigManager.addMicrosoftAuthAccount(
-        fullAuth.mcProfile.id,
-        fullAuth.mcToken.access_token,
-        fullAuth.mcProfile.name,
-        calculateExpiryDate(now, fullAuth.mcToken.expires_in),
-        fullAuth.accessToken.access_token,
-        fullAuth.accessToken.refresh_token,
-        calculateExpiryDate(now, fullAuth.accessToken.expires_in)
-    )
-    ConfigManager.save()
+    try {
+        const fullAuth = await fullMicrosoftAuthFlow(authCode, AUTH_MODE.FULL);
 
-    return ret
-}
+        const now = new Date().getTime();
+
+        const ret = ConfigManager.addMicrosoftAuthAccount(
+            fullAuth.mcProfile.id,
+            fullAuth.mcToken.access_token,
+            fullAuth.mcProfile.name,
+            calculateExpiryDate(now, fullAuth.mcToken.expires_in),
+            fullAuth.accessToken.access_token,
+            fullAuth.accessToken.refresh_token,
+            calculateExpiryDate(now, fullAuth.accessToken.expires_in)
+        );
+
+        ConfigManager.save();
+        return ret;
+
+    } finally {
+        microsoftAuthInProgress = false;
+    }
+};
 exports.removeMojangAccount = async function(uuid){
     try {
         const authAcc = ConfigManager.getAuthAccount(uuid)
         
-        // 🛠️ PARCHE NO-PREMIUM: Si la cuenta es offline, la borramos directo sin llamar a Mojang
         if (authAcc.accessToken === 'sry') {
             ConfigManager.removeAuthAccount(uuid)
             ConfigManager.save()
             return Promise.resolve()
         }
 
-        // Si es una cuenta Mojang real (antigua), sigue su flujo normal
         const response = await MojangRestAPI.invalidate(authAcc.accessToken, ConfigManager.getClientToken())
         if(response.responseStatus === RestResponseStatus.SUCCESS) {
             ConfigManager.removeAuthAccount(uuid)
@@ -256,12 +265,10 @@ async function validateSelectedMojangAccount(){
 async function validateSelectedMicrosoftAccount() {
     const current = ConfigManager.getSelectedAccount();
     
-    // Si no hay cuenta, terminamos la función inmediatamente sin lanzar errores
     if (!current) {
         return false;
     }
     
-    // Si la cuenta existe pero no tiene el objeto microsoft, tampoco hacemos nada
     if (!current.microsoft) {
         return false;
     }
