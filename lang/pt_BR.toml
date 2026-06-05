@@ -35,7 +35,7 @@ loginPasswordDisclaimer2 = "Lembre-se de usar /register no servidor."
 [ejs.loginOptions]
 loginOptionsTitle = "Opções de Login"
 loginWithMicrosoft = "Login com Microsoft"
-loginWithMojang = "Login com Nick"
+loginWithMojang = "Login com No-Premium"
 cancelButton = "Cancelar"
 
 [ejs.overlay]
