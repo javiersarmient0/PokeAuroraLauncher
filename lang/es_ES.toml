@@ -42,7 +42,7 @@ loginPasswordDisclaimer2 = "Recuerda utilizar /register dentro del servidor."
 loginOptionsTitle = "Opciones de Inicio de Sesión"
 
 loginWithMicrosoft = "Iniciar sesión con Microsoft"
-loginWithMojang = "Iniciar sesión con Nick"
+loginWithMojang = "Iniciar sesión como No-Premium"
 
 cancelButton = "Cancelar"
 
