@@ -247,7 +247,6 @@ function createWindow() {
             preload: path.join(__dirname, 'app', 'assets', 'js', 'preloader.js'),
             nodeIntegration: true,
             contextIsolation: false,
-            webSecurity: false
         },
         backgroundColor: '#000000'
     })
@@ -361,19 +360,23 @@ app.on('ready', () => {
     createWindow();
     createMenu();
 
-    tray = new Tray(getPlatformIcon('SealCircle'));
-    const contextMenu = Menu.buildFromTemplate([
-        { label: 'Abrir Launcher', click: () => win.show() },
-        { label: 'Salir', click: () => { 
-            willQuitApp = true; 
-            app.quit(); 
-        }}
-    ]);
+    // RUTA ABSOLUTA FORZADA: 
+    // Cambia 'C:\\Ruta\\A\\Tu\\Carpeta\\app\\assets\\images\\SealCircle.ico' 
+    // por la ruta real donde está tu archivo en tu PC ahora mismo.
+    const iconoReal = path.join(__dirname, 'app', 'assets', 'images', 'SealCircle.ico');
     
-    tray.setToolTip('PokeAurora Launcher');
-    tray.setContextMenu(contextMenu);
-    
-    tray.on('click', () => win.show());
+    try {
+        tray = new Tray(iconoReal);
+        const contextMenu = Menu.buildFromTemplate([
+            { label: 'Abrir Launcher', click: () => win.show() },
+            { label: 'Salir', click: () => { willQuitApp = true; app.quit(); }}
+        ]);
+        tray.setToolTip('PokeAurora Launcher');
+        tray.setContextMenu(contextMenu);
+        tray.on('click', () => win.show());
+    } catch (e) {
+        console.error("Error al cargar el icono:", e);
+    }
 });
 
 app.on('window-all-closed', () => {
