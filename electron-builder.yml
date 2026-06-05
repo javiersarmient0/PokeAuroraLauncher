@@ -1,11 +1,15 @@
-appId: 'PokeAuroraLauncher'
+appId: 'com.pokeaurora.launcher'
 productName: 'Poke Aurora Launcher'
 artifactName: '${productName}-setup-${version}.${ext}'
 
-copyright: 'Copyright © 2026 PokeAurora'
+copyright: 'Copyright © 2026 Poke Aurora'
 
 asar: true
 compression: 'maximum'
+
+directories:
+  buildResources: 'build'
+  output: 'dist'
 
 files:
   - '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,.eslintrc.json}'
@@ -14,39 +18,15 @@ extraResources:
   - 'libraries'
   - 'lang'
 
-# Windows Configuration
 win: 
   target: 
     - target: 'nsis'
       arch: 'x64'
+  icon: 'build/icon.ico' 
 
-# Windows Installer Configuration
 nsis:
   oneClick: false
   perMachine: false
   allowElevation: true
   allowToChangeInstallationDirectory: true
-
-# macOS Configuration
-mac:
-  target:
-    - target: 'dmg'
-      arch:
-        - 'x64'
-        - 'arm64'
-  artifactName: '${productName}-setup-${version}-${arch}.${ext}'
-  category: 'public.app-category.games'
-
-# Linux Configuration
-linux: 
-  target: 'AppImage'
-  maintainer: 'PokeAurora'
-  vendor: 'PokeAurora'
-  synopsis: 'PokeAurora Launcher'
-  description: 'Launcher Oficial de PokeAurora'
-  category: 'Game'
-
-
-directories:
-  buildResources: 'build'
-  output: 'dist'
+  createDesktopShortcut: true
