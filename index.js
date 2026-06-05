@@ -1,14 +1,8 @@
-// Parche de red para Node 22 (Prioriza IPv4 para evitar delays y fallos de conexión)
-const dns = require('dns');
-if (dns.setDefaultResultOrder) {
-    dns.setDefaultResultOrder('ipv4first');
-}
-
 const remoteMain = require('@electron/remote/main')
 remoteMain.initialize()
 
-// Requirements (¡Aquí agregamos Tray!)
-const { app, BrowserWindow, ipcMain, Menu, shell, Tray } = require('electron')
+// Requirements
+const { app, BrowserWindow, ipcMain, Menu, shell } = require('electron')
 const autoUpdater                       = require('electron-updater').autoUpdater
 const ejse                              = require('ejs-electron')
 const fs                                = require('fs')
@@ -229,24 +223,23 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGOUT, (ipcEvent, uuid, isLastAccount) => {
     msftLogoutWindow.loadURL('https://login.microsoftonline.com/common/oauth2/v2.0/logout')
 })
 
-// --- VARIABLES GLOBALES PARA LA BANDEJA DEL SISTEMA ---
+// Keep a global reference of the window object, if you don't, the window will
+// be closed automatically when the JavaScript object is garbage collected.
 let win
-let tray = null;
-let willQuitApp = false;
 
 function createWindow() {
 
     win = new BrowserWindow({
-        width: 1500,
-        minWidth: 1255,
-        height: 844,
-        minHeight: 704,
+     width: 1500,
+     minWidth: 1255,
+     height: 844,
+     minHeight: 704,
         icon: getPlatformIcon('SealCircle'),
         frame: false,
         webPreferences: {
             preload: path.join(__dirname, 'app', 'assets', 'js', 'preloader.js'),
             nodeIntegration: true,
-            contextIsolation: false,
+            contextIsolation: false
         },
         backgroundColor: '#000000'
     })
@@ -260,18 +253,13 @@ function createWindow() {
 
     win.loadURL(pathToFileURL(path.join(__dirname, 'app', 'app.ejs')).toString())
 
+    /*win.once('ready-to-show', () => {
+        win.show()
+    })*/
+
     win.removeMenu()
 
     win.resizable = true
-
-    // --- LÓGICA PARA OCULTAR LA VENTANA AL CERRAR ---
-    win.on('close', (event) => {
-        if (!willQuitApp) {
-            event.preventDefault();
-            win.hide();
-            return false;
-        }
-    });
 
     win.on('closed', () => {
         win = null
@@ -282,6 +270,7 @@ function createMenu() {
     
     if(process.platform === 'darwin') {
 
+        // Extend default included application menu to continue support for quit keyboard shortcut
         let applicationSubMenu = {
             label: 'Application',
             submenu: [{
@@ -293,12 +282,12 @@ function createMenu() {
                 label: 'Quit',
                 accelerator: 'Command+Q',
                 click: () => {
-                    willQuitApp = true;
                     app.quit()
                 }
             }]
         }
 
+        // New edit menu adds support for text-editing keyboard shortcuts
         let editSubMenu = {
             label: 'Edit',
             submenu: [{
@@ -330,9 +319,11 @@ function createMenu() {
             }]
         }
 
+        // Bundle submenus into a single template and build a menu object with it
         let menuTemplate = [applicationSubMenu, editSubMenu]
         let menuObject = Menu.buildFromTemplate(menuTemplate)
 
+        // Assign it to the application
         Menu.setApplicationMenu(menuObject)
 
     }
@@ -355,38 +346,21 @@ function getPlatformIcon(filename){
     return path.join(__dirname, 'app', 'assets', 'images', `${filename}.${ext}`)
 }
 
-// --- INICIO DE LA APLICACIÓN Y BANDEJA DEL SISTEMA ---
-app.on('ready', () => {
-    createWindow();
-    createMenu();
-
-    // RUTA ABSOLUTA FORZADA: 
-    // Cambia 'C:\\Ruta\\A\\Tu\\Carpeta\\app\\assets\\images\\SealCircle.ico' 
-    // por la ruta real donde está tu archivo en tu PC ahora mismo.
-    const iconoReal = path.join(__dirname, 'app', 'assets', 'images', 'SealCircle.ico');
-    
-    try {
-        tray = new Tray(iconoReal);
-        const contextMenu = Menu.buildFromTemplate([
-            { label: 'Abrir Launcher', click: () => win.show() },
-            { label: 'Salir', click: () => { willQuitApp = true; app.quit(); }}
-        ]);
-        tray.setToolTip('PokeAurora Launcher');
-        tray.setContextMenu(contextMenu);
-        tray.on('click', () => win.show());
-    } catch (e) {
-        console.error("Error al cargar el icono:", e);
-    }
-});
+app.on('ready', createWindow)
+app.on('ready', createMenu)
 
 app.on('window-all-closed', () => {
-    // Lo dejamos vacío para que el launcher siga en la barra de tareas al cerrar la ventana.
+    // On macOS it is common for applications and their menu bar
+    // to stay active until the user quits explicitly with Cmd + Q
+    if (process.platform !== 'darwin') {
+        app.quit()
+    }
 })
 
 app.on('activate', () => {
+    // On macOS it's common to re-create a window in the app when the
+    // dock icon is clicked and there are no other windows open.
     if (win === null) {
         createWindow()
-    } else {
-        win.show()
     }
 })
