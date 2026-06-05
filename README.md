@@ -8,9 +8,6 @@
   Launcher oficial de Poke Aurora basado en Helios Launcher.
 </p>
 
-# Poke Aurora Launcher 
-
-
 ## Características
 
 - ☕ **Validación automática de Java:**
