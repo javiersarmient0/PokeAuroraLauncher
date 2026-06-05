@@ -974,4 +974,33 @@ async function loadNews(){
     })
 
     return await promise
+    // --- SISTEMA DE ACTUALIZACIONES (Efecto Helios Original) ---
+const { ipcRenderer } = require('electron');
+
+// Escuchar los avisos del auto-updater de index.js
+ipcRenderer.on('autoUpdateNotification', (event, action, info) => {
+    
+    if (action === 'update-available' || action === 'update-downloaded') {
+        
+        // Buscamos el contenedor del logo
+        const logoContainer = document.getElementById('image_seal_container'); 
+        
+        if (logoContainer) {
+            // Le agregamos el atributo "update". 
+            // Esto activará automáticamente la animación "glow-grow" de tu launcher.css
+            logoContainer.setAttribute('update', '');
+            
+            // Hacemos que al hacer clic en el logo parpadeante, instale la actualización
+            logoContainer.onclick = () => {
+                ipcRenderer.send('autoUpdateAction', 'installUpdateNow');
+            };
+        }
+    }
+});
+
+// Pedirle al launcher que busque actualizaciones 2 segundos después de abrirse
+ipcRenderer.send('autoUpdateAction', 'initAutoUpdater');
+setTimeout(() => {
+    ipcRenderer.send('autoUpdateAction', 'checkForUpdate');
+}, 2000);
 }

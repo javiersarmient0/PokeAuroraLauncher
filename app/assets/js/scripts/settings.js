@@ -1483,14 +1483,8 @@ function updateRangedSlider(element, value, notch){
  * Display the total and available RAM.
  */
 function populateMemoryStatus(){
-    // Mostramos la RAM total (dividimos por 1024^3 para obtener GB)
-    const totalMemGB = Number(os.totalmem() / 1073741824).toFixed(1);
-    
-    settingsMemoryTotal.innerHTML = totalMemGB + 'G';
-    
-    // En lugar de mostrar la RAM libre que asusta al usuario,
-    // podemos mostrar la RAM total o un valor fijo de referencia.
-    settingsMemoryAvail.innerHTML = totalMemGB + 'G'; 
+    settingsMemoryTotal.innerHTML = Number((os.totalmem()-1073741824)/1073741824).toFixed(1) + 'G'
+    settingsMemoryAvail.innerHTML = Number(os.freemem()/1073741824).toFixed(1) + 'G'
 }
 
 /**

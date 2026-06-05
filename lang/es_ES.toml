@@ -75,7 +75,7 @@ microsoftAccount = "Microsoft"
 addMicrosoftAccount = "+ Añadir Cuenta de Microsoft"
 
 mojangAccount = "PokeAurora"
-addMojangAccount = "+ Añadir Cuenta de PokeAurora"
+addMojangAccount = "+ Añadir Cuenta como No-Premium"
 
 minecraftTabHeaderText = "Configuración de Minecraft"
 minecraftTabHeaderDesc = "Opciones relacionadas con el inicio del juego."
@@ -243,7 +243,7 @@ checking = "Buscando noticias..."
 
 [js.landing.discord]
 loading = "Iniciando Minecraft..."
-joining = "Uniéndose al mundo de PokeAurora"
+joining = "Uniéndose al servidor PokeAurora"
 joined = "Explorando PokeAurora"
 
 [js.overlay]

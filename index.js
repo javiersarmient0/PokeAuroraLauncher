@@ -7,8 +7,8 @@ if (dns.setDefaultResultOrder) {
 const remoteMain = require('@electron/remote/main')
 remoteMain.initialize()
 
-// Requirements
-const { app, BrowserWindow, ipcMain, Menu, shell } = require('electron')
+// Requirements (¡Aquí agregamos Tray!)
+const { app, BrowserWindow, ipcMain, Menu, shell, Tray } = require('electron')
 const autoUpdater                       = require('electron-updater').autoUpdater
 const ejse                              = require('ejs-electron')
 const fs                                = require('fs')
@@ -229,9 +229,10 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGOUT, (ipcEvent, uuid, isLastAccount) => {
     msftLogoutWindow.loadURL('https://login.microsoftonline.com/common/oauth2/v2.0/logout')
 })
 
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
+// --- VARIABLES GLOBALES PARA LA BANDEJA DEL SISTEMA ---
 let win
+let tray = null;
+let willQuitApp = false;
 
 function createWindow() {
 
@@ -246,7 +247,7 @@ function createWindow() {
             preload: path.join(__dirname, 'app', 'assets', 'js', 'preloader.js'),
             nodeIntegration: true,
             contextIsolation: false,
-            webSecurity: false // <--- ¡AGREGÁ ESTA LÍNEA ACÁ!
+            webSecurity: false
         },
         backgroundColor: '#000000'
     })
@@ -260,13 +261,18 @@ function createWindow() {
 
     win.loadURL(pathToFileURL(path.join(__dirname, 'app', 'app.ejs')).toString())
 
-    /*win.once('ready-to-show', () => {
-        win.show()
-    })*/
-
     win.removeMenu()
 
     win.resizable = true
+
+    // --- LÓGICA PARA OCULTAR LA VENTANA AL CERRAR ---
+    win.on('close', (event) => {
+        if (!willQuitApp) {
+            event.preventDefault();
+            win.hide();
+            return false;
+        }
+    });
 
     win.on('closed', () => {
         win = null
@@ -277,7 +283,6 @@ function createMenu() {
     
     if(process.platform === 'darwin') {
 
-        // Extend default included application menu to continue support for quit keyboard shortcut
         let applicationSubMenu = {
             label: 'Application',
             submenu: [{
@@ -289,12 +294,12 @@ function createMenu() {
                 label: 'Quit',
                 accelerator: 'Command+Q',
                 click: () => {
+                    willQuitApp = true;
                     app.quit()
                 }
             }]
         }
 
-        // New edit menu adds support for text-editing keyboard shortcuts
         let editSubMenu = {
             label: 'Edit',
             submenu: [{
@@ -326,11 +331,9 @@ function createMenu() {
             }]
         }
 
-        // Bundle submenus into a single template and build a menu object with it
         let menuTemplate = [applicationSubMenu, editSubMenu]
         let menuObject = Menu.buildFromTemplate(menuTemplate)
 
-        // Assign it to the application
         Menu.setApplicationMenu(menuObject)
 
     }
@@ -353,21 +356,34 @@ function getPlatformIcon(filename){
     return path.join(__dirname, 'app', 'assets', 'images', `${filename}.${ext}`)
 }
 
-app.on('ready', createWindow)
-app.on('ready', createMenu)
+// --- INICIO DE LA APLICACIÓN Y BANDEJA DEL SISTEMA ---
+app.on('ready', () => {
+    createWindow();
+    createMenu();
+
+    tray = new Tray(getPlatformIcon('SealCircle'));
+    const contextMenu = Menu.buildFromTemplate([
+        { label: 'Abrir Launcher', click: () => win.show() },
+        { label: 'Salir', click: () => { 
+            willQuitApp = true; 
+            app.quit(); 
+        }}
+    ]);
+    
+    tray.setToolTip('PokeAurora Launcher');
+    tray.setContextMenu(contextMenu);
+    
+    tray.on('click', () => win.show());
+});
 
 app.on('window-all-closed', () => {
-    // On macOS it is common for applications and their menu bar
-    // to stay active until the user quits explicitly with Cmd + Q
-    if (process.platform !== 'darwin') {
-        app.quit()
-    }
+    // Lo dejamos vacío para que el launcher siga en la barra de tareas al cerrar la ventana.
 })
 
 app.on('activate', () => {
-    // On macOS it's common to re-create a window in the app when the
-    // dock icon is clicked and there are no other windows open.
     if (win === null) {
         createWindow()
+    } else {
+        win.show()
     }
 })

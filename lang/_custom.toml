@@ -4,11 +4,11 @@
 title = "Poke Aurora Launcher"
 
 [ejs.landing]
-mediaGitHubURL = ""
+mediaGitHubURL = "https://github.com/javiersarmient0/PokeAuroraLauncher"
 mediaTwitterURL = ""
 mediaInstagramURL = ""
 mediaYouTubeURL = ""
-mediaDiscordURL = ""
+mediaDiscordURL = "https://discord.gg/DFxgS7a9J6"
 
 [ejs.settings]
 selectLanguage = "Seleccionar Idioma"
