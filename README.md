@@ -1,4 +1,12 @@
-<img src="https://pub-ec31e5872c894b909e21e560fd33c9f7.r2.dev/a.png" alt="Logo" width="100"> 
+<p align="center">
+  <img src="https://pub-ec31e5872c894b909e21e560fd33c9f7.r2.dev/a.png" alt="Logo" width="120">
+</p>
+
+<h1 align="center">Poke Aurora Launcher</h1>
+
+<p align="center">
+  Launcher oficial de Poke Aurora basado en Helios Launcher.
+</p>
 
 # Poke Aurora Launcher 
 
