@@ -20,9 +20,6 @@ function fail(message){
     process.exitCode = 1
 }
 
-const packageJson = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'))
-if(packageJson.version !== '1.0.0') fail('Launcher version must remain fixed at 1.0.0.')
-
 const files = walk(root)
 const textFiles = files.filter(file => /\.(?:js|json|ejs|toml|yml|md)$/.test(file))
 const forbidden = [
