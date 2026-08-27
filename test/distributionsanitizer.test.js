@@ -24,7 +24,7 @@ function sample(){
             mainServer: false,
             autoconnect: false,
             modules: [
-                { id: 'de.keksuccino:fancymenu:3.9.1@jar', name: 'FancyMenu', type: 'FabricMod', artifact: artifact('fancy'), required: { value: false } },
+                { id: 'de.keksuccino:fancymenu:3.9.1@jar', name: 'FancyMenu', type: 'FabricMod', artifact: artifact('fancy'), required: { value: true } },
                 { id: 'circuitlord.reactivemusic:reactivemusic:1.2.2+1.21.1@jar', name: 'Reactive Music', type: 'FabricMod', artifact: artifact('music'), required: { value: false } },
                 { id: 'generated.fabricmod:packed_packs:2.1.2+1.21.1@jar', name: 'Old Packed Packs', type: 'FabricMod', artifact: artifact('old'), required: { value: false } },
                 { id: 'me.drex.quickpack:quick-pack:1.3.3@jar', name: 'Wrong Minecraft version', type: 'FabricMod', artifact: artifact('wrong'), required: { value: false } }
@@ -42,8 +42,8 @@ test('normalizes the PokeAurora distribution and optional defaults', () => {
     assert.equal(result.servers[0].autoconnect, true)
     assert.equal(result.servers[0].icon, 'assets/images/SealCircle.png')
     assert.deepEqual(result.servers[0].modules.map(module => module.name), ['FancyMenu', 'Reactive Music'])
-    assert.equal(result.servers[0].modules[0].required.def, true)
-    assert.equal(result.servers[0].modules[1].required.def, false)
+    assert.equal(result.servers[0].modules[0].required.value, true)
+    assert.equal(result.servers[0].modules[1].required.value, false)
 })
 
 test('rejects artifacts outside the trusted HTTPS host', () => {

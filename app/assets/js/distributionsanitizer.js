@@ -7,16 +7,6 @@ const REMOVED_MODULE_IDS = new Set([
     'me.drex.quickpack:quick-pack:1.3.3@jar'
 ])
 
-const DEFAULT_ENABLED_OPTIONAL_IDS = new Set([
-    'name.modid:cobblemon-battle-extras:1.13.45@jar',
-    'dev.tr7zw:entityculling:1.10.5@jar',
-    'de.keksuccino:fancymenu:3.9.1@jar',
-    'generated.fabricmod:immediatelyfast:1.6.11+1.21.1@jar',
-    'generated.fabricmod:languagereload:1.7.6+1.21.1@jar',
-    'generated.fabricmod:sodium-extra:0.6.0+mc1.21.1@jar',
-    'net.caffeinemc.mods:sodium:0.6.13+mc1.21.1@jar'
-])
-
 function clone(value){
     return JSON.parse(JSON.stringify(value))
 }
@@ -56,9 +46,6 @@ function sanitizeModules(modules){
             }
             validateArtifact(module.artifact)
             module.name = String(module.name || module.id).slice(0, 160)
-            if(module.required?.value === false){
-                module.required.def = DEFAULT_ENABLED_OPTIONAL_IDS.has(module.id)
-            }
             if(module.subModules != null){
                 module.subModules = sanitizeModules(module.subModules)
             }
@@ -107,13 +94,8 @@ function assertTrustedDistribution(input){
     }
 }
 
-function optionalDefaults(){
-    return new Set(DEFAULT_ENABLED_OPTIONAL_IDS)
-}
-
 module.exports = {
     assertTrustedDistribution,
-    optionalDefaults,
     sanitizeDistribution
 }
 const crypto = require('crypto')
