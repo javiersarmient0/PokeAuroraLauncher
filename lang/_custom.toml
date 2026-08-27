@@ -1,0 +1,35 @@
+# Custom Language File for Launcher Customizer
+
+[ejs.app]
+title = "Poke Aurora Launcher"
+
+[ejs.landing]
+mediaGitHubURL = "https://github.com/javiersarmient0/PokeAuroraLauncher"
+mediaWebsiteURL = "https://pokeaurora.com"
+mediaTikTokURL = "https://www.tiktok.com/@pokeaurora"
+mediaDiscordURL = "https://discord.gg/GxV5XsdvPv"
+
+[ejs.settings]
+selectLanguage = "Seleccionar Idioma"
+changeLanguageTitle = "Cambiar el idioma del launcher"
+changeLanguageDesc = "Puedes cambiar el idioma desde la lista de abajo. Este texto permanecerá en español para que siempre puedas volver a esta sección si deseas cambiarlo nuevamente."
+
+[ejs.welcome]
+welcomeHeader = "BIENVENIDO A POKEAURORA"
+
+welcomeDescription = """
+¡Bienvenido a PokeAurora Cobblemon!
+
+Prepárate para comenzar una aventura única donde el mundo de Minecraft y Pokémon se unen en una experiencia inolvidable. Explora regiones, captura Pokémon, forma tu equipo ideal, desafía a otros entrenadores y descubre todos los secretos que esconde PokéAurora.
+
+Nuestra comunidad está formada por entrenadores de todos los niveles, desde principiantes hasta verdaderos maestros Pokémon. Aquí encontrarás eventos, misiones, economía, sistemas exclusivos y una experiencia diseñada para que cada aventura sea especial.
+
+Antes de comenzar, asegúrate de unirte a nuestro servidor de Discord para completar tu registro y mantenerte informado sobre anuncios, eventos y novedades.
+
+Tu viaje Pokémon está a punto de comenzar.
+
+¡Haz clic en "CONTINUAR" y comienza tu aventura!
+"""
+
+[ejs.overlay]
+changedLanguageHeader = "El idioma del launcher ha sido actualizado"
