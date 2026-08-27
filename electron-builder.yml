@@ -14,9 +14,16 @@ extraResources:
   - 'libraries'
   - 'lang'
 
+# GitHub Releases is the update feed used by electron-updater.
+publish:
+  provider: github
+  owner: javiersarmient0
+  repo: PokeAuroraLauncher
+  releaseType: release
+
 # Windows Configuration
-win: 
-  target: 
+win:
+  target:
     - target: 'nsis'
       arch: 'x64'
 
@@ -38,7 +45,7 @@ mac:
   category: 'public.app-category.games'
 
 # Linux Configuration
-linux: 
+linux:
   target: 'AppImage'
   maintainer: 'PokeAurora'
   vendor: 'PokeAurora'
