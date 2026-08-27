@@ -51,5 +51,3 @@ npm run verify
 ```
 
 El índice remoto está limitado al host oficial y fijado mediante SHA-256. Cualquier cambio intencional en la distribución debe revisarse y actualizar su huella en `distributionsanitizer.js`.
-
-El paquete oficial de FancyMenu también está fijado mediante SHA-256 en `gameconfigsync.js`. Si se reemplaza deliberadamente el ZIP, debe actualizarse esa huella después de revisar su contenido.

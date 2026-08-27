@@ -58,8 +58,7 @@ const requiredBrandAssets = [
     ['app/assets/images/minecraft.icns', 1000],
     ['build/icon.png', 1000],
     ['app/assets/audio/button-click.wav', 1000],
-    ['app/assets/audio/button-hover.wav', 1000],
-    ['app/assets/game-config/pokeaurora-config.zip', 100000]
+    ['app/assets/audio/button-hover.wav', 1000]
 ]
 for(const [relativePath, minimumSize] of requiredBrandAssets){
     const target = path.join(root, relativePath)

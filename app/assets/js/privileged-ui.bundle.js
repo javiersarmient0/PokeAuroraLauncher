@@ -2920,7 +2920,6 @@ var {
 var DiscordWrapper          = require('./assets/js/discordwrapper')
 var ProcessBuilder          = require('./assets/js/processbuilder')
 var { estimateSelectedSize } = require('./assets/js/smartrepair')
-var { syncBundledGameConfig } = require('./assets/js/gameconfigsync')
 var SkinUtil                = require('./assets/js/skinutil')
 
 // Launch Elements
@@ -3479,20 +3478,6 @@ async function dlAsync(login = true) {
     fullRepairModule.destroyReceiver()
 
     setLaunchDetails(Lang.queryJS('landing.dlAsync.preparingToLaunch'))
-
-    try {
-        await syncBundledGameConfig(
-            path.join(ConfigManager.getInstanceDirectory(), serv.rawServer.id)
-        )
-    } catch(error) {
-        loggerLaunchSuite.error('Unable to synchronize the bundled game configuration.', error)
-        showLaunchFailure(
-            Lang.queryJS('landing.dlAsync.errorDuringFileVerificationTitle'),
-            Lang.queryJS('landing.dlAsync.gameConfigFailure')
-        )
-        return
-    }
-
     const mojangIndexProcessor = new MojangIndexProcessor(
         ConfigManager.getCommonDirectory(),
         serv.rawServer.minecraftVersion)
