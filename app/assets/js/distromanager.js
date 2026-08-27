@@ -1,5 +1,5 @@
 const { DistributionAPI } = require('helios-core/common')
-const { assertTrustedDistribution, sanitizeDistribution } = require('./distributionsanitizer')
+const { sanitizeDistribution } = require('./distributionsanitizer')
 
 const ConfigManager = require('./configmanager')
 
@@ -12,7 +12,6 @@ class PokeAuroraDistributionAPI extends DistributionAPI {
         const response = await super.pullRemote()
         if(response.data != null){
             try {
-                assertTrustedDistribution(response.data)
                 response.data = sanitizeDistribution(response.data)
             } catch(error) {
                 DistributionAPI.log.error('Rejected an unsafe or malformed remote distribution.', error)
@@ -44,4 +43,4 @@ const api = new PokeAuroraDistributionAPI(
     false
 )
 
-exports.DistroAPI = api     
+exports.DistroAPI = api
