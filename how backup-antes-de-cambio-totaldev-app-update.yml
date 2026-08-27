@@ -1,0 +1,360 @@
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m1886[m[36m:[m/* The [1;31mversion[m of the mod. */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m1887[m[36m:[m.settingsMod[1;31mVersion[m {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2317[m[36m:[m/* Current [1;31mversion[m container. */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2318[m[36m:[m#settingsAboutCurrent[1;31mVersion[m {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2324[m[36m:[m/* Checkmark next to the [1;31mversion[m information. */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2325[m[36m:[m#settingsAboutCurrent[1;31mVersion[mCheck {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2338[m[36m:[m/* Current [1;31mversion[m details container. */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2339[m[36m:[m#settingsAboutCurrent[1;31mVersion[mDetails {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2344[m[36m:[m#settingsAboutCurrent[1;31mVersion[mTitle {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2351[m[36m:[m/* Current [1;31mversion[m text. */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2352[m[36m:[m#settingsAboutCurrent[1;31mVersion[mLine {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2494[m[36m:[m* Settings View ([1;31mUpdate[ms Tab)
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2498[m[36m:[m#settings[1;31mUpdate[mStatusContainer {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2508[m[36m:[m/* [1;31mUpdate[m content. */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2509[m[36m:[m#settings[1;31mUpdate[mStatusContent {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2515[m[36m:[m/* [1;31mUpdate[m header elements. */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2516[m[36m:[m#settings[1;31mUpdate[mStatusHeadline {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2523[m[36m:[m#settings[1;31mUpdate[mTitle {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2529[m[36m:[m/* [1;31mUpdate[m [1;31mversion[m container. */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2530[m[36m:[m#settings[1;31mUpdate[m[1;31mVersion[m {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2537[m[36m:[m/* Checkmark next to the [1;31mversion[m information. */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2538[m[36m:[m#settings[1;31mUpdate[m[1;31mVersion[mCheck {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2551[m[36m:[m/* [1;31mUpdate[m [1;31mversion[m details container. */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2552[m[36m:[m#settings[1;31mUpdate[m[1;31mVersion[mDetails {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2557[m[36m:[m#settings[1;31mUpdate[m[1;31mVersion[mTitle {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2564[m[36m:[m/* Current [1;31mversion[m text. */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2565[m[36m:[m#settings[1;31mUpdate[m[1;31mVersion[mLine {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2571[m[36m:[m/* [1;31mUpdate[m action container. */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2572[m[36m:[m#settings[1;31mUpdate[mActionContainer {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2578[m[36m:[m/* [1;31mUpdate[m action button styles. */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2579[m[36m:[m#settings[1;31mUpdate[mActionButton {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2593[m[36m:[m#settings[1;31mUpdate[mActionButton:hover,
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2594[m[36m:[m#settings[1;31mUpdate[mActionButton:focus {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2598[m[36m:[m#settings[1;31mUpdate[mActionButton:active {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m2603[m[36m:[m#settings[1;31mUpdate[mActionButton:disabled {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3061[m[36m:[m/* [1;31mUPDATE[m AVAILABLE EFFECT                   */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3064[m[36m:[m#image_seal_container[[1;31mupdate[m="true"] {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3067[m[36m:[m        [1;31mupdate[mPulse 2s ease-in-out infinite;
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3070[m[36m:[m#image_seal_container[[1;31mupdate[m="true"]::before,
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3071[m[36m:[m#image_seal_container[[1;31mupdate[m="true"]::after {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3083[m[36m:[m#image_seal_container[[1;31mupdate[m="true"]::before {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3085[m[36m:[m    animation: [1;31mupdateR[mipple 2s infinite;
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3088[m[36m:[m#image_seal_container[[1;31mupdate[m="true"]::after {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3090[m[36m:[m    animation: [1;31mupdateR[mipple 2s infinite 1s;
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3093[m[36m:[m@keyframes [1;31mupdate[mPulse {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3103[m[36m:[m@keyframes [1;31mupdateR[mipple {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3115[m[36m:[m/* [1;31mUpdate[m available tooltip styles. */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3116[m[36m:[m#[1;31mupdate[mAvailableTooltip {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3149[m[36m:[m#image_seal_container[[1;31mupdate[m="true"]:hover #[1;31mupdate[mAvailableTooltip {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3156[m[36m:[m#image_seal_container[[1;31mupdate[m="true"] {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3726[m[36m:[m#launch_[1;31mprogress[m_label {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3736[m[36m:[m/* Right side of launch details container, displays [1;31mprogress[m bar and details. */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3764[m[36m:[m/* [1;31mProgress[m bar styles. */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3765[m[36m:[m#launch_[1;31mprogress[m[value] {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3771[m[36m:[m#launch_[1;31mprogress[m[value]::-webkit-[1;31mprogress[m-bar {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m3775[m[36m:[m#launch_[1;31mprogress[m[value]::-webkit-[1;31mprogress[m-value {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m4086[m[36m:[m/* The minecraft [1;31mversion[m of the server listing. */
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m4087[m[36m:[m.serverListing[1;31mVersion[m {
+[35mbackup-antes-de-cambio-total:app/assets/css/launcher.css[m[36m:[m[32m4100[m[36m:[m/* The revision [1;31mversion[m of the server's manifest. */
+[35mbackup-antes-de-cambio-total:app/assets/images/icons/instagram.svg[m[36m:[m[32m2[m[36m:[m<svg [1;31mversion[m="1.0" xmlns="http://www.w3.org/2000/svg" width="504px" height="504px" viewBox="0 0 5040 5040" preserveAspectRatio="xMidYMid meet">
+[35mbackup-antes-de-cambio-total:app/assets/js/authmanager.js[m[36m:[m[32m13[m[36m:[mlet microsoftAuthIn[1;31mProgress[m = false;
+[35mbackup-antes-de-cambio-total:app/assets/js/authmanager.js[m[36m:[m[32m47[m[36m:[m        case MojangErrorCode.ERROR_INVALID_SALT_[1;31mVERSION[m: return { title: Lang.queryJS('auth.mojang.error.invalidSalt[1;31mVersion[mTitle'), desc: Lang.queryJS('auth.mojang.error.invalidSalt[1;31mVersion[mDesc') }
+[35mbackup-antes-de-cambio-total:app/assets/js/authmanager.js[m[36m:[m[32m66[m[36m:[m        hash.[1;31mupdate[m(username);
+[35mbackup-antes-de-cambio-total:app/assets/js/authmanager.js[m[36m:[m[32m179[m[36m:[m    if (microsoftAuthIn[1;31mProgress[m) {
+[35mbackup-antes-de-cambio-total:app/assets/js/authmanager.js[m[36m:[m[32m180[m[36m:[m        return Promise.reject("Microsoft auth already in [1;31mprogress[m");
+[35mbackup-antes-de-cambio-total:app/assets/js/authmanager.js[m[36m:[m[32m183[m[36m:[m    microsoftAuthIn[1;31mProgress[m = true;
+[35mbackup-antes-de-cambio-total:app/assets/js/authmanager.js[m[36m:[m[32m204[m[36m:[m        microsoftAuthIn[1;31mProgress[m = false;
+[35mbackup-antes-de-cambio-total:app/assets/js/authmanager.js[m[36m:[m[32m253[m[36m:[m                ConfigManager.[1;31mupdate[mMojangAuthAccount(current.uuid, session.accessToken)
+[35mbackup-antes-de-cambio-total:app/assets/js/authmanager.js[m[36m:[m[32m288[m[36m:[m            ConfigManager.[1;31mupdate[mMicrosoftAuthAccount(
+[35mbackup-antes-de-cambio-total:app/assets/js/authmanager.js[m[36m:[m[32m298[m[36m:[m            ConfigManager.[1;31mupdate[mMicrosoftAuthAccount(
+[35mbackup-antes-de-cambio-total:app/assets/js/configmanager.js[m[36m:[m[32m333[m[36m:[m * [1;31mUpdate[m the access token of an authenticated mojang account.
+[35mbackup-antes-de-cambio-total:app/assets/js/configmanager.js[m[36m:[m[32m340[m[36m:[mexports.[1;31mupdate[mMojangAuthAccount = function(uuid, accessToken){
+[35mbackup-antes-de-cambio-total:app/assets/js/configmanager.js[m[36m:[m[32m342[m[36m:[m    config.authenticationDatabase[uuid].type = 'mojang' // For gradual con[1;31mversion[m.
+[35mbackup-antes-de-cambio-total:app/assets/js/configmanager.js[m[36m:[m[32m369[m[36m:[m * [1;31mUpdate[m the tokens of an authenticated microsoft account.
+[35mbackup-antes-de-cambio-total:app/assets/js/configmanager.js[m[36m:[m[32m380[m[36m:[mexports.[1;31mupdate[mMicrosoftAuthAccount = function(uuid, accessToken, msAccessToken, msRefreshToken, msExpires, mcExpires) {
+[35mbackup-antes-de-cambio-total:app/assets/js/configmanager.js[m[36m:[m[32m568[m[36m:[m * @param {*} mc[1;31mVersion[m The minecraft [1;31mversion[m of the server.
+[35mbackup-antes-de-cambio-total:app/assets/js/configmanager.js[m[36m:[m[32m793[m[36m:[m * Check if the launcher should [1;31mdownload[m prerelease [1;31mversion[ms.
+[35mbackup-antes-de-cambio-total:app/assets/js/configmanager.js[m[36m:[m[32m796[m[36m:[m * @returns {boolean} Whether or not the launcher should [1;31mdownload[m prerelease [1;31mversion[ms.
+[35mbackup-antes-de-cambio-total:app/assets/js/configmanager.js[m[36m:[m[32m803[m[36m:[m * Change the status of Whether or not the launcher should [1;31mdownload[m prerelease [1;31mversion[ms.
+[35mbackup-antes-de-cambio-total:app/assets/js/configmanager.js[m[36m:[m[32m805[m[36m:[m * @param {boolean} launchDetached Whether or not the launcher should [1;31mdownload[m prerelease [1;31mversion[ms.
+[35mbackup-antes-de-cambio-total:app/assets/js/discordwrapper.js[m[36m:[m[32m37[m[36m:[mexports.[1;31mupdate[mDetails = function(details){
+[35mbackup-antes-de-cambio-total:app/assets/js/discordwrapper.js[m[36m:[m[32m52[m[36m:[mexports.[1;31mupdate[mState = function(state){
+[35mbackup-antes-de-cambio-total:app/assets/js/dropinmodutil.js[m[36m:[m[32m28[m[36m:[m * Scan for drop-in mods in both the mods folder and [1;31mversion[m
+[35mbackup-antes-de-cambio-total:app/assets/js/dropinmodutil.js[m[36m:[m[32m32[m[36m:[m * @param {string} [1;31mversion[m The minecraft [1;31mversion[m of the server configuration.
+[35mbackup-antes-de-cambio-total:app/assets/js/dropinmodutil.js[m[36m:[m[32m37[m[36m:[mexports.scanForDropinMods = function(modsDir, [1;31mversion[m) {
+[35mbackup-antes-de-cambio-total:app/assets/js/dropinmodutil.js[m[36m:[m[32m42[m[36m:[m        const [1;31mversion[mDir = path.join(modsDir, [1;31mversion[m)
+[35mbackup-antes-de-cambio-total:app/assets/js/dropinmodutil.js[m[36m:[m[32m43[m[36m:[m        if(fs.existsSync([1;31mversion[mDir)){
+[35mbackup-antes-de-cambio-total:app/assets/js/dropinmodutil.js[m[36m:[m[32m44[m[36m:[m            verCandidates = fs.readdirSync([1;31mversion[mDir)
+[35mbackup-antes-de-cambio-total:app/assets/js/dropinmodutil.js[m[36m:[m[32m61[m[36m:[m                    fullName: path.join([1;31mversion[m, match[0]),
+[35mbackup-antes-de-cambio-total:app/assets/js/preloader.js[m[36m:[m[32m51[m[36m:[m// Ensure Distribution is [1;31mdownload[med and cached.
+[35mbackup-antes-de-cambio-total:app/assets/js/preloader.js[m[36m:[m[32m59[m[36m:[m        logger.info('Failed to load an older [1;31mversion[m of the distribution index.')
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m6[m[36m:[mconst { getMojangOS, isLibraryCompatible, mc[1;31mVersion[mAtLeast }  = require('helios-core/common')
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m26[m[36m:[m    constructor(distroServer, vanillaManifest, modManifest, authUser, launcher[1;31mVersion[m){
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m33[m[36m:[m        this.launcher[1;31mVersion[m = launcher[1;31mVersion[m
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m59[m[36m:[m        if(!mc[1;31mVersion[mAtLeast('1.13', this.server.rawServer.minecraft[1;31mVersion[m)){
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m69[m[36m:[m        if(mc[1;31mVersion[mAtLeast('1.13', this.server.rawServer.minecraft[1;31mVersion[m)){
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m151[m[36m:[m                    if(ProcessBuilder.isModEnabled(modCfg[ll.get[1;31mVersion[mlessMavenIdentifier()], ll.getRequired())){
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m184[m[36m:[m                const e = ProcessBuilder.isModEnabled(modCfg[mdl.get[1;31mVersion[mlessMavenIdentifier()], mdl.getRequired())
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m187[m[36m:[m                        const v = this.resolveModConfiguration(modCfg[mdl.get[1;31mVersion[mlessMavenIdentifier()].mods, mdl.subModules)
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m209[m[36m:[m    _lteMinor[1;31mVersion[m([1;31mversion[m) {
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m210[m[36m:[m        return Number(this.modManifest.id.split('-')[0].split('.')[1]) <= Number([1;31mversion[m)
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m214[m[36m:[m     * Test to see if this [1;31mversion[m of forge requires the absolute: prefix
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m219[m[36m:[m            if(this._lteMinor[1;31mVersion[m(9)) {
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m234[m[36m:[m            // We know old forge [1;31mversion[ms follow this format.
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m235[m[36m:[m            // Error must be caused by newer [1;31mversion[m.
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m326[m[36m:[m            if(mc[1;31mVersion[mAtLeast('1.20', this.server.rawServer.minecraft[1;31mVersion[m)){
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m346[m[36m:[m        if(mc[1;31mVersion[mAtLeast('1.13', this.server.rawServer.minecraft[1;31mVersion[m)){
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m413[m[36m:[m                    .replaceAll('${[1;31mversion[m_name}', this.modManifest.id)
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m563[m[36m:[m                            && (rule.os.[1;31mversion[m == null || new RegExp(rule.os.[1;31mversion[m).test(os.release))){
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m610[m[36m:[m                        case '[1;31mversion[m_name':
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m633[m[36m:[m                        case '[1;31mversion[m_type':
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m648[m[36m:[m                        case 'launcher_[1;31mversion[m':
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m649[m[36m:[m                            val = args[i].replace(argDiscovery, this.launcher[1;31mVersion[m)
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m695[m[36m:[m                    case '[1;31mversion[m_name':
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m720[m[36m:[m                    case '[1;31mversion[m_type':
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m746[m[36m:[m        if(this._lteMinor[1;31mVersion[m(9)) {
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m796[m[36m:[m        if(!mc[1;31mVersion[mAtLeast('1.17', this.server.rawServer.minecraft[1;31mVersion[m) || this.usingFabricLoader) {
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m797[m[36m:[m            // Add the [1;31mversion[m.jar to the classpath.
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m799[m[36m:[m            const [1;31mversion[m = this.vanillaManifest.id
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m800[m[36m:[m            cpArgs.push(path.join(this.commonDir, '[1;31mversion[ms', [1;31mversion[m, [1;31mversion[m + '.jar'))
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m816[m[36m:[m        // Ex. 1.7.10 forge overrides mojang's guava with newer [1;31mversion[m.
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m826[m[36m:[m     * Resolve the libraries defined by Mojang's [1;31mversion[m data. This method will also extract
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m848[m[36m:[m                    const artifact = lib.[1;31mdownload[ms.classifiers[lib.natives[getMojangOS()].replace('${arch}', process.arch.replace('x', ''))]
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m893[m[36m:[m                    const artifact = lib.[1;31mdownload[ms.artifact
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m933[m[36m:[m                    const dlInfo = lib.[1;31mdownload[ms
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m936[m[36m:[m                    const [1;31mversion[mIndependentId = lib.name.substring(0, lib.name.lastIndexOf(':'))
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m937[m[36m:[m                    libs[[1;31mversion[mIndependentId] = to
+[35mbackup-antes-de-cambio-total:app/assets/js/processbuilder.js[m[36m:[m[32m961[m[36m:[m                libs[mdl.get[1;31mVersion[mlessMavenIdentifier()] = mdl.getPath()
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m19[m[36m:[m    [1;31mdownload[mFile
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m37[m[36m:[mconst launch_[1;31mprogress[m         = document.getElementById('launch_[1;31mprogress[m')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m38[m[36m:[mconst launch_[1;31mprogress[m_label   = document.getElementById('launch_[1;31mprogress[m_label')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m45[m[36m:[m/* Launch [1;31mProgress[m Wrapper Functions */
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m72[m[36m:[m * Set the value of the loading [1;31mprogress[m bar and display that value.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m77[m[36m:[m    launch_[1;31mprogress[m.setAttribute('max', 100)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m78[m[36m:[m    launch_[1;31mprogress[m.setAttribute('value', percent)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m79[m[36m:[m    launch_[1;31mprogress[m_label.innerHTML = percent + '%'
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m83[m[36m:[m * Set the value of the OS [1;31mprogress[m bar and display that on the UI.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m87[m[36m:[mfunction set[1;31mDownload[mPercentage(percent){
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m88[m[36m:[m    remote.getCurrentWindow().set[1;31mProgress[mBar(percent/100)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m145[m[36m:[masync function [1;31mupdate[mSelectedAccount(authUser) {
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m171[m[36m:[m[1;31mupdate[mSelectedAccount(ConfigManager.getSelectedAccount());
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m174[m[36m:[mfunction [1;31mupdate[mSelectedServer(serv){
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m263[m[36m:[m            setLaunchDetails(Lang.queryJS('landing.systemScan.java[1;31mDownload[mPrepare'))
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m267[m[36m:[m                [1;31mdownload[mJava(effectiveJavaOptions, launchAfter)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m269[m[36m:[m                loggerLanding.error('Unhandled error in Java [1;31mDownload[m', err)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m270[m[36m:[m                showLaunchFailure(Lang.queryJS('landing.systemScan.java[1;31mDownload[mFailureTitle'), Lang.queryJS('landing.systemScan.java[1;31mDownload[mFailureText'))
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m301[m[36m:[m        // We need to make sure that the [1;31mupdate[md value is on the settings UI.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m315[m[36m:[masync function [1;31mdownload[mJava(effectiveJavaOptions, launchAfter = true) {
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m325[m[36m:[m        throw new Error(Lang.queryJS('landing.[1;31mdownload[mJava.findJdkFailure'))
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m329[m[36m:[m    await [1;31mdownload[mFile(asset.url, asset.path, ({ transferred }) => {
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m331[m[36m:[m        set[1;31mDownload[mPercentage(Math.trunc((transferred/asset.size)*100))
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m333[m[36m:[m    set[1;31mDownload[mPercentage(100)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m336[m[36m:[m        loggerLanding.warn(`Java [1;31mDownload[m: Expected ${asset.size} bytes but received ${received}`)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m340[m[36m:[m            throw new Error(Lang.queryJS('landing.[1;31mdownload[mJava.java[1;31mDownload[mCorruptedError'))
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m345[m[36m:[m    // Show installing [1;31mprogress[m bar.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m346[m[36m:[m    remote.getCurrentWindow().set[1;31mProgress[mBar(2)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m349[m[36m:[m    const eLStr = Lang.queryJS('landing.[1;31mdownload[mJava.extractingJava')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m363[m[36m:[m    // Extraction complete, remove the loading from the OS [1;31mprogress[m bar.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m364[m[36m:[m    remote.getCurrentWindow().set[1;31mProgress[mBar(-1)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m371[m[36m:[m    setLaunchDetails(Lang.queryJS('landing.[1;31mdownload[mJava.javaInstalled'))
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m392[m[36m:[m    // Login parameter is temporary for debug purposes. Allows testing the validation/[1;31mdownload[ms without
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m469[m[36m:[m        loggerLaunchSuite.info('[1;31mDownload[ming files.')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m470[m[36m:[m        setLaunchDetails(Lang.queryJS('landing.dlAsync.[1;31mdownload[mingFiles'))
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m473[m[36m:[m            await fullRepairModule.[1;31mdownload[m(percent => {
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m474[m[36m:[m                set[1;31mDownload[mPercentage(percent)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m476[m[36m:[m            set[1;31mDownload[mPercentage(100)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m484[m[36m:[m        loggerLaunchSuite.info('No invalid files, skipping [1;31mdownload[m.')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m487[m[36m:[m    // Remove [1;31mdownload[m bar.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m488[m[36m:[m    remote.getCurrentWindow().set[1;31mProgress[mBar(-1)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m496[m[36m:[m        serv.rawServer.minecraft[1;31mVersion[m)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m503[m[36m:[m    const modLoaderData = await distributionIndexProcessor.loadModLoader[1;31mVersion[mJson(serv)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m504[m[36m:[m    const [1;31mversion[mData = await mojangIndexProcessor.get[1;31mVersion[mJson()
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m509[m[36m:[m        let pb = new ProcessBuilder(serv, [1;31mversion[mData, modLoaderData, authUser, remote.app.get[1;31mVersion[m())
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m518[m[36m:[m                DiscordWrapper.[1;31mupdate[mDetails(Lang.queryJS('landing.discord.loading'))
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m529[m[36m:[m        // the [1;31mprogress[m bar stuff.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m545[m[36m:[m                DiscordWrapper.[1;31mupdate[mDetails(Lang.queryJS('landing.discord.joined'))
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m547[m[36m:[m                DiscordWrapper.[1;31mupdate[mDetails(Lang.queryJS('landing.discord.joining'))
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m554[m[36m:[m                loggerLaunchSuite.error('Game launch failed, LaunchWrapper was not [1;31mdownload[med properly.')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m555[m[36m:[m                showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringLaunchTitle'), Lang.queryJS('landing.dlAsync.launchWrapperNot[1;31mDownload[med'))
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m572[m[36m:[mDiscordWrapper.[1;31mupdate[mDetails('Explorando el Launcher') 
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m573[m[36m:[mDiscordWrapper.[1;31mupdate[mState('Esperando para jugar')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m990[m[36m:[m// Escuchar los avisos del [1;31mauto-update[mr de index.js
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m991[m[36m:[mipcRenderer.on('[1;31mautoUpdate[mNotification', (event, action, info) => {
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m993[m[36m:[m    if (action === '[1;31mupdate[m-available' || action === '[1;31mupdate[m-[1;31mdownload[med') {
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m999[m[36m:[m            // Le agregamos el atributo "[1;31mupdate[m". 
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m1001[m[36m:[m            logoContainer.setAttribute('[1;31mupdate[m', '');
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m1005[m[36m:[m                ipcRenderer.send('[1;31mautoUpdate[mAction', 'install[1;31mUpdate[mNow');
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m1012[m[36m:[mipcRenderer.send('[1;31mautoUpdate[mAction', 'init[1;31mAutoUpdate[mr');
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/landing.js[m[36m:[m[32m1014[m[36m:[m    ipcRenderer.send('[1;31mautoUpdate[mAction', 'checkFor[1;31mUpdate[m');
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/login.js[m[36m:[m[32m146[m[36m:[m        [1;31mupdate[mSelectedAccount(value);
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/overlay.js[m[36m:[m[32m179[m[36m:[m            [1;31mupdate[mSelectedServer(serv)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/overlay.js[m[36m:[m[32m188[m[36m:[m        [1;31mupdate[mSelectedServer(serv)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/overlay.js[m[36m:[m[32m199[m[36m:[m            [1;31mupdate[mSelectedAccount(authAcc)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/overlay.js[m[36m:[m[32m212[m[36m:[m        [1;31mupdate[mSelectedAccount(authAcc)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/overlay.js[m[36m:[m[32m282[m[36m:[m                    <div class="serverListing[1;31mVersion[m">${serv.rawServer.minecraft[1;31mVersion[m}</div>
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/overlay.js[m[36m:[m[32m283[m[36m:[m                    <div class="serverListingRevision">${serv.rawServer.[1;31mversion[m}</div>
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m422[m[36m:[m                [1;31mupdate[mSelectedAccount(value)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m453[m[36m:[m * is selected, the UI of the previously selected account will be [1;31mupdate[md.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m478[m[36m:[m * be [1;31mupdate[md accordingly.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m530[m[36m:[m                [1;31mupdate[mSelectedAccount(selAcc)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m581[m[36m:[m                    [1;31mupdate[mSelectedAccount(selAcc)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m792[m[36m:[m * Resolve and [1;31mupdate[m the mods on the UI.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m826[m[36m:[m                reqMods += `<div id="${mdl.get[1;31mVersion[mlessMavenIdentifier()}" class="settingsBaseMod settings${submodules ? 'Sub' : ''}Mod" enabled>
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m832[m[36m:[m                                <span class="settingsMod[1;31mVersion[m">v${mdl.mavenComponents.[1;31mversion[m}</span>
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m841[m[36m:[m                        ${Object.values(parseModulesForUI(mdl.subModules, true, servConf[mdl.get[1;31mVersion[mlessMavenIdentifier()])).join('')}
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m847[m[36m:[m                const conf = servConf[mdl.get[1;31mVersion[mlessMavenIdentifier()]
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m850[m[36m:[m                optMods += `<div id="${mdl.get[1;31mVersion[mlessMavenIdentifier()}" class="settingsBaseMod settings${submodules ? 'Sub' : ''}Mod" ${val ? 'enabled' : ''}>
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m856[m[36m:[m                                <span class="settingsMod[1;31mVersion[m">v${mdl.mavenComponents.[1;31mversion[m}</span>
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m860[m[36m:[m                            <input type="checkbox" formod="${mdl.get[1;31mVersion[mlessMavenIdentifier()}" ${val ? 'checked' : ''}>
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m944[m[36m:[m    CACHE_DROPIN_MODS = DropinModUtil.scanForDropinMods(CACHE_SETTINGS_MODS_DIR, serv.rawServer.minecraft[1;31mVersion[m)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1241[m[36m:[m                    <div class="serverListing[1;31mVersion[m">${serv.rawServer.minecraft[1;31mVersion[m}</div>
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1242[m[36m:[m                    <div class="serverListingRevision">${serv.rawServer.[1;31mversion[m}</div>
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1332[m[36m:[m        [1;31mupdateR[mangedSlider(settingsMaxRAMRange, sMinV,
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1337[m[36m:[m    // [1;31mUpdate[m label
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1364[m[36m:[m        [1;31mupdateR[mangedSlider(settingsMinRAMRange, sMaxV,
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1402[m[36m:[m        [1;31mupdateR[mangedSlider(v, value, ((value-sliderMeta.min)/sliderMeta.step)*sliderMeta.inc)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1429[m[36m:[m                        [1;31mupdateR[mangedSlider(v, sliderMeta.min+(sliderMeta.step*(notch/sliderMeta.inc)), notch)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1438[m[36m:[m * [1;31mUpdate[m a ranged slider's value and position.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1440[m[36m:[m * @param {Element} element The ranged slider to [1;31mupdate[m.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1444[m[36m:[mfunction [1;31mupdateR[mangedSlider(element, value, notch){
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1494[m[36m:[m        settingsJavaExecDetails.innerHTML = Lang.queryJS('settings.java.selectedJava', { [1;31mversion[m: details.semverStr, vendor: details.vendor })
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1561[m[36m:[m * Return whether or not the provided [1;31mversion[m is a prerelease.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1563[m[36m:[m * @param {string} [1;31mversion[m The semver [1;31mversion[m to test.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1564[m[36m:[m * @returns {boolean} True if the [1;31mversion[m is a prerelease, otherwise false.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1566[m[36m:[mfunction isPrerelease([1;31mversion[m){
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1567[m[36m:[m    const preRelComp = semver.prerelease([1;31mversion[m)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1572[m[36m:[m * Utility method to display [1;31mversion[m information on the
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1573[m[36m:[m * About and [1;31mUpdate[m settings tabs.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1575[m[36m:[m * @param {string} [1;31mversion[m The semver [1;31mversion[m to display.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1580[m[36m:[mfunction populate[1;31mVersion[mInformation([1;31mversion[m, valueElement, titleElement, checkElement){
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1581[m[36m:[m    valueElement.innerHTML = [1;31mversion[m
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1582[m[36m:[m    if(isPrerelease([1;31mversion[m)){
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1594[m[36m:[m * Retrieve the [1;31mversion[m information and display it on the UI.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1596[m[36m:[mfunction populateAbout[1;31mVersion[mInformation(){
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1597[m[36m:[m    populate[1;31mVersion[mInformation(remote.app.get[1;31mVersion[m(), document.getElementById('settingsAboutCurrent[1;31mVersion[mValue'), document.getElementById('settingsAboutCurrent[1;31mVersion[mTitle'), document.getElementById('settingsAboutCurrent[1;31mVersion[mCheck'))
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1602[m[36m:[m * of the current [1;31mversion[m. This value is displayed on the UI.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1608[m[36m:[m            const [1;31mversion[m = 'v' + remote.app.get[1;31mVersion[m()
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1616[m[36m:[m                if(id === [1;31mversion[m){
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1634[m[36m:[m    populateAbout[1;31mVersion[mInformation()
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1639[m[36m:[m * [1;31mUpdate[m Tab
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1642[m[36m:[mconst settingsTab[1;31mUpdate[m            = document.getElementById('settingsTab[1;31mUpdate[m')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1643[m[36m:[mconst settings[1;31mUpdate[mTitle          = document.getElementById('settings[1;31mUpdate[mTitle')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1644[m[36m:[mconst settings[1;31mUpdate[m[1;31mVersion[mCheck   = document.getElementById('settings[1;31mUpdate[m[1;31mVersion[mCheck')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1645[m[36m:[mconst settings[1;31mUpdate[m[1;31mVersion[mTitle   = document.getElementById('settings[1;31mUpdate[m[1;31mVersion[mTitle')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1646[m[36m:[mconst settings[1;31mUpdate[m[1;31mVersion[mValue   = document.getElementById('settings[1;31mUpdate[m[1;31mVersion[mValue')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1647[m[36m:[mconst settings[1;31mUpdate[mChangelogTitle = settingsTab[1;31mUpdate[m.getElementsByClassName('settingsChangelogTitle')[0]
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1648[m[36m:[mconst settings[1;31mUpdate[mChangelogText  = settingsTab[1;31mUpdate[m.getElementsByClassName('settingsChangelogText')[0]
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1649[m[36m:[mconst settings[1;31mUpdate[mChangelogCont  = settingsTab[1;31mUpdate[m.getElementsByClassName('settingsChangelogContainer')[0]
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1650[m[36m:[mconst settings[1;31mUpdate[mActionButton   = document.getElementById('settings[1;31mUpdate[mActionButton')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1653[m[36m:[m * [1;31mUpdate[m the properties of the [1;31mupdate[m action button.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1659[m[36m:[mfunction settings[1;31mUpdate[mButtonStatus(text, disabled = false, handler = null){
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1660[m[36m:[m    settings[1;31mUpdate[mActionButton.innerHTML = text
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1661[m[36m:[m    settings[1;31mUpdate[mActionButton.disabled = disabled
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1663[m[36m:[m        settings[1;31mUpdate[mActionButton.onclick = handler
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1668[m[36m:[m * Populate the [1;31mupdate[m tab with relevant information.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1670[m[36m:[m * @param {Object} data The [1;31mupdate[m data.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1672[m[36m:[mfunction populateSettings[1;31mUpdate[mInformation(data){
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1674[m[36m:[m        settings[1;31mUpdate[mTitle.innerHTML = isPrerelease(data.[1;31mversion[m) ? Lang.queryJS('settings.[1;31mupdate[ms.newPreReleaseTitle') : Lang.queryJS('settings.[1;31mupdate[ms.newReleaseTitle')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1675[m[36m:[m        settings[1;31mUpdate[mChangelogCont.style.display = null
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1676[m[36m:[m        settings[1;31mUpdate[mChangelogTitle.innerHTML = data.releaseName
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1677[m[36m:[m        settings[1;31mUpdate[mChangelogText.innerHTML = data.releaseNotes
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1678[m[36m:[m        populate[1;31mVersion[mInformation(data.[1;31mversion[m, settings[1;31mUpdate[m[1;31mVersion[mValue, settings[1;31mUpdate[m[1;31mVersion[mTitle, settings[1;31mUpdate[m[1;31mVersion[mCheck)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1681[m[36m:[m            settings[1;31mUpdate[mButtonStatus(Lang.queryJS('settings.[1;31mupdate[ms.[1;31mdownload[mButton'), false, () => {
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1682[m[36m:[m                shell.openExternal(data.darwin[1;31mdownload[m)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1685[m[36m:[m            settings[1;31mUpdate[mButtonStatus(Lang.queryJS('settings.[1;31mupdate[ms.[1;31mdownload[mingButton'), true)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1688[m[36m:[m        settings[1;31mUpdate[mTitle.innerHTML = Lang.queryJS('settings.[1;31mupdate[ms.latest[1;31mVersion[mTitle')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1689[m[36m:[m        settings[1;31mUpdate[mChangelogCont.style.display = 'none'
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1690[m[36m:[m        populate[1;31mVersion[mInformation(remote.app.get[1;31mVersion[m(), settings[1;31mUpdate[m[1;31mVersion[mValue, settings[1;31mUpdate[m[1;31mVersion[mTitle, settings[1;31mUpdate[m[1;31mVersion[mCheck)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1691[m[36m:[m        settings[1;31mUpdate[mButtonStatus(Lang.queryJS('settings.[1;31mupdate[ms.checkFor[1;31mUpdate[msButton'), false, () => {
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1693[m[36m:[m                ipcRenderer.send('[1;31mautoUpdate[mAction', 'checkFor[1;31mUpdate[m')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1694[m[36m:[m                settings[1;31mUpdate[mButtonStatus(Lang.queryJS('settings.[1;31mupdate[ms.checkingFor[1;31mUpdate[msButton'), true)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1701[m[36m:[m * Prepare [1;31mupdate[m tab for display.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1703[m[36m:[m * @param {Object} data The [1;31mupdate[m data.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1705[m[36m:[mfunction prepare[1;31mUpdate[mTab(data = null){
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1706[m[36m:[m    populateSettings[1;31mUpdate[mInformation(data)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/settings.js[m[36m:[m[32m1722[m[36m:[m        prepare[1;31mUpdate[mTab()
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uibinder.js[m[36m:[m[32m63[m[36m:[m        logger[1;31mAutoUpdate[mr.info('Initializing..')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uibinder.js[m[36m:[m[32m64[m[36m:[m        ipcRenderer.send('[1;31mautoUpdate[mAction', 'init[1;31mAutoUpdate[mr', ConfigManager.getAllowPrerelease())
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uibinder.js[m[36m:[m[32m68[m[36m:[m    [1;31mupdate[mSelectedServer(data.getServerById(ConfigManager.getSelectedServer()))
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uibinder.js[m[36m:[m[32m146[m[36m:[m    [1;31mupdate[mSelectedServer(data.getServerById(ConfigManager.getSelectedServer()))
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uibinder.js[m[36m:[m[32m178[m[36m:[m                        const mdlID = mdl.get[1;31mVersion[mlessMavenIdentifier()
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uibinder.js[m[36m:[m[32m186[m[36m:[m                            const mdlID = mdl.get[1;31mVersion[mlessMavenIdentifier()
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uibinder.js[m[36m:[m[32m213[m[36m:[m                        mods[mdl.get[1;31mVersion[mlessMavenIdentifier()] = scanOptionalSubModules(mdl.subModules, mdl)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uibinder.js[m[36m:[m[32m218[m[36m:[m                                mods[mdl.get[1;31mVersion[mlessMavenIdentifier()] = v
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uibinder.js[m[36m:[m[32m269[m[36m:[m                    mods[mdl.get[1;31mVersion[mlessMavenIdentifier()] = scanOptionalSubModules(mdl.subModules, mdl)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uibinder.js[m[36m:[m[32m274[m[36m:[m                            mods[mdl.get[1;31mVersion[mlessMavenIdentifier()] = v
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uibinder.js[m[36m:[m[32m427[m[36m:[m * Temporary function to [1;31mupdate[m the selected account along
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uibinder.js[m[36m:[m[32m435[m[36m:[m    [1;31mupdate[mSelectedAccount(authAcc)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uibinder.js[m[36m:[m[32m456[m[36m:[m// Actions that must be performed after the distribution index is [1;31mdownload[med.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uibinder.js[m[36m:[m[32m482[m[36m:[m    [1;31mupdate[mSelectedServer(data.servers[0])
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m16[m[36m:[mconst logger[1;31mAutoUpdate[mr        = LoggerUtil.getLogger('[1;31mAutoUpdate[mr')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m38[m[36m:[m// Initialize [1;31mauto update[ms in production environments.
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m39[m[36m:[mlet [1;31mupdate[mCheckListener
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m41[m[36m:[m    ipcRenderer.on('[1;31mautoUpdate[mNotification', (event, arg, info) => {
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m43[m[36m:[m            case 'checking-for-[1;31mupdate[m':
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m44[m[36m:[m                logger[1;31mAutoUpdate[mr.info('Checking for [1;31mupdate[m..')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m45[m[36m:[m                settings[1;31mUpdate[mButtonStatus(Lang.queryJS('uicore.[1;31mautoUpdate[m.checkingFor[1;31mUpdate[mButton'), true)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m47[m[36m:[m            case '[1;31mupdate[m-available':
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m48[m[36m:[m                logger[1;31mAutoUpdate[mr.info('New [1;31mupdate[m available', info.[1;31mversion[m)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m51[m[36m:[m                    info.darwin[1;31mdownload[m = `https://github.com/dscalzi/HeliosLauncher/releases/[1;31mdownload[m/v${info.[1;31mversion[m}/Helios-Launcher-setup-${info.[1;31mversion[m}${process.arch === 'arm64' ? '-arm64' : '-x64'}.dmg`
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m52[m[36m:[m                    show[1;31mUpdate[mUI(info)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m55[m[36m:[m                populateSettings[1;31mUpdate[mInformation(info)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m57[m[36m:[m            case '[1;31mupdate[m-[1;31mdownload[med':
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m58[m[36m:[m                logger[1;31mAutoUpdate[mr.info('[1;31mUpdate[m ' + info.[1;31mversion[m + ' ready to be installed.')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m59[m[36m:[m                settings[1;31mUpdate[mButtonStatus(Lang.queryJS('uicore.[1;31mautoUpdate[m.installNowButton'), false, () => {
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m61[m[36m:[m                        ipcRenderer.send('[1;31mautoUpdate[mAction', 'install[1;31mUpdate[mNow')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m64[m[36m:[m                show[1;31mUpdate[mUI(info)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m66[m[36m:[m            case '[1;31mupdate[m-not-available':
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m67[m[36m:[m                logger[1;31mAutoUpdate[mr.info('No new [1;31mupdate[m found.')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m68[m[36m:[m                settings[1;31mUpdate[mButtonStatus(Lang.queryJS('uicore.[1;31mautoUpdate[m.checkFor[1;31mUpdate[msButton'))
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m71[m[36m:[m                [1;31mupdate[mCheckListener = setInterval(() => {
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m72[m[36m:[m                    ipcRenderer.send('[1;31mautoUpdate[mAction', 'checkFor[1;31mUpdate[m')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m74[m[36m:[m                ipcRenderer.send('[1;31mautoUpdate[mAction', 'checkFor[1;31mUpdate[m')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m78[m[36m:[m                    if(info.code === 'ERR_[1;31mUPDATER[m_INVALID_RELEASE_FEED'){
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m79[m[36m:[m                        logger[1;31mAutoUpdate[mr.info('No suitable releases found.')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m81[m[36m:[m                        logger[1;31mAutoUpdate[mr.info('No releases found.')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m83[m[36m:[m                        logger[1;31mAutoUpdate[mr.error('Error during [1;31mupdate[m check..', info)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m84[m[36m:[m                        logger[1;31mAutoUpdate[mr.debug('Error Code:', info.code)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m89[m[36m:[m                logger[1;31mAutoUpdate[mr.info('Unknown argument', arg)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m97[m[36m:[m * allowPrerelease. If we are running a prerelease [1;31mversion[m, then
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m104[m[36m:[m    ipcRenderer.send('[1;31mautoUpdate[mAction', 'allowPrereleaseChange', val)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m107[m[36m:[mfunction show[1;31mUpdate[mUI(info){
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m108[m[36m:[m    //TODO Make this message a bit more informative `${info.[1;31mversion[m}`
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m109[m[36m:[m    document.getElementById('image_seal_container').setAttribute('[1;31mupdate[m', true)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m111[m[36m:[m        /*setOverlayContent('[1;31mUpdate[m Available', 'A new [1;31mupdate[m for the launcher is available. Would you like to install now?', 'Install', 'Later')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m114[m[36m:[m                ipcRenderer.send('[1;31mautoUpdate[mAction', 'install[1;31mUpdate[mNow')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m116[m[36m:[m                console.error('Cannot install [1;31mupdate[ms in development environment.')
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m125[m[36m:[m            settingsNavItemListener(document.getElementById('settingsNav[1;31mUpdate[m'), false)
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m181[m[36m:[m        // Bind [1;31mprogress[m bar length to length of bot wrapper
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m187[m[36m:[m        document.getElementById('launch_[1;31mprogress[m').style.width = 170.8
+[35mbackup-antes-de-cambio-total:app/assets/js/scripts/uicore.js[m[36m:[m[32m189[m[36m:[m        document.getElementById('launch_[1;31mprogress[m_label').style.width = 53.21
+[35mbackup-antes-de-cambio-total:app/assets/js/serverstatus.js[m[36m:[m[32m43[m[36m:[m                        [1;31mversion[m: server_info[2].replace(/\u0000/g, ''),
+[35mbackup-antes-de-cambio-total:app/landing.ejs[m[36m:[m[32m6[m[36m:[m                <div id="[1;31mupdate[mAvailableTooltip"><%- lang('landing.[1;31mupdate[mAvailableTooltip') %></div>
+[35mbackup-antes-de-cambio-total:app/landing.ejs[m[36m:[m[32m127[m[36m:[m                        <span id="launch_[1;31mprogress[m_label">0%</span>
+[35mbackup-antes-de-cambio-total:app/landing.ejs[m[36m:[m[32m131[m[36m:[m                        <[1;31mprogress[m id="launch_[1;31mprogress[m" value="22" max="100"></[1;31mprogress[m>
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m16[m[36m:[m                    <button class="settingsNavItem" rSc="settingsTab[1;31mUpdate[m" id="settingsNav[1;31mUpdate[m"><%- lang('settings.nav[1;31mUpdate[ms') %></button>
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m316[m[36m:[m                    <div id="settingsAboutCurrent[1;31mVersion[m">
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m317[m[36m:[m                        <div id="settingsAboutCurrent[1;31mVersion[mCheck">&#10003;</div>
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m318[m[36m:[m                        <div id="settingsAboutCurrent[1;31mVersion[mDetails">
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m319[m[36m:[m                            <span id="settingsAboutCurrent[1;31mVersion[mTitle"><%- lang('settings.stableRelease') %></span>
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m320[m[36m:[m                            <div id="settingsAboutCurrent[1;31mVersion[mLine">
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m321[m[36m:[m                                <span id="settingsAboutCurrent[1;31mVersion[mText"><%- lang('settings.[1;31mversion[mText') %></span>
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m322[m[36m:[m                                <span id="settingsAboutCurrent[1;31mVersion[mValue">0.0.1-alpha.18</span>
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m348[m[36m:[m        <div id="settingsTab[1;31mUpdate[m" class="settingsTab" style="display: none;">
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m350[m[36m:[m                <span class="settingsTabHeaderText"><%- lang('settings.launcher[1;31mUpdate[msHeaderText') %></span>
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m351[m[36m:[m                <span class="settingsTabHeaderDesc"><%- lang('settings.launcher[1;31mUpdate[msHeaderDesc') %></span>
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m353[m[36m:[m            <div id="settings[1;31mUpdate[mStatusContainer">
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m354[m[36m:[m                <div id="settings[1;31mUpdate[mStatusContent">
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m355[m[36m:[m                    <div id="settings[1;31mUpdate[mStatusHeadline">
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m356[m[36m:[m                        <span id="settings[1;31mUpdate[mTitle"></span>
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m358[m[36m:[m                    <div id="settings[1;31mUpdate[m[1;31mVersion[m">
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m359[m[36m:[m                        <div id="settings[1;31mUpdate[m[1;31mVersion[mCheck">&#10003;</div>
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m360[m[36m:[m                        <div id="settings[1;31mUpdate[m[1;31mVersion[mDetails">
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m361[m[36m:[m                            <span id="settings[1;31mUpdate[m[1;31mVersion[mTitle"><%- lang('settings.stableRelease') %></span>
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m362[m[36m:[m                            <div id="settings[1;31mUpdate[m[1;31mVersion[mLine">
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m363[m[36m:[m                                <span id="settings[1;31mUpdate[m[1;31mVersion[mText"><%- lang('settings.[1;31mversion[mText') %> </span>
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m364[m[36m:[m                                <span id="settings[1;31mUpdate[m[1;31mVersion[mValue">0.0.1-alpha.18</span>
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m368[m[36m:[m                    <div id="settings[1;31mUpdate[mActionContainer">
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m369[m[36m:[m                        <button id="settings[1;31mUpdate[mActionButton"><%- lang('settings.checkFor[1;31mUpdate[ms') %></button>
+[35mbackup-antes-de-cambio-total:app/settings.ejs[m[36m:[m[32m377[m[36m:[m                        <div class="settingsChangelogTitle"><%- lang('settings.[1;31mupdateR[meleaseNotes') %></div>

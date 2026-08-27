@@ -12,7 +12,7 @@ const LangLoader                        = require('./app/assets/js/langloader')
 
 const ALLOWED_EXTERNAL_PROTOCOLS = new Set(['https:', 'mailto:'])
 const WINDOW_ACTION_CHANNEL = 'launcher:window-action'
-const VERSION_LOCKED = true
+const VERSION_LOCKED = false
 let autoUpdaterInitialized = false
 
 // Setup Lang
@@ -571,3 +571,4 @@ app.on('activate', () => {
         createWindow()
     }
 })
+
