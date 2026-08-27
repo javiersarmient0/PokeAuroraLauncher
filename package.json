@@ -1,6 +1,6 @@
 {
   "name": "PokeAuroraLauncher",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "productName": "Poke Aurora Launcher",
   "description": "Launcher Oficial de Poke Aurora",
   "author": "Poke Aurora",
@@ -60,4 +60,5 @@
     "url": "git+https://github.com/javiersarmient0/PokeAuroraLauncher.git"
   }
 }
+
 
