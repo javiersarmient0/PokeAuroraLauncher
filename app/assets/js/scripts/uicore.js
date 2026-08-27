@@ -119,7 +119,7 @@ if(!isDev){
                 break
             case 'update-available':
                 loggerAutoUpdater.info('New update available', info.version)
-                
+
                 if(process.platform === 'darwin'){
                     const dmg = info.files?.find(file => file.url?.endsWith('.dmg') && file.url.includes(process.arch))
                         || info.files?.find(file => file.url?.endsWith('.dmg'))
@@ -129,9 +129,11 @@ if(!isDev){
                             `https://github.com/javiersarmient0/PokeAuroraLauncher/releases/download/v${info.version}/`
                         ).toString()
                     }
-                    showUpdateUI(info)
                 }
-                
+
+                // Show the update indicator on every supported platform.
+                // The previous implementation only activated it on macOS.
+                showUpdateUI(info)
                 populateSettingsUpdateInformation(info)
                 break
             case 'update-downloaded':
@@ -146,6 +148,7 @@ if(!isDev){
             case 'update-not-available':
                 loggerAutoUpdater.info('No new update found.')
                 settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.checkForUpdatesButton'))
+                clearUpdateUI()
                 break
             case 'ready':
                 updateCheckListener = setInterval(() => {
@@ -185,26 +188,34 @@ function changeAllowPrerelease(val){
 }
 
 function showUpdateUI(info){
-    //TODO Make this message a bit more informative `${info.version}`
-    document.getElementById('image_seal_container').setAttribute('update', true)
-    document.getElementById('image_seal_container').onclick = () => {
-        /*setOverlayContent('Update Available', 'A new update for the launcher is available. Would you like to install now?', 'Install', 'Later')
-        setOverlayHandler(() => {
-            if(!isDev){
-                ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
-            } else {
-                console.error('Cannot install updates in development environment.')
-                toggleOverlay(false)
-            }
-        })
-        setDismissHandler(() => {
-            toggleOverlay(false)
-        })
-        toggleOverlay(true, true)*/
+    const logoContainer = document.getElementById('image_seal_container')
+    if(logoContainer == null){
+        return
+    }
+
+    // The CSS animation is driven by this attribute.
+    logoContainer.setAttribute('update', 'true')
+    logoContainer.title = info?.version
+        ? `Actualización disponible: v${info.version}`
+        : 'Actualización disponible'
+
+    // Clicking the logo opens the normal update settings screen.
+    logoContainer.onclick = () => {
         switchView(getCurrentView(), VIEWS.settings, 500, 500, () => {
             settingsNavItemListener(document.getElementById('settingsNavUpdate'), false)
         })
     }
+}
+
+function clearUpdateUI(){
+    const logoContainer = document.getElementById('image_seal_container')
+    if(logoContainer == null){
+        return
+    }
+
+    logoContainer.removeAttribute('update')
+    logoContainer.removeAttribute('title')
+    logoContainer.onclick = null
 }
 
 /* jQuery Example
