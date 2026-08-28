@@ -67,13 +67,18 @@ function sanitizeDistribution(input){
         delete distribution.discord
     }
 
+    const hasExplicitMainServer = distribution.servers.some(server => server?.mainServer === true)
+
     distribution.servers = distribution.servers.map((server, index) => {
         if(typeof server.id !== 'string' || !/^[a-zA-Z0-9_.-]+$/.test(server.id) || typeof server.address !== 'string'){
             throw new Error('Distribution server is missing its id or address.')
         }
         server.version = '1.0.0'
-        server.mainServer = index === 0
-        server.autoconnect = index === 0
+        server.mainServer = hasExplicitMainServer ? server.mainServer === true : index === 0
+        // Do not force autoconnect. The remote distribution is the source of
+        // truth for this setting, so adding or reordering servers cannot make
+        // the launcher unexpectedly connect to one of them.
+        server.autoconnect = server.autoconnect === true
         server.icon = 'assets/images/SealCircle.png'
         server.name = String(server.name || server.id).slice(0, 160)
         server.description = String(server.description || '').slice(0, 500)
