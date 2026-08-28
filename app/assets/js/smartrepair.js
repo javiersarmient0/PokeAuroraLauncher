@@ -22,6 +22,29 @@ function configEnabled(value, required){
     return required?.def !== false
 }
 
+function isLocallyDisabled(target){
+    if(typeof target !== 'string' || target.length === 0){
+        return false
+    }
+
+    // A disabled mod is intentionally kept on disk with a .disabled suffix.
+    // Never treat it as missing just because the remote distribution still
+    // contains the module. This preserves the user's local enable/disable state.
+    if(fs.existsSync(`${target}.disabled`)){
+        return true
+    }
+
+    // Be tolerant of older launcher versions which may have created numbered
+    // disabled markers while repeatedly testing the same mod.
+    for(let index = 2; index <= 10; index++){
+        if(fs.existsSync(`${target}.disabled${index}`)){
+            return true
+        }
+    }
+
+    return false
+}
+
 function filterModules(modules, configuration){
     const selected = []
     for(const module of modules){
@@ -126,6 +149,12 @@ class SmartRepair {
             const module = modules[index]
             const artifact = module.rawModule.artifact
             const target = module.getPath()
+
+            if(MOD_TYPES.has(module.rawModule.type) && isLocallyDisabled(target)){
+                onProgress(Math.trunc(((index + 1) / Math.max(modules.length, 1)) * 100))
+                continue
+            }
+
             let valid = false
             try {
                 const stat = await fs.stat(target)
@@ -232,5 +261,6 @@ class SmartRepair {
 module.exports = {
     SmartRepair,
     buildSelectedDistribution,
-    estimateSelectedSize
+    estimateSelectedSize,
+    isLocallyDisabled
 }
