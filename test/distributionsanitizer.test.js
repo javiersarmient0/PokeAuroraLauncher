@@ -33,17 +33,32 @@ function sample(){
     }
 }
 
-test('normalizes the PokeAurora distribution and optional defaults', () => {
+test('normalizes the PokeAurora distribution without forcing autoconnect', () => {
     const result = sanitizeDistribution(sample())
     assert.equal(result.version, '1.0.0')
     assert.equal(result.rss, null)
     assert.equal(result.discord, undefined)
     assert.equal(result.servers[0].mainServer, true)
-    assert.equal(result.servers[0].autoconnect, true)
+    assert.equal(result.servers[0].autoconnect, false)
     assert.equal(result.servers[0].icon, 'assets/images/SealCircle.png')
     assert.deepEqual(result.servers[0].modules.map(module => module.name), ['FancyMenu', 'Reactive Music'])
     assert.equal(result.servers[0].modules[0].required.value, true)
     assert.equal(result.servers[0].modules[1].required.value, false)
+})
+
+test('preserves an explicitly configured main server', () => {
+    const input = sample()
+    input.servers.push({
+        ...sample().servers[0],
+        id: 'second',
+        address: '127.0.0.1:25565',
+        mainServer: true,
+        autoconnect: false
+    })
+
+    const result = sanitizeDistribution(input)
+    assert.equal(result.servers[0].mainServer, false)
+    assert.equal(result.servers[1].mainServer, true)
 })
 
 test('rejects artifacts outside the trusted HTTPS host', () => {
