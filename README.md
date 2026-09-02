@@ -36,7 +36,7 @@
   - Ajusta la memoria RAM asignada.
   - Selecciona la versión de Java utilizada por el launcher.
 
-* 🎮 **Conexión directa a Poke Aurora**
+* 🎮 **Conexión directa a PokeAurora**
   * Instala todo lo necesario con un solo clic.
   * Sincroniza el FancyMenu oficial y `servers.dat` antes de abrir Minecraft.
   * Comienza tu aventura sin configuraciones complicadas.

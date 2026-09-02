@@ -47,7 +47,7 @@ The distribution index is written in JSON. The general format of the index is as
     "version": "1.0.0",
     "discord": {
         "clientId": "1511180208693055488",
-        "smallImageText": "Poke Aurora Cobblemon",
+        "smallImageText": "PokeAurora Cobblemon",
         "smallImageKey": "seal-circle"
     },
     "rss": "",
