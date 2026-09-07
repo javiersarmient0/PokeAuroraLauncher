@@ -19,8 +19,7 @@ const windowProxy = {
     minimize: () => ipcRenderer.send('launcher:window-action', 'minimize'),
     maximize: () => ipcRenderer.send('launcher:window-action', 'maximize'),
     unmaximize: () => ipcRenderer.send('launcher:window-action', 'unmaximize'),
-    isMaximized: () => ipcRenderer.sendSync('launcher:window-is-maximized'),
-    toggleDevTools: () => ipcRenderer.send('launcher:window-action', 'toggle-dev-tools'),
+    toggleDevTools: () => ipcRenderer.send('launcher:window-action', 'toggle-devtools'),
     setProgressBar: value => ipcRenderer.send('launcher:window-action', 'set-progress', value)
 }
 
@@ -46,6 +45,8 @@ function initializeDiscordRPC(){
     try {
         const DiscordWrapper = require('./discordwrapper')
         DiscordWrapper.initRPC()
+        DiscordWrapper.updateDetails('Explorando el launcher')
+        DiscordWrapper.updateState('Listo para jugar')
     } catch(error) {
         console.warn('Unable to initialize Discord Rich Presence.', error?.stack || error)
     }
