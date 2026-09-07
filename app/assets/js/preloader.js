@@ -20,7 +20,7 @@ const windowProxy = {
     maximize: () => ipcRenderer.send('launcher:window-action', 'maximize'),
     unmaximize: () => ipcRenderer.send('launcher:window-action', 'unmaximize'),
     isMaximized: () => ipcRenderer.sendSync('launcher:window-is-maximized'),
-    toggleDevTools: () => ipcRenderer.send('launcher:window-action', 'toggle-devtools'),
+    toggleDevTools: () => ipcRenderer.send('launcher:window-action', 'toggle-dev-tools'),
     setProgressBar: value => ipcRenderer.send('launcher:window-action', 'set-progress', value)
 }
 
@@ -40,6 +40,15 @@ const shell = {
     openExternal: uri => ipcRenderer.invoke('launcher:open-external', uri),
     openPath: target => ipcRenderer.invoke('launcher:open-path', target),
     beep: () => ipcRenderer.send('launcher:beep')
+}
+
+function initializeDiscordRPC(){
+    try {
+        const DiscordWrapper = require('./discordwrapper')
+        DiscordWrapper.initRPC()
+    } catch(error) {
+        console.warn('Unable to initialize Discord Rich Presence.', error?.stack || error)
+    }
 }
 
 function loadPrivilegedUI(){
@@ -99,6 +108,7 @@ async function initializeLauncherData(ConfigManager){
 
 window.addEventListener('DOMContentLoaded', async () => {
     try {
+        initializeDiscordRPC()
         const ConfigManager = initializeLauncherConfig()
         loadPrivilegedUI()
         await initializeLauncherData(ConfigManager)
