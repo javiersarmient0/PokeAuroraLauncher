@@ -28,7 +28,7 @@ test('getModulePaths includes nested distribution modules', () => {
 
     assert.deepEqual(
         [...getModulePaths(distribution)].sort(),
-        ['/game/common/mod-a.jar', '/game/instance/server/mod-b.jar']
+        ['/game/common/mod-a.jar', '/game/instance/server/mod-b.jar'].map(file => path.resolve(file)).sort()
     )
 })
 
