@@ -38,7 +38,7 @@ function pathIsUnsafe(value){
         || normalized.includes('\u0000')
 }
 
-function validateArtifact(artifact, moduleType){
+function validateArtifact(artifact, moduleType, hasId){
     if(artifact == null || !Number.isSafeInteger(artifact.size) || artifact.size < 0){
         throw new Error('Distribution module contains an invalid artifact size.')
     }
@@ -59,8 +59,8 @@ function validateArtifact(artifact, moduleType){
         throw new Error('Distribution module contains an invalid artifact path.')
     }
 
-    if(moduleType === 'File' && artifact.path == null){
-        throw new Error('Distribution File module must declare an artifact path.')
+    if(moduleType === 'File' && artifact.path == null && !hasId){
+        throw new Error('Distribution File module must declare an artifact path or id.')
     }
 }
 
@@ -94,14 +94,14 @@ function sanitizeModules(modules){
             if(hasId){
                 const validId = module.id.length <= 240
                     && (type === 'File'
-                        ? !pathIsUnsafe(module.id) && !/[<>"'`\u0000-\u001f]/.test(module.id)
+                        ? !/[\u0000-\u001f\u007f]/.test(module.id)
                         : /^[a-zA-Z0-9_.:+@-]+$/.test(module.id))
                 if(!validId){
                     throw new Error(`Distribution ${type} module has an invalid id.`)
                 }
             }
 
-            validateArtifact(module.artifact, type)
+            validateArtifact(module.artifact, type, hasId)
             module.name = String(module.name || module.id || module.artifact.path).slice(0, 160)
             if(module.subModules != null){
                 module.subModules = sanitizeModules(module.subModules)
