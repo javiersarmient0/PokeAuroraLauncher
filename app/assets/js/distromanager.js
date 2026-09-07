@@ -1,5 +1,5 @@
 const { DistributionAPI } = require('helios-core/common')
-const { DistributionIndexProcessor } = require('helios-core/dl')
+const { FullRepair } = require('helios-core/dl')
 const { LoggerUtil } = require('helios-core')
 const { sanitizeDistribution } = require('./distributionsanitizer')
 const { cleanupRemovedManagedFiles } = require('./managedfiles')
@@ -11,36 +11,34 @@ const ConfigManager = require('./configmanager')
 exports.REMOTE_DISTRO_URL = 'https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/distribution.json'
 
 const logger = LoggerUtil.getLogger('PokeAuroraDistributionAPI')
+const MANAGED_FILE_CLEANUP_HOOK = Symbol('pokeAuroraManagedFileCleanupHook')
 
 /**
- * Helios calls DistributionIndexProcessor.postDownload() only after the
- * complete download queue has finished. This is the safe point to remove
- * files that disappeared from the current distribution.
- *
- * The hook is installed once because the preload/renderer environment can
- * load this module more than once during development.
+ * Helios runs FullRepairReceiver in a separate child process, so patching the
+ * receiver's DistributionIndexProcessor prototype here would not affect the
+ * actual repair process. FullRepair.download()/verifyFiles() execute in the
+ * renderer process after the child process has completed its work, which is
+ * the safe place to remove files that disappeared from the distribution.
  */
 function installManagedFileCleanupHook(){
-    const prototype = DistributionIndexProcessor?.prototype
-    if(prototype == null || prototype.__pokeAuroraManagedFileCleanupInstalled){
+    const prototype = FullRepair?.prototype
+    if(prototype == null || prototype[MANAGED_FILE_CLEANUP_HOOK]){
         return
     }
 
-    const originalPostDownload = prototype.postDownload
-    if(typeof originalPostDownload !== 'function'){
-        logger.warn('Helios DistributionIndexProcessor.postDownload() is unavailable; managed file cleanup is disabled.')
+    const originalVerifyFiles = prototype.verifyFiles
+    const originalDownload = prototype.download
+
+    if(typeof originalVerifyFiles !== 'function' || typeof originalDownload !== 'function'){
+        logger.warn('Helios FullRepair methods are unavailable; managed file cleanup is disabled.')
         return
     }
 
-    prototype.postDownload = async function(){
-        // Keep Helios' own post-download work first. If it fails, cleanup is
-        // intentionally skipped so a broken repair can never cause deletion.
-        await originalPostDownload.call(this)
-
+    const cleanup = async () => {
         try {
             const result = await cleanupRemovedManagedFiles({
                 launcherDirectory: ConfigManager.getLauncherDirectory(),
-                distribution: this.distribution,
+                distribution: await exports.DistroAPI.getDistribution(),
                 commonDirectory: ConfigManager.getCommonDirectory(),
                 instanceDirectory: ConfigManager.getInstanceDirectory(),
                 logger
@@ -59,7 +57,29 @@ function installManagedFileCleanupHook(){
         }
     }
 
-    prototype.__pokeAuroraManagedFileCleanupInstalled = true
+    prototype.verifyFiles = async function(onProgress){
+        const invalidFileCount = await originalVerifyFiles.call(this, onProgress)
+
+        // If there is nothing to download, verifyFiles is the end of the
+        // repair flow. We can safely clean stale files now.
+        if(invalidFileCount === 0){
+            await cleanup()
+        }
+
+        return invalidFileCount
+    }
+
+    prototype.download = async function(onProgress){
+        // If Helios cannot complete the download, this rejects and cleanup is
+        // intentionally skipped. Existing files are therefore preserved.
+        await originalDownload.call(this, onProgress)
+
+        // At this point FullRepair has received downloadComplete, which means
+        // the child receiver completed its entire download/postDownload flow.
+        await cleanup()
+    }
+
+    prototype[MANAGED_FILE_CLEANUP_HOOK] = true
 }
 
 installManagedFileCleanupHook()
@@ -70,10 +90,13 @@ class PokeAuroraDistributionAPI extends DistributionAPI {
         if(response.data != null){
             try {
                 response.data = sanitizeDistribution(response.data)
+                logger.info(`Loaded remote distribution successfully (${response.data.servers.length} server(s)).`)
             } catch(error) {
                 DistributionAPI.log.error('Rejected an unsafe or malformed remote distribution.', error)
                 response.data = null
             }
+        } else {
+            logger.warn('Remote distribution could not be loaded; Helios will use the cached distribution if available.')
         }
         return response
     }
