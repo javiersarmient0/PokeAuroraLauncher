@@ -6,61 +6,87 @@ const Branding = require('./branding')
 
 let client
 let activity
+let rpcReady = false
+
+function createActivity(){
+    return {
+        details: 'Explorando el launcher',
+        state: 'Listo para jugar',
+        largeImageKey: 'logo_aurora',
+        startTimestamp: Date.now(),
+        instance: false,
+        buttons: [
+            {
+                label: 'Únete para jugar',
+                url: 'https://pokeaurora.com'
+            }
+        ]
+    }
+}
+
+function applyActivity(){
+    if(!client || !rpcReady || !activity) return
+
+    try {
+        client.setActivity(activity)
+    } catch(error) {
+        logger.warn('Unable to update Discord Rich Presence.', error)
+    }
+}
 
 exports.initRPC = function() {
     if (client) return
 
     client = new Client({ transport: 'ipc' })
-
-    activity = {
-        details: "Iniciando launcher...",
-        state: "PokeAurora",
-        largeImageKey: "logo_aurora",
-        startTimestamp: Date.now(),
-        instance: false,
-        buttons: [
-            {
-                label: "Únete para jugar",
-                url: "https://pokeaurora.com"
-            }
-        ]
-    }
+    activity = createActivity()
+    rpcReady = false
 
     client.once('ready', () => {
+        rpcReady = true
         logger.info('Discord RPC Connected ✔️')
-        client.setActivity(activity)
+        applyActivity()
     })
 
-    client.login({ clientId: Branding.discordClientId })
+    client.login({ clientId: Branding.discordClientId }).catch(error => {
+        logger.warn('Unable to connect Discord Rich Presence.', error)
+        rpcReady = false
+    })
 }
 
 exports.updateDetails = function(details){
-    if (!client) return
+    if (!activity) return
 
     activity.details = details
-
-    activity.buttons = [
-        {
-            label: "Únete para jugar",
-            url: "https://pokeaurora.com"
-        }
-    ]
-
-    client.setActivity(activity)
+    applyActivity()
 }
 
 exports.updateState = function(state){
-    if (!client) return
+    if (!activity) return
 
     activity.state = state
+    applyActivity()
+}
 
-    client.setActivity(activity)
+exports.resetToLauncher = function(){
+    if (!activity) return
+
+    activity.details = 'Explorando el launcher'
+    activity.state = 'Listo para jugar'
+    activity.startTimestamp = Date.now()
+    applyActivity()
 }
 
 exports.shutdownRPC = function(){
     if(!client) return
-    client.clearActivity()
-    client.destroy()
+
+    try {
+        client.clearActivity()
+        client.destroy()
+    } catch(error) {
+        logger.warn('Unable to shut down Discord Rich Presence cleanly.', error)
+    }
+
     client = null
     activity = null
+    rpcReady = false
 }
