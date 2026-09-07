@@ -77,16 +77,9 @@ exports.resetToLauncher = function(){
 }
 
 exports.shutdownRPC = function(){
-    if(!client) return
+    if(!activity) return
 
-    try {
-        client.clearActivity()
-        client.destroy()
-    } catch(error) {
-        logger.warn('Unable to shut down Discord Rich Presence cleanly.', error)
-    }
-
-    client = null
-    activity = null
-    rpcReady = false
+    // The launcher owns the RPC connection, not the Minecraft process.
+    // Returning to the launcher should restore its presence instead of closing Discord RPC.
+    exports.resetToLauncher()
 }
