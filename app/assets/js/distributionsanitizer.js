@@ -30,6 +30,14 @@ function isPlaceholder(value){
     return typeof value === 'string' && /<[^>]*(?:FILL|LINK)[^>]*>/i.test(value)
 }
 
+function pathIsUnsafe(value){
+    const normalized = value.replace(/\\/g, '/')
+    return normalized.startsWith('/')
+        || /^[a-zA-Z]:\//.test(normalized)
+        || normalized.split('/').some(part => part === '..')
+        || normalized.includes('\u0000')
+}
+
 function validateArtifact(artifact, moduleType){
     if(artifact == null || !Number.isSafeInteger(artifact.size) || artifact.size < 0){
         throw new Error('Distribution module contains an invalid artifact size.')
@@ -47,24 +55,13 @@ function validateArtifact(artifact, moduleType){
     }
     artifact.url = parsed.toString()
 
-    if(artifact.path != null){
-        if(typeof artifact.path !== 'string' || artifact.path.length === 0 || pathIsUnsafe(artifact.path)){
-            throw new Error('Distribution module contains an invalid artifact path.')
-        }
-    } else if(moduleType === 'File'){
-        // File modules may use a path without a Maven-style id. This is a
-        // supported Helios layout and is commonly used for resourcepacks,
-        // shaderpacks and other instance files.
-        throw new Error('Distribution File module must declare an artifact path when it has no Maven id.')
+    if(artifact.path != null && (typeof artifact.path !== 'string' || artifact.path.length === 0 || pathIsUnsafe(artifact.path))){
+        throw new Error('Distribution module contains an invalid artifact path.')
     }
-}
 
-function pathIsUnsafe(value){
-    const normalized = value.replace(/\\/g, '/')
-    return normalized.startsWith('/')
-        || /^[a-zA-Z]:\//.test(normalized)
-        || normalized.split('/').some(part => part === '..')
-        || normalized.includes('\u0000')
+    if(moduleType === 'File' && artifact.path == null){
+        throw new Error('Distribution File module must declare an artifact path.')
+    }
 }
 
 function sanitizeModules(modules){
@@ -97,7 +94,7 @@ function sanitizeModules(modules){
             if(hasId){
                 const validId = module.id.length <= 240
                     && (type === 'File'
-                        ? !/[<>"'`\u0000-\u001f]/.test(module.id)
+                        ? !pathIsUnsafe(module.id) && !/[<>"'`\u0000-\u001f]/.test(module.id)
                         : /^[a-zA-Z0-9_.:+@-]+$/.test(module.id))
                 if(!validId){
                     throw new Error(`Distribution ${type} module has an invalid id.`)
