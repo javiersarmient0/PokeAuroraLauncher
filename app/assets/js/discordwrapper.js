@@ -20,8 +20,8 @@ exports.initRPC = function() {
         instance: false,
         buttons: [
             {
-                label: "Unirse al servidor",
-                url: Branding.discordInvite
+                label: "Únete para jugar",
+                url: "https://pokeaurora.com"
             }
         ]
     }
@@ -41,8 +41,8 @@ exports.updateDetails = function(details){
 
     activity.buttons = [
         {
-            label: "Unirse al servidor",
-            url: Branding.discordInvite
+            label: "Únete para jugar",
+            url: "https://pokeaurora.com"
         }
     ]
 
