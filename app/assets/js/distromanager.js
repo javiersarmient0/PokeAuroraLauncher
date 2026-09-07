@@ -12,20 +12,11 @@ const {
 
 const ConfigManager = require('./configmanager')
 
-// Old WesterosCraft url.
-// exports.REMOTE_DISTRO_URL = 'https://zelthoriaismp.cloud/nebula/distribution.json'
 exports.REMOTE_DISTRO_URL = 'https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/distribution.json'
 
 const logger = LoggerUtil.getLogger('PokeAuroraDistributionAPI')
 const MANAGED_FILE_CLEANUP_HOOK = Symbol('pokeAuroraManagedFileCleanupHook')
 
-/**
- * Helios runs FullRepairReceiver in a separate child process, so patching the
- * receiver's DistributionIndexProcessor prototype here would not affect the
- * actual repair process. FullRepair.download()/verifyFiles() execute in the
- * renderer process after the child process has completed its work, which is
- * the safe place to remove files that disappeared from the distribution.
- */
 function installManagedFileCleanupHook(){
     const prototype = FullRepair?.prototype
     if(prototype == null || prototype[MANAGED_FILE_CLEANUP_HOOK]){
@@ -57,31 +48,20 @@ function installManagedFileCleanupHook(){
                 logger.warn(`Skipped ${result.skipped.length} stale managed file(s) during cleanup.`)
             }
         } catch(error) {
-            // Cleanup must never prevent the launcher from finishing a valid
-            // repair. The helper only updates its manifest after its checks.
             logger.warn('Unable to clean stale PokeAurora-managed files.', error)
         }
     }
 
     prototype.verifyFiles = async function(onProgress){
         const invalidFileCount = await originalVerifyFiles.call(this, onProgress)
-
-        // If there is nothing to download, verifyFiles is the end of the
-        // repair flow. We can safely clean stale files now.
         if(invalidFileCount === 0){
             await cleanup()
         }
-
         return invalidFileCount
     }
 
     prototype.download = async function(onProgress){
-        // If Helios cannot complete the download, this rejects and cleanup is
-        // intentionally skipped. Existing files are therefore preserved.
         await originalDownload.call(this, onProgress)
-
-        // At this point FullRepair has received downloadComplete, which means
-        // the child receiver completed its entire download/postDownload flow.
         await cleanup()
     }
 
@@ -92,8 +72,6 @@ installManagedFileCleanupHook()
 
 class PokeAuroraDistributionAPI extends DistributionAPI {
     async pullRemote(){
-        // R2/CDN layers can cache distribution.json. Helios needs the current
-        // pack definition on every refresh, so add a cache-busting query value.
         const separator = exports.REMOTE_DISTRO_URL.includes('?') ? '&' : '?'
         const remoteUrl = `${exports.REMOTE_DISTRO_URL}${separator}_=${Date.now()}`
         const originalRemoteUrl = this.remoteUrl
@@ -104,7 +82,7 @@ class PokeAuroraDistributionAPI extends DistributionAPI {
             if(response.data != null){
                 try {
                     response.data = sanitizeDistribution(response.data)
-                    const moduleCount = getModulePaths(response.data).size
+                    const moduleCount = countDistributionModules(response.data)
                     logger.info(`Loaded remote distribution successfully (${response.data.servers.length} server(s), ${moduleCount} module file(s)).`)
                 } catch(error) {
                     DistributionAPI.log.error('Rejected an unsafe or malformed remote distribution.', error)
@@ -136,10 +114,6 @@ class PokeAuroraDistributionAPI extends DistributionAPI {
         const launcherDirectory = ConfigManager.getLauncherDirectory()
         const distributionPath = path.join(launcherDirectory, 'distribution.json')
 
-        // Before replacing the cached distribution, turn the previous one into
-        // the ownership manifest. This makes the first update after installing
-        // this cleanup feature capable of removing files from the old pack,
-        // without ever claiming arbitrary user-created files as managed.
         try {
             if(await fs.pathExists(distributionPath)){
                 const previousApi = new DistributionAPI(
@@ -154,8 +128,6 @@ class PokeAuroraDistributionAPI extends DistributionAPI {
                 logger.info('Prepared the managed-file manifest from the previous distribution.')
             }
         } catch(error) {
-            // Keep any existing manifest if the previous distribution cannot be
-            // read. A failed snapshot must never result in broader deletion.
             logger.warn('Unable to snapshot the previous distribution for managed-file cleanup.', error)
         }
 
@@ -163,10 +135,32 @@ class PokeAuroraDistributionAPI extends DistributionAPI {
     }
 }
 
+function countDistributionModules(distribution){
+    let count = 0
+    for(const server of distribution?.servers || []){
+        count += countModules(server.modules || [])
+    }
+    return count
+}
+
+function countModules(modules){
+    let count = 0
+    for(const module of modules){
+        if(module == null){
+            continue
+        }
+        count += 1
+        if(Array.isArray(module.subModules)){
+            count += countModules(module.subModules)
+        }
+    }
+    return count
+}
+
 const api = new PokeAuroraDistributionAPI(
     ConfigManager.getLauncherDirectory(),
-    null, // Injected forcefully by the preloader.
-    null, // Injected forcefully by the preloader.
+    null,
+    null,
     exports.REMOTE_DISTRO_URL,
     false
 )
