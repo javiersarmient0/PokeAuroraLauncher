@@ -92,19 +92,31 @@ installManagedFileCleanupHook()
 
 class PokeAuroraDistributionAPI extends DistributionAPI {
     async pullRemote(){
-        const response = await super.pullRemote()
-        if(response.data != null){
-            try {
-                response.data = sanitizeDistribution(response.data)
-                logger.info(`Loaded remote distribution successfully (${response.data.servers.length} server(s)).`)
-            } catch(error) {
-                DistributionAPI.log.error('Rejected an unsafe or malformed remote distribution.', error)
-                response.data = null
+        // R2/CDN layers can cache distribution.json. Helios needs the current
+        // pack definition on every refresh, so add a cache-busting query value.
+        const separator = exports.REMOTE_DISTRO_URL.includes('?') ? '&' : '?'
+        const remoteUrl = `${exports.REMOTE_DISTRO_URL}${separator}_=${Date.now()}`
+        const originalRemoteUrl = this.remoteUrl
+        this.remoteUrl = remoteUrl
+
+        try {
+            const response = await super.pullRemote()
+            if(response.data != null){
+                try {
+                    response.data = sanitizeDistribution(response.data)
+                    const moduleCount = getModulePaths(response.data).size
+                    logger.info(`Loaded remote distribution successfully (${response.data.servers.length} server(s), ${moduleCount} module file(s)).`)
+                } catch(error) {
+                    DistributionAPI.log.error('Rejected an unsafe or malformed remote distribution.', error)
+                    response.data = null
+                }
+            } else {
+                logger.warn('Remote distribution could not be loaded; Helios will use the cached distribution if available.')
             }
-        } else {
-            logger.warn('Remote distribution could not be loaded; Helios will use the cached distribution if available.')
+            return response
+        } finally {
+            this.remoteUrl = originalRemoteUrl
         }
-        return response
     }
 
     async pullLocal(){
@@ -115,7 +127,7 @@ class PokeAuroraDistributionAPI extends DistributionAPI {
         try {
             return sanitizeDistribution(local)
         } catch(error) {
-            DistributionAPI.log.error('Rejected an unsafe or malformed cached distribution.', error)
+            DistributionAPI.log.error('Rejected unsafe or malformed cached distribution.', error)
             return null
         }
     }
