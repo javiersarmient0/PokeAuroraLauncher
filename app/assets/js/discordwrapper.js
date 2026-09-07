@@ -57,13 +57,27 @@ exports.updateDetails = function(details){
     if (!activity) return
 
     activity.details = details
+
+    if(details === 'Explorando el Launcher' || details === 'Explorando el launcher'){
+        activity.state = 'Listo para jugar'
+    } else if(details === 'Iniciando Minecraft...' || details === 'Jugando al servidor PokeAurora'){
+        activity.state = 'Minecraft 1.21.1'
+    }
+
     applyActivity()
 }
 
 exports.updateState = function(state){
     if (!activity) return
 
-    activity.state = state
+    // Older launcher code still sends this value while preparing the game.
+    // Keep the new launcher state instead of allowing the old text to stick.
+    if(state === 'Esperando para jugar'){
+        activity.state = 'Listo para jugar'
+    } else {
+        activity.state = state
+    }
+
     applyActivity()
 }
 
