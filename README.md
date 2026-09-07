@@ -38,16 +38,5 @@
 
 * 🎮 **Conexión directa a PokeAurora**
   * Instala todo lo necesario con un solo clic.
-  * Sincroniza el FancyMenu oficial y `servers.dat` antes de abrir Minecraft.
   * Comienza tu aventura sin configuraciones complicadas.
 
-## Desarrollo
-
-Se requiere Node.js 22. Antes de generar una compilación, ejecuta:
-
-```bash
-npm ci
-npm run verify
-```
-
-El índice remoto está limitado al host oficial y fijado mediante SHA-256. Cualquier cambio intencional en la distribución debe revisarse y actualizar su huella en `distributionsanitizer.js`.
