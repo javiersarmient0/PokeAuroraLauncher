@@ -1,8 +1,14 @@
+const fs = require('fs-extra')
+const path = require('path')
 const { DistributionAPI } = require('helios-core/common')
 const { FullRepair } = require('helios-core/dl')
 const { LoggerUtil } = require('helios-core')
 const { sanitizeDistribution } = require('./distributionsanitizer')
-const { cleanupRemovedManagedFiles } = require('./managedfiles')
+const {
+    getModulePaths,
+    writeManifest,
+    cleanupRemovedManagedFiles
+} = require('./managedfiles')
 
 const ConfigManager = require('./configmanager')
 
@@ -112,6 +118,36 @@ class PokeAuroraDistributionAPI extends DistributionAPI {
             DistributionAPI.log.error('Rejected an unsafe or malformed cached distribution.', error)
             return null
         }
+    }
+
+    async writeDistributionToDisk(distribution){
+        const launcherDirectory = ConfigManager.getLauncherDirectory()
+        const distributionPath = path.join(launcherDirectory, 'distribution.json')
+
+        // Before replacing the cached distribution, turn the previous one into
+        // the ownership manifest. This makes the first update after installing
+        // this cleanup feature capable of removing files from the old pack,
+        // without ever claiming arbitrary user-created files as managed.
+        try {
+            if(await fs.pathExists(distributionPath)){
+                const previousApi = new DistributionAPI(
+                    launcherDirectory,
+                    ConfigManager.getCommonDirectory(),
+                    ConfigManager.getInstanceDirectory(),
+                    null,
+                    false
+                )
+                const previousDistribution = await previousApi.getDistributionLocalLoadOnly()
+                await writeManifest(launcherDirectory, getModulePaths(previousDistribution))
+                logger.info('Prepared the managed-file manifest from the previous distribution.')
+            }
+        } catch(error) {
+            // Keep any existing manifest if the previous distribution cannot be
+            // read. A failed snapshot must never result in broader deletion.
+            logger.warn('Unable to snapshot the previous distribution for managed-file cleanup.', error)
+        }
+
+        await super.writeDistributionToDisk(distribution)
     }
 }
 
