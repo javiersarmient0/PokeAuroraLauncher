@@ -1,0 +1,13 @@
+{
+  "articles": [
+    {
+      "title": "Bienvenido a las noticias de PokeAurora",
+      "date": "2026-08-18T00:00:00-03:00",
+      "author": "PokeAurora",
+      "content": "<h2>Noticias de PokeAurora</h2><p>Este panel ya puede mostrar anuncios, avisos, mantenimiento, eventos y novedades del servidor.</p><p>Cuando se configure un RSS en la distribución, el launcher lo cargará automáticamente. Si el feed no responde, esta noticia local mantiene el sector operativo.</p>",
+      "link": "https://discord.gg/GxV5XsdvPv",
+      "comments": "Abrir Discord",
+      "commentsLink": "https://discord.gg/GxV5XsdvPv"
+    }
+  ]
+}
