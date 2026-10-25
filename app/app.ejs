@@ -24,13 +24,9 @@
             display: none;
             top: 38px;
             height: calc(100% - 38px);
-            background: linear-gradient(180deg, rgba(2, 5, 20, 0.06) 0%, rgba(2, 5, 20, 0.15) 58%, rgba(2, 5, 20, 0.38) 100%);
             width: 100%;
             position: absolute;
             z-index: 10;
-        }
-        #main[overlay] {
-            filter: blur(3px) contrast(0.9) brightness(1.0);
         }
     </style>
 </head>
@@ -51,7 +47,7 @@
                 <div id="loadSpinnerRing"></div>
                 <img id="loadCenterImage" src="assets/images/SealCircle.png">
             </div>
-            <div id="loadingBrand">POKEAURORA</div>
+            <div id="loadingBrand"><span>POKE</span><strong>AURORA</strong></div>
             <div id="slogan"><%= lang('landing.heroEyebrow') %></div>
         </div>
     </div>

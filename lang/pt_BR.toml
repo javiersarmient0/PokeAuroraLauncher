@@ -1,7 +1,7 @@
 [ejs.landing]
 brandMeta = "LAUNCHER OFICIAL"
 heroEyebrow = "REGIÃO DE AESTRIA"
-heroTitle = "Sua aventura começa sob a aurora."
+heroTitle = "Sua aventura começa <em>sob a aurora.</em>"
 heroDescription = "Explore, capture e construa sua história em uma região criada para treinadores."
 heroStatus = "Servidor oficial do PokeAurora"
 updateAvailableTooltip = "Atualização Disponível"
@@ -162,7 +162,13 @@ requiredValue = "* Obrigatório"
 title = "Erro Desconhecido Durante o Login"
 desc = "Ocorreu um erro desconhecido. Consulte o console para mais detalhes."
 
+[js.login.error.premiumName]
+title = "Esse nome pertence a uma conta premium"
+desc = "\"{username}\" já é uma conta premium de Minecraft. O servidor vai pedir verificação à Mojang e, sem essa conta, você verá \"Sessão inválida\".<br><br>Se a conta é sua, entre com a Microsoft. Caso contrário, escolha outro nome."
+
 [js.landing.launch]
+alreadyRunningTitle = "O Minecraft já está aberto"
+alreadyRunningText = "O PokeAurora já está em execução. Feche o jogo antes de clicar em JOGAR novamente."
 pleaseWait = "Aguarde.."
 failureTitle = "Erro Durante o Lançamento"
 failureText = "Veja o console (CTRL + Shift + i) para mais detalhes."
@@ -201,6 +207,9 @@ extractingJava = "Extraindo Java"
 javaInstalled = "Java Instalado!"
 
 [js.landing.dlAsync]
+refreshingSession = "Renovando a sessão da Microsoft..."
+sessionRefreshFailedTitle = "Não foi possível renovar sua sessão"
+sessionRefreshFailedDesc = "O launcher não conseguiu renovar sua sessão da Microsoft, então o servidor a recusaria.<br><br>Verifique sua conexão e tente de novo. Se continuar falhando, adicione sua conta Microsoft novamente em Configurações › Conta."
 gameConfigFailure = "Não foi possível instalar a configuração oficial do FancyMenu e a lista de servidores."
 loadingServerInfo = "Carregando informações do servidor.."
 fatalError = "Erro Fatal"

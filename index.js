@@ -250,7 +250,21 @@ ipcMain.handle(SHELL_OPCODE.TRASH_ITEM, async (event, ...args) => {
     }
 })
 
-const REDIRECT_URI_PREFIX = 'https://login.microsoftonline.com/common/oauth2/nativeclient' 
+const REDIRECT_URI_PREFIX = 'https://login.microsoftonline.com/common/oauth2/nativeclient'
+
+// Domains the Microsoft sign-in flow navigates through. live.com covers login.live.com plus
+// account.live.com (password reset/change, security checks, passkeys) and signup.live.com.
+const MSFT_AUTH_ALLOWED_DOMAINS = [
+    'live.com',
+    'live.net',
+    'microsoftonline.com',
+    'microsoft.com',
+    'msauth.net',
+    'msftauth.net',
+    'xboxlive.com',
+    'xbox.com',
+    'github.com'
+]
 
 // Microsoft Auth Login
 let msftAuthWindow
@@ -274,6 +288,8 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
         height: 600,
         frame: true,
         icon: getPlatformIcon('SealCircle'),
+        // Child of the launcher window so it always stays above the "waiting for authentication" view.
+        parent: BrowserWindow.fromWebContents(ipcEvent.sender) || undefined,
         webPreferences: {
             partition: 'persist:microsoft-auth',
             contextIsolation: true,
@@ -281,6 +297,8 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
             sandbox: true
         }
     })
+
+    msftAuthWindow.once('ready-to-show', () => msftAuthWindow?.focus())
 
     msftAuthWindow.on('closed', () => {
         msftAuthWindow = undefined
@@ -321,13 +339,13 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
             }
             return
         }
+        // Only the main frame is restricted; Microsoft's iframes (captcha, telemetry) must load freely.
+        if (event && event.isMainFrame === false) {
+            return
+        }
         try {
             const host = new URL(uri).hostname
-            const allowed = host === 'login.microsoftonline.com'
-                || host === 'login.live.com'
-                || host.endsWith('.microsoft.com')
-                || host.endsWith('.msauth.net')
-                || host.endsWith('.msftauth.net')
+            const allowed = MSFT_AUTH_ALLOWED_DOMAINS.some(domain => host === domain || host.endsWith(`.${domain}`))
             if(!allowed && event){
                 event.preventDefault()
             }
@@ -338,6 +356,8 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
 
     msftAuthWindow.webContents.on('will-redirect', handleNavigation)
     msftAuthWindow.webContents.on('will-navigate', handleNavigation)
+    // Fallback: catch the redirect URI if it was reached without passing through the events above.
+    msftAuthWindow.webContents.on('did-navigate', (_event, uri) => handleNavigation(null, uri))
     msftAuthWindow.webContents.setWindowOpenHandler(() => ({ action: 'deny' }))
 
     msftAuthWindow.removeMenu()

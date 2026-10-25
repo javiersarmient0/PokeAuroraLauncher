@@ -14,6 +14,7 @@ let microsoftAuthInProgress = false;
 
 // Agregados para el sistema No Premium
 const { createOfflineUUID } = require('./offlineuuid')
+const { isPremiumUsername } = require('./premiumname')
 
 const log = LoggerUtil.getLogger('AuthManager')
 
@@ -63,7 +64,20 @@ exports.addAccount = async function(username) {
     try {
         const normalizedUsername = username.trim()
         const userId = createOfflineUUID(normalizedUsername)
-        
+
+        // EasyAuth pide verificación de Mojang a los nombres premium: con una cuenta No-Premium
+        // el jugador terminaría en "Sesión no válida" al entrar al servidor.
+        const premium = await isPremiumUsername(normalizedUsername);
+        if (premium === true) {
+            return Promise.reject({
+                title: Lang.queryJS('login.error.premiumName.title'),
+                desc: Lang.queryJS('login.error.premiumName.desc', { username: normalizedUsername })
+            });
+        }
+        if (premium === null) {
+            log.warn(`No se pudo comprobar si ${normalizedUsername} es un nombre premium; se permite continuar.`);
+        }
+
         const ret = ConfigManager.addAuthAccount(userId, 'sry', normalizedUsername, normalizedUsername);
         if (ConfigManager.getClientToken() == null) {
             ConfigManager.setClientToken('sry');
@@ -300,6 +314,51 @@ async function validateSelectedMicrosoftAccount() {
             ConfigManager.save()
             return true
         } catch(_err) { return false }
+    }
+}
+
+/**
+ * Renueva el token de Minecraft de la cuenta Microsoft seleccionada justo antes de lanzar el juego.
+ * No se fía de la fecha de vencimiento guardada: el launcher pudo quedar abierto más de un día
+ * o el reloj del PC puede estar desfasado, y con un token vencido el servidor responde "Sesión no válida".
+ *
+ * @returns {Promise<boolean>} True si la sesión quedó renovada.
+ */
+exports.refreshSelectedMicrosoftSession = async function(){
+    const current = ConfigManager.getSelectedAccount()
+    if(current == null || current.type !== 'microsoft' || current.microsoft == null) {
+        return false
+    }
+
+    const now = new Date().getTime()
+
+    // El token de Microsoft dura una hora: si sigue vigente alcanza para pedir uno de Minecraft.
+    if(now < current.microsoft.expires_at) {
+        try {
+            const res = await fullMicrosoftAuthFlow(current.microsoft.access_token, AUTH_MODE.MC_REFRESH)
+            ConfigManager.updateMicrosoftAuthAccount(
+                current.uuid, res.mcToken.access_token, current.microsoft.access_token, current.microsoft.refresh_token,
+                current.microsoft.expires_at, calculateExpiryDate(now, res.mcToken.expires_in)
+            )
+            ConfigManager.save()
+            return true
+        } catch(err) {
+            log.warn('El token de Microsoft guardado no sirvió; se renueva con el refresh token.', err)
+        }
+    }
+
+    try {
+        const res = await fullMicrosoftAuthFlow(current.microsoft.refresh_token, AUTH_MODE.MS_REFRESH)
+        ConfigManager.updateMicrosoftAuthAccount(
+            current.uuid, res.mcToken.access_token, res.accessToken.access_token,
+            res.accessToken.refresh_token || current.microsoft.refresh_token,
+            calculateExpiryDate(now, res.accessToken.expires_in), calculateExpiryDate(now, res.mcToken.expires_in)
+        )
+        ConfigManager.save()
+        return true
+    } catch(err) {
+        log.error('No se pudo renovar la sesión de Microsoft antes de lanzar el juego.', err)
+        return false
     }
 }
 

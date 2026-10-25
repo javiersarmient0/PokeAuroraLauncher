@@ -15,7 +15,7 @@ changeLanguageTitle = "Cambiar el idioma del launcher"
 changeLanguageDesc = "Puedes cambiar el idioma desde la lista de abajo. Este texto permanecerá en español para que siempre puedas volver a esta sección si deseas cambiarlo nuevamente."
 
 [ejs.welcome]
-welcomeHeader = "BIENVENIDO A POKEAURORA"
+welcomeHeader = '<span class="welcomeKicker">BIENVENIDO A</span><span class="brandWordmark"><span>Poke</span><strong>Aurora</strong></span>'
 
 welcomeDescription = """
 ¡Bienvenido a PokeAurora Cobblemon!

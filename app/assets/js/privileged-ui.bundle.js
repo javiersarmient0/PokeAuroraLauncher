@@ -2933,6 +2933,19 @@ var user_text               = document.getElementById('user_text')
 
 var loggerLanding = LoggerUtil.getLogger('Landing')
 
+/**
+ * Display a recoverable launch error in the shared overlay.
+ * The launcher referenced this helper in several error paths but never defined it.
+ */
+function showLaunchFailure(title, message){
+    setOverlayContent(title, message, 'Aceptar')
+    setOverlayHandler(() => {
+        toggleOverlay(false)
+        toggleLaunchArea(false)
+    })
+    toggleOverlay(true)
+}
+
 /* Launch Progress Wrapper Functions */
 
 /**
@@ -3047,8 +3060,19 @@ function setLaunchEnabled(val){
     document.getElementById('launch_button').disabled = !val
 }
 
+// Prevents a double click (or a click while the game is open) from starting a second Minecraft.
+var launchInProgress = false
+
 // Bind launch button
 document.getElementById('launch_button').addEventListener('click', async e => {
+    if(launchInProgress){
+        return
+    }
+    if(proc != null && proc.exitCode == null){
+        showLaunchFailure(Lang.queryJS('landing.launch.alreadyRunningTitle'), Lang.queryJS('landing.launch.alreadyRunningText'))
+        return
+    }
+    launchInProgress = true
     loggerLanding.info('Launching game..')
     try {
         const server = (await DistroAPI.getDistribution()).getServerById(ConfigManager.getSelectedServer())
@@ -3073,6 +3097,8 @@ document.getElementById('launch_button').addEventListener('click', async e => {
     } catch(err) {
         loggerLanding.error('Unhandled error in during launch process.', err)
         showLaunchFailure(Lang.queryJS('landing.launch.failureTitle'), Lang.queryJS('landing.launch.failureText'))
+    } finally {
+        launchInProgress = false
     }
 })
 
@@ -3454,6 +3480,9 @@ async function dlAsync(login = true) {
             setDownloadPercentage(100)
         } catch (err) {
             loggerLaunchSuite.error('Unable to download or validate launcher files.', err)
+            // Mark the repair as finished before disconnecting its child process.
+            // Otherwise the resulting IPC error is incorrectly reported as a second failure.
+            repairFinished = true
             fullRepairModule.destroyReceiver()
             remote.getCurrentWindow().setProgressBar(-1)
             showLaunchFailure(
@@ -3491,6 +3520,19 @@ async function dlAsync(login = true) {
     const versionData = await mojangIndexProcessor.getVersionJson()
 
     if(login) {
+        // Renovar la sesión de Microsoft justo antes de lanzar: si el token venció con el launcher
+        // abierto, el servidor (EasyAuth) rechaza la entrada con "Sesión no válida".
+        if(ConfigManager.getSelectedAccount().type === 'microsoft') {
+            setLaunchDetails(Lang.queryJS('landing.dlAsync.refreshingSession'))
+            if(!await AuthManager.refreshSelectedMicrosoftSession()) {
+                showLaunchFailure(
+                    Lang.queryJS('landing.dlAsync.sessionRefreshFailedTitle'),
+                    Lang.queryJS('landing.dlAsync.sessionRefreshFailedDesc')
+                )
+                return
+            }
+        }
+
         const authUser = ConfigManager.getSelectedAccount()
         loggerLaunchSuite.info(`Sending selected account (${authUser.displayName}) to ProcessBuilder.`)
         let pb = new ProcessBuilder(serv, versionData, modLoaderData, authUser, remote.app.getVersion())

@@ -1,7 +1,7 @@
 [ejs.landing]
 brandMeta = "OFFICIAL LAUNCHER"
 heroEyebrow = "AESTRIA REGION"
-heroTitle = "Your adventure begins beneath the aurora."
+heroTitle = "Your adventure begins <em>beneath the aurora.</em>"
 heroDescription = "Explore, catch and shape your story in a region built for trainers."
 heroStatus = "Official PokeAurora server"
 updateAvailableTooltip = "Update Available"
@@ -161,7 +161,13 @@ requiredValue = "* Required"
 title = "Unknown Error During Login"
 desc = "An unknown error has occurred. Please see the console for details."
 
+[js.login.error.premiumName]
+title = "That name belongs to a premium account"
+desc = "\"{username}\" is already a premium Minecraft account. The server will ask Mojang to verify it and, without that account, you will get \"Invalid session\".<br><br>If it is your account, sign in with Microsoft. Otherwise, choose a different name."
+
 [js.landing.launch]
+alreadyRunningTitle = "Minecraft is already open"
+alreadyRunningText = "PokeAurora is already running. Close the game before pressing PLAY again."
 pleaseWait = "Launching.."
 failureTitle = "Error During Launch"
 failureText = "See console (CTRL + Shift + i) for more details."
@@ -200,6 +206,9 @@ extractingJava = "Extracting Java.."
 javaInstalled = "Java Installed successfully!"
 
 [js.landing.dlAsync]
+refreshingSession = "Refreshing your Microsoft session..."
+sessionRefreshFailedTitle = "Couldn't refresh your session"
+sessionRefreshFailedDesc = "The launcher couldn't refresh your Microsoft session, so the server would reject it.<br><br>Check your connection and try again. If it keeps failing, add your Microsoft account again in Settings › Account."
 gameConfigFailure = "The official FancyMenu configuration and server list could not be installed."
 loadingServerInfo = "Loading server information.."
 fatalError = "Fatal Error"
