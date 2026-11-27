@@ -1,0 +1,3988 @@
+{
+  "version": "1.0.0",
+  "rss": "<LINK TO RSS FEED>",
+  "discord": {
+    "clientId": "<FILL IN OR REMOVE DISCORD OBJECT>",
+    "smallImageText": "<FILL IN OR REMOVE DISCORD OBJECT>",
+    "smallImageKey": "<FILL IN OR REMOVE DISCORD OBJECT>"
+  },
+  "servers": [
+    {
+      "id": "PokeAurora-1.21.1",
+      "name": "PokeAurora (Minecraft 1.21.1)",
+      "description": "Minecraft 1.21.1 · Fabric",
+      "icon": "https://cdn.discordapp.com/attachments/1506414029113921576/1562675940151263292/EeveeAurora.png?ex=6adadae1&is=6ad98961&hm=a460ccce1eaf648ab2edd950500edc7d94a1c8dc054cdc0409ea9e837335646a&",
+      "version": "1.0.0",
+      "address": "mc.pokeaurora.com:25568",
+      "minecraftVersion": "1.21.1",
+      "discord": {
+        "shortId": "<FILL IN OR REMOVE DISCORD OBJECT>",
+        "largeImageText": "<FILL IN OR REMOVE DISCORD OBJECT>",
+        "largeImageKey": "<FILL IN OR REMOVE DISCORD OBJECT>"
+      },
+      "mainServer": true,
+      "autoconnect": false,
+      "modules": [
+        {
+          "id": "net.fabricmc:fabric-loader:0.19.5",
+          "name": "Fabric (fabric-loader)",
+          "type": "Fabric",
+          "artifact": {
+            "size": 1984980,
+            "MD5": "23bf6a8c5ba938db7d13959a2630357f",
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/repo/lib/net/fabricmc/fabric-loader/0.19.5/fabric-loader-0.19.5.jar"
+          },
+          "subModules": [
+            {
+              "id": "1.21.1-fabric-0.19.5",
+              "name": "Fabric (version.json)",
+              "type": "VersionManifest",
+              "artifact": {
+                "size": 2862,
+                "MD5": "925309b22c397a2286ddc2c865a70ff4",
+                "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/repo/versions/1.21.1-fabric-0.19.5/1.21.1-fabric-0.19.5.json"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm:9.10.1",
+              "name": "Fabric (asm)",
+              "type": "Library",
+              "artifact": {
+                "size": 126151,
+                "MD5": "9cb72080438acf27f2607002e1444a7b",
+                "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/repo/lib/org/ow2/asm/asm/9.10.1/asm-9.10.1.jar"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm-analysis:9.10.1",
+              "name": "Fabric (asm-analysis)",
+              "type": "Library",
+              "artifact": {
+                "size": 35140,
+                "MD5": "6dd9011ec87f65e4b2e14e938c4118e4",
+                "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/repo/lib/org/ow2/asm/asm-analysis/9.10.1/asm-analysis-9.10.1.jar"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm-commons:9.10.1",
+              "name": "Fabric (asm-commons)",
+              "type": "Library",
+              "artifact": {
+                "size": 74840,
+                "MD5": "8eee0b1bdd046baf472eb83dd5e6bb44",
+                "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/repo/lib/org/ow2/asm/asm-commons/9.10.1/asm-commons-9.10.1.jar"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm-tree:9.10.1",
+              "name": "Fabric (asm-tree)",
+              "type": "Library",
+              "artifact": {
+                "size": 51958,
+                "MD5": "62541e1dc62331408ef31317555bf4fa",
+                "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/repo/lib/org/ow2/asm/asm-tree/9.10.1/asm-tree-9.10.1.jar"
+              }
+            },
+            {
+              "id": "org.ow2.asm:asm-util:9.10.1",
+              "name": "Fabric (asm-util)",
+              "type": "Library",
+              "artifact": {
+                "size": 95628,
+                "MD5": "d0892ecb209867805e7d2418e5dc6c42",
+                "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/repo/lib/org/ow2/asm/asm-util/9.10.1/asm-util-9.10.1.jar"
+              }
+            },
+            {
+              "id": "net.fabricmc:sponge-mixin:0.17.4+mixin.0.8.7",
+              "name": "Fabric (sponge-mixin)",
+              "type": "Library",
+              "artifact": {
+                "size": 1539080,
+                "MD5": "9e33b145b2a46fbc70daf532e3705066",
+                "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/repo/lib/net/fabricmc/sponge-mixin/0.17.4+mixin.0.8.7/sponge-mixin-0.17.4+mixin.0.8.7.jar"
+              }
+            },
+            {
+              "id": "net.fabricmc:intermediary:1.21.1",
+              "name": "Fabric (intermediary)",
+              "type": "Library",
+              "artifact": {
+                "size": 657725,
+                "MD5": "850be48a3406b9efdf8e64b1c2db97f8",
+                "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/repo/lib/net/fabricmc/intermediary/1.21.1/intermediary-1.21.1.jar"
+              }
+            }
+          ]
+        },
+        {
+          "id": "io.wispforest:accessories:1.1.0-beta.54+1.21.1@jar",
+          "name": "Accessories",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1103673,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/accessories-fabric-1.1.0-beta.54+1.21.1.jar",
+            "MD5": "6dc66c76438b7f1715fe4260abb463b0"
+          }
+        },
+        {
+          "id": "com.anthonyhilyard:advancementplaques:1.6.8@jar",
+          "name": "Advancement Plaques",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 195505,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/AdvancementPlaques-1.21.1-fabric-1.6.8.jar",
+            "MD5": "99b36bb8a2f7fd84ea83c00b65be9b90"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "com.starfish_studios:another_furniture:4.0.2@jar",
+          "name": "Another Furniture",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 2398841,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/another_furniture-fabric-4.0.2.jar",
+            "MD5": "205dc477171d01dbbf8dc6c72db8c9cd"
+          }
+        },
+        {
+          "id": "squeek.appleskin:appleskin:3.0.6+mc1.21@jar",
+          "name": "AppleSkin",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1082585,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/appleskin-fabric-mc1.21-3.0.6.jar",
+            "MD5": "a24c435e84973afd607e20395ecba19d"
+          }
+        },
+        {
+          "id": "dev.architectury.utils:architectury:13.0.11@jar",
+          "name": "Architectury",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 600921,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/architectury-13.0.11-fabric.jar",
+            "MD5": "5d7a93f9b84d8facf6a7d7a51d71158b"
+          }
+        },
+        {
+          "id": "earth.terrarium.athena.impl:athena:4.0.6@jar",
+          "name": "Athena",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 88425,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/athena-fabric-1.21.1-4.0.6.jar",
+            "MD5": "a549af3b3a32722ab81ff11d9f44f90b"
+          }
+        },
+        {
+          "id": "generated.fabricmod:badoptimizations:2.4.1@jar",
+          "name": "BadOptimizations",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 283566,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/BadOptimizations-2.4.1-1.21.1.jar",
+            "MD5": "59ee243a5ccd09fff1dd2879b3cad72a"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "mchorse.bbs_mod:bbs:2.3.3-1.21.1@jar",
+          "name": "BBS mod",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 10739246,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/bbs-2.3.3-1.21.1.jar",
+            "MD5": "b9a43825d025a36fec806de7f34135a3"
+          }
+        },
+        {
+          "id": "io.github.suel_ki:beautify:3.0.0+1.21.1@jar",
+          "name": "Beautify",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 905029,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/beautify-3.0.0+1.21.1.jar",
+            "MD5": "f4dbecd3b5ed1fc5dd2fd8308745c50b"
+          }
+        },
+        {
+          "id": "com.qendolin:betterclouds:1.13.11+1.21.1-fabric@jar",
+          "name": "Better Clouds",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 816134,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/better-clouds-1.13.11+1.21.1-fabric.jar",
+            "MD5": "9984f9bc9894379c423e12450dfbac97"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "net.bettercombat:bettercombat:2.4.0+1.21.1@jar",
+          "name": "Better Combat",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 930023,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/bettercombat-fabric-2.4.0+1.21.1.jar",
+            "MD5": "65e26faa396d60be0329204abb6f6a69"
+          }
+        },
+        {
+          "id": "net.darkhax.bookshelf.fabric.impl:bookshelf:21.1.81@jar",
+          "name": "Bookshelf",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 330355,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/bookshelf-fabric-1.21.1-21.1.81.jar",
+            "MD5": "dfe7f6646a8783c57910cfb910db61c9"
+          }
+        },
+        {
+          "id": "generated.fabricmod:cardinal-components:6.1.3@jar",
+          "name": "Cardinal Components API",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 229645,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/cardinal-components-api-6.1.3.jar",
+            "MD5": "8febe13b1c2df1e90a6fa8b5de8521a4"
+          }
+        },
+        {
+          "id": "com.levelsfr:catchindicator:3.0@jar",
+          "name": "Catch Indicator",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 335369,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/catchindicator-fabric-3.0.jar",
+            "MD5": "a5aaf09f6ce5a15859f9b81b13619790"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "dzwdz.chat_heads:chat_heads:0.15.7@jar",
+          "name": "Chat Heads",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 86944,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/chat_heads-0.15.7-fabric-1.21.jar",
+            "MD5": "94422ae39ff5ad7c6da661fffa61cb50"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "com.ezzenix:chatanimation:1.3.5@jar",
+          "name": "ChatAnimation",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 432678,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/chatanimation-fabric-1.3.5+mc1.21.jar",
+            "MD5": "762ae804dc9b373212aa73cb060ad486"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "com.periut:chisel:2.0.1+mc1.21.1@jar",
+          "name": "Chisel Refabricated",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 8266945,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/chisel-fabric-2.0.1+mc1.21.1.jar",
+            "MD5": "fba557766cf7748ad5d5dd1ca78cf7da"
+          }
+        },
+        {
+          "id": "mix.cinematiczoom:cinematiczoom:1.3@jar",
+          "name": "CinematicZoom",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 293045,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/cinematiczoom-1.21.1-1.3.jar",
+            "MD5": "6e9d435f40de643335ea76b459163d66"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "me.shedaniel.autoconfig.example:cloth-config:15.0.140@jar",
+          "name": "Cloth Config v15",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1157166,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/cloth-config-15.0.140-fabric.jar",
+            "MD5": "a2c091b027ad6ba8e54b07020fd45884"
+          }
+        },
+        {
+          "id": "com.lunazstudios:cobblefurnies:1.2@jar",
+          "name": "CobbleFurnies",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 2337235,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/CobbleFurnies-fabric-1.2.jar",
+            "MD5": "a2a86b8aac2ebd5208dc92a561c5e113"
+          }
+        },
+        {
+          "id": "name.modid:cobblemon-battle-extras:1.13.45@jar",
+          "name": "Cobblemon Battle Extras",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1515972,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/cobblemon-battle-extras-fabric-1.13.45.jar",
+            "MD5": "dbf09923dc28a0339c5c5bb7eae9061d"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "com.cobblemon.mod:cobblemon:1.8.2+1.21.1@jar",
+          "name": "Cobblemon",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 139317851,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/Cobblemon-fabric-1.8.2+1.21.1.jar",
+            "MD5": "e32d43993c5c319e75f1790c9d0a7a38"
+          }
+        },
+        {
+          "id": "com.metacontent:cobblenav:2.4.2@jar",
+          "name": "Cobblenav",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1146123,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/cobblenav-fabric-2.4.2.jar",
+            "MD5": "58802f78ff455903f27957351901ff83"
+          }
+        },
+        {
+          "id": "team.creative:creativecore:2.13.48@jar",
+          "name": "CreativeCore",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1257391,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/CreativeCore_FABRIC_v2.13.48_mc1.21.1.jar",
+            "MD5": "e4bb94ad9a8f85d2494b8ed1765a45f8"
+          }
+        },
+        {
+          "id": "com.periut:cryonicconfig:1.0.0+mc1.21.11@jar",
+          "name": "Cryonic Config",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 21696,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/cryonicconfig-fabric-1.0.0+mc1.21.11.jar",
+            "MD5": "0b660265c92b2f58658e509407af54ef"
+          }
+        },
+        {
+          "id": "de.keksuccino:drippyloadingscreen:3.1.2@jar",
+          "name": "Drippy Loading Screen",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 281831,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/drippyloadingscreen_fabric_3.1.2_MC_1.21.1.jar",
+            "MD5": "fe4fbe1a7d13dd60f41cbfa5c5fe0b4a"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "de.markusbordihn.easynpc.bundle:easy_npc_bundle:7.11.0@jar",
+          "name": "Easy NPC (Bundle)",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 25260,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/easy_npc_bundle-fabric-1.21.1-7.11.0.jar",
+            "MD5": "5b3367a0d86fb03d1f5d3ec8e914b7a4"
+          }
+        },
+        {
+          "id": "de.markusbordihn.easynpc.configui:easy_npc_config_ui:7.11.0@jar",
+          "name": "Easy NPC: Config UI",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1086588,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/easy_npc_config_ui-fabric-1.21.1-7.11.0.jar",
+            "MD5": "19ae117468ad5c25c9cb2d41119a38fd"
+          }
+        },
+        {
+          "id": "de.markusbordihn.easynpc:easy_npc:7.11.0@jar",
+          "name": "Easy NPC",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 2911736,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/easy_npc-fabric-1.21.1-7.11.0.jar",
+            "MD5": "5f5b037617f60ac3ed6e5a5945a5ce9d"
+          }
+        },
+        {
+          "id": "ru.tpsd.eatinganimationmod:eatinganimationid:1.21+1.9.72@jar",
+          "name": "Eating Animation",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1060520,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/eating-animation-1.21+1.9.72.jar",
+            "MD5": "316cf908b94d508f9f3490bafef39cfc"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "com.vsngarcia:elevatorid:1.21-1.11.1@jar",
+          "name": "ElevatorMod",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 185086,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/elevatorid-fabric-1.21-1.11.1.jar",
+            "MD5": "6046e099c6566ef6e419f3533d9cbea1"
+          }
+        },
+        {
+          "id": "com.hrznstudio:emojiful:5.2.4@jar",
+          "name": "Emojiful",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 309950,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/Emojiful-Fabric-1.21-5.2.4.jar",
+            "MD5": "b7ebb5a4b3525e917888929bab1ecef6"
+          }
+        },
+        {
+          "id": "me.zipestudio.ebte.entrypoint:emotecraft_borrow_their_emote:1.0.2+1.21.1+fabric@jar",
+          "name": "Emotecraft: Borrow Their Emote (EBTE)",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 305859,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/emotecraft-borrow-their-emote-1.0.2+1.21.1+fabric.jar",
+            "MD5": "d4d89fcebdcc58bed5f2693a5b2b0092"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "io.github.kosmx.emotes:emotecraft:2.4.12@jar",
+          "name": "Emotecraft",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 863362,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/emotecraft-for-MC1.21.1-2.4.12-fabric.jar",
+            "MD5": "068aace7ea97d0a511ce4e13599c7c79"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "net.darkhax.enchdesc.fabric.impl:enchdesc:21.1.11@jar",
+          "name": "EnchantmentDescriptions",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 84229,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/enchdesc-fabric-1.21.1-21.1.11.jar",
+            "MD5": "3493c72266086e0b1e014dcb95f91f0a"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "traben.entity_model_features:entity_model_features:3.3.12@jar",
+          "name": "Entity Model Features",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 653743,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/entity_model_features-3.3.12-1.21-fabric.jar",
+            "MD5": "acd5d418f0a3189c550f86d59375506f"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "traben.entity_texture_features:entity_texture_features:7.2.7@jar",
+          "name": "Entity Texture Features",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 805015,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/entity_texture_features-7.2.7-1.21-fabric.jar",
+            "MD5": "e448c4ba8b1b3380ce021ac8549a9a22"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "dev.tr7zw:entityculling:1.11.3@jar",
+          "name": "EntityCulling",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1519243,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/entityculling-fabric-1.11.3-mc1.21.1.jar",
+            "MD5": "5496362052a938cb668e050ef6a106b4"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "io.github.mortuusars:exposure:1.9.19@jar",
+          "name": "Exposure",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1994884,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/exposure-fabric-1.21.1-1.9.19.jar",
+            "MD5": "afc3bea9aef5f74e51392295886933ce"
+          }
+        },
+        {
+          "id": "generated.fabricmod:fabric-api:0.116.17+1.21.1@jar",
+          "name": "Fabric API",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 2452735,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/fabric-api-0.116.17+1.21.1.jar",
+            "MD5": "e027a4f5fcf21ee26fa48de7e7033c2b"
+          }
+        },
+        {
+          "id": "generated.fabricmod:fabric-language-kotlin:1.14.2+kotlin.2.4.21@jar",
+          "name": "Fabric Language Kotlin",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 8142878,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/fabric-language-kotlin-1.14.2+kotlin.2.4.21.jar",
+            "MD5": "08b201c7d0e80ba7a3d77cca0b2d3d3f"
+          }
+        },
+        {
+          "id": "generated.fabricmod:fabric-permissions-api-v0:0.3.1@jar",
+          "name": "Fabric-permissions-api",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 12935,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/fabric-permissions-api-0.3.1.jar",
+            "MD5": "d78a812e6eed64420a5d089e068d286e"
+          }
+        },
+        {
+          "id": "de.keksuccino:fancymenu:3.9.1@jar",
+          "name": "FancyMenu",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 25810747,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/fancymenu_fabric_3.9.1_MC_1.21.1.jar",
+            "MD5": "67682ec9f8a9b6412e9c9d92d377271e"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "vectorwing.farmersdelight:farmersdelight:1.21.1-3.3.6+refabricated@jar",
+          "name": "Farmer's Delight",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 3243316,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/FarmersDelight-1.21.1-3.3.6+refabricated.jar",
+            "MD5": "a57cff6da78644ae8e839b5d2f5eae15"
+          }
+        },
+        {
+          "id": "generated.fabricmod:ferritecore:7.0.3@jar",
+          "name": "FerriteCore",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 123450,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/ferritecore-7.0.3-fabric.jar",
+            "MD5": "b8513c8c3eef01ea1117ed8d8cba060d"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "me.rufia:fightorflight:0.11.1@jar",
+          "name": "Cobblemon Fight or Flight Fabric",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1460724,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/fightorflight-fabric-0.11.1.jar",
+            "MD5": "6367429a9a117bdafef0fcad091c858e"
+          }
+        },
+        {
+          "id": "fuzs.forgeconfigapiport.fabric.impl:forgeconfigapiport:21.1.6@jar",
+          "name": "Forge Config API Port",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 633065,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/ForgeConfigAPIPort-v21.1.6-1.21.1-Fabric.jar",
+            "MD5": "eba1a7f9d9976e983a2b9eb5e915e087"
+          }
+        },
+        {
+          "id": "me.fzzyhmstrs:fzzy_config:0.7.7+1.21@jar",
+          "name": "Fzzy Config",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 2387721,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/fzzy_config-0.7.7+1.21.jar",
+            "MD5": "91e320fdecd41ade301320888e540ace"
+          }
+        },
+        {
+          "id": "software.bernie:geckolib:4.9.3@jar",
+          "name": "GeckoLib 4",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 664463,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/geckolib-fabric-1.21.1-4.9.3.jar",
+            "MD5": "813dd353c0ba2ba96304eaa16a9a7b8f"
+          }
+        },
+        {
+          "id": "gravity_changer:gravity_changer:1.4.1-beta+mc1.21.1@jar",
+          "name": "Gravity Changer",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 370845,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/gravity_changer-1.4.1-beta+mc1.21.1.jar",
+            "MD5": "a6572591eea8925c4d45ebfe2b377489"
+          }
+        },
+        {
+          "id": "com.anthonyhilyard:iceberg:1.3.2@jar",
+          "name": "Iceberg",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 413302,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/Iceberg-1.21.1-fabric-1.3.2.jar",
+            "MD5": "fe26852d922aa24dad9c81270a09f929"
+          }
+        },
+        {
+          "id": "generated.fabricmod:immediatelyfast:1.6.15+1.21.1@jar",
+          "name": "ImmediatelyFast",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 342235,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/ImmediatelyFast-Fabric-1.6.15+1.21.1.jar",
+            "MD5": "66b44206af5115e07e22804ee414fb02"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "it.hurts.octostudios:immersiveui:0.3.3@jar",
+          "name": "ImmersiveUI",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 211187,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/ImmersiveUI-FABRIC-0.3.3+1.21.1.jar",
+            "MD5": "2d340c02a1474dd80c80331eed11488e"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "generated.fabricmod:iris:1.8.14-beta.1+mc1.21.1@jar",
+          "name": "Iris",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 2791343,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/iris-fabric-1.8.14-beta.1+mc1.21.1.jar",
+            "MD5": "4399f0c3edfe2af7f61db3725fe5c751"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "com.anthonyhilyard:itemborders:1.2.5@jar",
+          "name": "Item Borders",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 23909,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/ItemBorders-1.21-fabric-1.2.5.jar",
+            "MD5": "a88a7933fc3748e57b2c0dfcbd2cce62"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "com.imeetake:itemzoomer:2.3.0-1.21.1@jar",
+          "name": "Item Zoomer",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 104960,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/itemzoomer-fabric-2.3.0-1.21.1.jar",
+            "MD5": "041d3969e6f74c02ed51a9e03101299d"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "snownee.jade:jade:15.10.6+fabric@jar",
+          "name": "Jade",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 740746,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/Jade-1.21.1-Fabric-15.10.6.jar",
+            "MD5": "be81fdbb2c03889c463260b52739621c"
+          }
+        },
+        {
+          "id": "mezz.jei:jei:19.27.0.335@jar",
+          "name": "Just Enough Items",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1561017,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/jei-1.21.1-fabric-19.27.0.335.jar",
+            "MD5": "c919d5f51adab3b5a85614aacefcd065"
+          }
+        },
+        {
+          "id": "generated.fabricmod:ji_afk_cinematic_group:2.4.0@jar",
+          "name": "Ji AFK Cinematic",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1249606,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/ji-afk-cinematic-fabric-1.21-1.21.1-2.4.0.jar",
+            "MD5": "2c5f0e7346fc6ed49202187135e18d45"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "de.keksuccino:konkrete:1.9.9@jar",
+          "name": "Konkrete",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 786695,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/konkrete_fabric_1.9.9_MC_1.21.jar",
+            "MD5": "287ee9cfc6015f706672fd8c20f5ef9c"
+          }
+        },
+        {
+          "id": "generated.fabricmod:languagereload:1.7.6+1.21.1@jar",
+          "name": "Language Reload",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 75091,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/language-reload-1.7.6+1.21.1.jar",
+            "MD5": "d131649f0705f23d3653f4e7a0feac2f"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "com.anthonyhilyard:legendarytooltips:1.5.5@jar",
+          "name": "Legendary Tooltips",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 86697,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/LegendaryTooltips-1.21.1-fabric-1.5.5.jar",
+            "MD5": "565f7b556f0e6569adfb0e60c52c4f29"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "net.satisfy:beachparty:2.1.5@jar",
+          "name": "[Let's Do] Beachparty",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 7718934,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/letsdo-beachparty-fabric-2.1.5.jar",
+            "MD5": "245cf5290439ae875aad58b395593487"
+          }
+        },
+        {
+          "id": "net.satisfy:camping:2.1.6@jar",
+          "name": "[Let's Do] Camping",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1337999,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/letsdo-camping-fabric-2.1.6.jar",
+            "MD5": "914257b18a1084136b1044bee6db2c31"
+          }
+        },
+        {
+          "id": "net.satisfy:farm_and_charm:1.1.22@jar",
+          "name": "[Let's Do] Farm & Charm",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 2557418,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/letsdo-farm_and_charm-fabric-1.1.22.jar",
+            "MD5": "4d755f5c2e3fd7fd6920046c813c161c"
+          }
+        },
+        {
+          "id": "net.satisfy:furniture:1.1.10@jar",
+          "name": "[Let's Do] Furniture",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 4895363,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/letsdo-furniture-fabric-1.1.10.jar",
+            "MD5": "4193a96ce97825f59370c47cc5eff9e9"
+          }
+        },
+        {
+          "id": "net.satisfy:wildernature:1.1.8@jar",
+          "name": "[Let's Do] Wilder Nature",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 3847001,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/letsdo-wildernature-fabric-1.1.8.jar",
+            "MD5": "c1715607910c11605e2bfabcc614b7a9"
+          }
+        },
+        {
+          "id": "net.caffeinemc.mods:lithium:0.15.4+mc1.21.1@jar",
+          "name": "Lithium",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 797454,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/lithium-fabric-0.15.4+mc1.21.1.jar",
+            "MD5": "6fd6783640f42130f041b50cca2d3be6"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "noobanidus.mods:lootr:1.21.1-1.11.38.127@jar",
+          "name": "Lootr",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1111591,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/lootr-fabric-1.21.1-1.11.38.127.jar",
+            "MD5": "be2724760a4dcfc906fc7ad7f38368f8"
+          }
+        },
+        {
+          "id": "noobanidus.mods:lootrmon:1.21.1-0.0.0.3@jar",
+          "name": "Lootr & Cobblemon Compatibility",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 107470,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/lootrmon-fabric-1.21.1-0.0.0.3.jar",
+            "MD5": "fd268da56be73ab93ecf5fa8696890da"
+          }
+        },
+        {
+          "id": "fi.dy.masa:malilib:0.21.10@jar",
+          "name": "MaLiLib",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1411200,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/malilib-fabric-1.21-0.21.10.jar",
+            "MD5": "6a5553e46eed0692d17b8cd566aed103"
+          }
+        },
+        {
+          "id": "net.kikoz:mcwholidays:1.1.2@jar",
+          "name": "Macaw's Holidays",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 999600,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/mcw-holidays-1.1.2-mc1.21.1fabric.jar",
+            "MD5": "4096e99cf2069c7ff833be92c9f5b900"
+          }
+        },
+        {
+          "id": "generated.fabricmod:mega_showdown:fabric-1.3.1+1.8.2+1.21.1-release@jar",
+          "name": "Mega_showdown",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 20266478,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/mega_showdown-fabric-1.3.1+1.8.2+1.21.1-release.jar",
+            "MD5": "48bdd4cb48e9fdc86a10561e70b3112e"
+          }
+        },
+        {
+          "id": "de.keksuccino:melody:1.0.10@jar",
+          "name": "Melody",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 188035,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/melody_fabric_1.0.10_MC_1.21.jar",
+            "MD5": "0f1bfbf2dd4fa047a1616fc448f3b856"
+          }
+        },
+        {
+          "id": "net.mezzdev.config:mezz_config:0.6.8@jar",
+          "name": "MezzConfig",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 372634,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/mezz_config-1.21.1-fabric-0.6.8.jar",
+            "MD5": "466c9b25ab0b96c725687b2868a843ce"
+          }
+        },
+        {
+          "id": "org.embeddedt:modernfix:5.25.1+mc1.21.1@jar",
+          "name": "ModernFix",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 471258,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/modernfix-fabric-5.25.1+mc1.21.1.jar",
+            "MD5": "17260c894041b7b4a1b1f2fd1a8f1a8b"
+          }
+        },
+        {
+          "id": "com.terraformersmc:modmenu:11.0.5@jar",
+          "name": "Mod Menu",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 975846,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/modmenu-11.0.5.jar",
+            "MD5": "52ed39a3015ef3e6b02915d87a8aabae"
+          },
+          "required": {
+            "value": true
+          }
+        },
+        {
+          "id": "net.mehvahdjukaar.moonlight.platform:moonlight:1.21.1-3.7.2@jar",
+          "name": "Moonlight Lib",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 2325731,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/moonlight-1.21.1-3.7.2-fabric.jar",
+            "MD5": "fae5fb00b29e09abf84147b501cb0b48"
+          }
+        },
+        {
+          "id": "me.justahuman:more_cobblemon_tweaks:1.3.6@jar",
+          "name": "MoreCobblemonTweaks",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 138044,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/MoreCobblemonTweaks-fabric-1.3.6.jar",
+            "MD5": "db9cb0df7f3a21b82ecfbd7f26b81622"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "net.lopymine.mossylib.entrypoint:mossylib:1.6.0+1.21.1+fabric@jar",
+          "name": "MossyLib",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 182095,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/MossyLib-1.6.0+1.21.1+fabric.jar",
+            "MD5": "4abd3a5ad29f57eaaed8429530022f6a"
+          }
+        },
+        {
+          "id": "yalter.mousetweaks:mousetweaks:2.26@jar",
+          "name": "Mouse Tweaks",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 75984,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/MouseTweaks-fabric-mc1.21-2.26.jar",
+            "MD5": "1d39ead1641ef522bc7ae92383f21da8"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "elocindev.necronomicon:necronomicon:1.6.0@jar",
+          "name": "Necronomicon",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 37055,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/Necronomicon-Fabric-1.6.0+1.21.jar",
+            "MD5": "e197f0343fe4965699ce56f381b54952"
+          }
+        },
+        {
+          "id": "com.aizistral:nochatreports:1.21.1-v2.9.1@jar",
+          "name": "No Chat Reports",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 309410,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/NoChatReports-FABRIC-1.21.1-v2.9.1.jar",
+            "MD5": "2dce5b67904bc681b1a166b49e66efdc"
+          }
+        },
+        {
+          "id": "dev.tr7zw:notenoughanimations:1.12.7@jar",
+          "name": "NotEnoughAnimations",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1876209,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/notenoughanimations-fabric-1.12.7-mc1.21.1.jar",
+            "MD5": "4c834d72e3b95bb132c8332c3324bf26"
+          }
+        },
+        {
+          "id": "it.hurts.octostudios:octolib:0.6.2@jar",
+          "name": "OctoLib",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 543254,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/OctoLib-FABRIC-0.6.2+1.21.jar",
+            "MD5": "f5d73dfd455d1376d301ce61b2052206"
+          }
+        },
+        {
+          "id": "io.wispforest:owo:0.13.0-alpha.15+1.21@jar",
+          "name": "Oωo",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1963544,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/owo-lib-0.13.0-alpha.15+1.21.jar",
+            "MD5": "a3eb2ecafeb4bc1fb453b13cb43a12c1"
+          }
+        },
+        {
+          "id": "generated.fabricmod:packed_packs:2.3.1+1.21.1@jar",
+          "name": "Packed Packs",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1003380,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/packed_packs-fabric-2.3.1+1.21.1.jar",
+            "MD5": "127cea6195c073ac8701fe05f271a999"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "pigcart.particlerain.loaders:particlerain:4.0.3@jar",
+          "name": "Particle Rain",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 627175,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/particlerain-4.0.3+1.21.1-fabric.jar",
+            "MD5": "435e9ad7592f267f54e73c0c106a9024"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "generated.fabricmod:placeholder-api:2.4.2+1.21@jar",
+          "name": "Placeholder API",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 232325,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/placeholder-api-2.4.2+1.21.jar",
+            "MD5": "4de8568a088a276c94168514d625413d"
+          }
+        },
+        {
+          "id": "dev.kosmx.playerAnim:playeranimator:2.0.4+1.21.1@jar",
+          "name": "Player Animator",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 204541,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/player-animation-lib-fabric-2.0.4+1.21.1.jar",
+            "MD5": "93e684b0c741294dc2ac7e6b1f958dd2"
+          },
+          "required": {
+            "value": true
+          }
+        },
+        {
+          "id": "generated.fabricmod:pokeaurora:1.0.0@jar",
+          "name": "PokeAurora",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 31368237,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/PokeAurora-1.0.0.jar",
+            "MD5": "bf74eaf0b9f10934579d1a986eab73a2"
+          }
+        },
+        {
+          "id": "com.dawhat:pokebelt:0.1.5@jar",
+          "name": "Pokebelt",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1187240,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/pokebelt-0.1.5.jar",
+            "MD5": "919a039a751d2d2b5e554f0217d2efc9"
+          }
+        },
+        {
+          "id": "dev.mrshawn:pokeblocks:1.5.0-1.21.1@jar",
+          "name": "Pokeblocks",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1775159,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/pokeblocks-1.5.0-1.21.1.jar",
+            "MD5": "1f95332b90c8a9a91e7b478f2c0a3ccd"
+          }
+        },
+        {
+          "id": "net.darkhax.pricklemc.fabric.impl:prickle:21.1.11@jar",
+          "name": "PrickleMC",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 87229,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/prickle-fabric-1.21.1-21.1.11.jar",
+            "MD5": "507c4368b9c2c19ad99b02413fe34865"
+          }
+        },
+        {
+          "id": "generated.fabricmod:prism:1.0.11@jar",
+          "name": "Root project 'Prism'",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 61661,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/Prism-1.21.1-fabric-1.0.11.jar",
+            "MD5": "0e14c4a4d909505f97085e8c902ee68f"
+          }
+        },
+        {
+          "id": "punchy:punchy:3.2a@jar",
+          "name": "Punchy",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 4104087,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/punchy-3.2a-fabric-1.21.1.jar",
+            "MD5": "1e1193a251a1b56234a6bd612892444b"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "me.drex.quickpack:quick-pack:1.5.1@jar",
+          "name": "Quick-pack",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 22491,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/quick-pack-fabric-1.5.1+1.21.1.jar",
+            "MD5": "a45c1d6f928cfd8de6b6fb6f4450f0b6"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "me.jfenn.scoreboardoverhaul:scoreboard-overhaul:1.4.1+mc1.21.0@jar",
+          "name": "Scoreboard Overhaul",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 7330665,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/scoreboardoverhaul-1.4.1-mc1.21.0.jar",
+            "MD5": "a07f6eaf2f3d8dd36a3cc4e267b3ffd4"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "com.github.exopandora:shouldersurfing:5.2.0@jar",
+          "name": "Shoulder Surfing Reloaded",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 429491,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/ShoulderSurfing-Fabric-1.21.1-5.2.0.jar",
+            "MD5": "4c289a9f9dc430a53d6757b630f9cb43"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "me.flashyreese.mods.sodiumextra:sodium-extra:0.9.4+mc1.21.1@jar",
+          "name": "Sodium Extra",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 472019,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/sodium-extra-fabric-0.9.4+mc1.21.1.jar",
+            "MD5": "166e71d5e478caff7cd30db789066221"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "net.caffeinemc.mods:sodium:0.8.13+mc1.21.1@jar",
+          "name": "Sodium",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1574609,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/sodium-fabric-0.8.13+mc1.21.1.jar",
+            "MD5": "5d9c08eefe9ea23cd5201e93332e3450"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "einstein.subtle_effects:subtle_effects:1.15.1@jar",
+          "name": "Subtle Effects",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 3443067,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/SubtleEffects-fabric-1.21.1-1.15.1.jar",
+            "MD5": "af3b26606f2ef9f1bceb38cc9f7c442d"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "com.yungnickyoung.minecraft:travelerstitles:1.21.1-Fabric-5.1.3@jar",
+          "name": "Traveler's Titles",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 349651,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/TravelersTitles-1.21.1-Fabric-5.1.3.jar",
+            "MD5": "5de7c4441450fb5ed6f0d9d1676c71b6"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "dev.emi:trinkets:3.10.0@jar",
+          "name": "Trinkets",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 272944,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/trinkets-3.10.0.jar",
+            "MD5": "4a42e243d6d5c25dea83be3ddc0b28b1"
+          }
+        },
+        {
+          "id": "visuality:visuality:0.7.7+1.21@jar",
+          "name": "Visuality",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 79452,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/visuality-0.7.7+1.21.jar",
+            "MD5": "f6afa7bac94101addeb4b2ee34eb828f"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "de.maxhenkel:voicechat:1.21.1-2.6.24@jar",
+          "name": "Simple Voice Chat",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 5386871,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/voicechat-fabric-1.21.1-2.6.24.jar",
+            "MD5": "89122ad6484ca34300f03beab09833db"
+          },
+          "required": {
+            "value": true
+          }
+        },
+        {
+          "id": "com.goby56:wakes:0.4.1+1.21.1@jar",
+          "name": "Wakes",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 268435,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/optionalon/wakes-0.4.1+1.21.1.jar",
+            "MD5": "bcd57a7d1ae87ea231501ff9f2c59eba"
+          },
+          "required": {
+            "value": false
+          }
+        },
+        {
+          "id": "xaero.minimap:xaerominimap:26.6.0@jar",
+          "name": "Xaero's Minimap",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 2234556,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/xaerominimap-fabric-1.21.1-26.6.0.jar",
+            "MD5": "19b4a2fa10cf4153c51ff0e1e2c6efe7"
+          }
+        },
+        {
+          "id": "xaero.map:xaeroworldmap:1.47.0@jar",
+          "name": "Xaero's World Map",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1456162,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/xaeroworldmap-fabric-1.21.1-1.47.0.jar",
+            "MD5": "eeee9b64152f38396ff52b6dbcc0f38f"
+          }
+        },
+        {
+          "id": "xerca.xercapaint:xercapaint:1.21.1-2.0.1@jar",
+          "name": "Joy of Painting",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 439469,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/xercapaint-1.21.1-2.0.1.jar",
+            "MD5": "7b1ef50cdebf150886802c8f409f5232"
+          }
+        },
+        {
+          "id": "dev.isxander.yacl3.platform:yet_another_config_lib_v3:3.8.2+1.21.1-fabric@jar",
+          "name": "YetAnotherConfigLib",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1131265,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/yet_another_config_lib_v3-3.8.2+1.21.1-fabric.jar",
+            "MD5": "aadf11f5a793296be7c195e1ca388492"
+          }
+        },
+        {
+          "id": "com.yungnickyoung.minecraft:yungsapi:1.21.1-Fabric-5.1.9@jar",
+          "name": "YUNG's API",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 1284146,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/YungsApi-1.21.1-Fabric-5.1.9.jar",
+            "MD5": "742e0b0b5451c0d06b435d76883f895c"
+          }
+        },
+        {
+          "id": "org.zamega:zamega:1.8.2+1.8.2@jar",
+          "name": "Zamega",
+          "type": "FabricMod",
+          "artifact": {
+            "size": 896936,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/fabricmods/required/zamega-fabric-1.8.2+1.8.2.jar",
+            "MD5": "60f2f9b840be6b0ce82a543e11a9fffd"
+          }
+        },
+        {
+          "id": "ElevenLabs_2026-10-01T18_58_32__s50_v4.wav",
+          "name": "ElevenLabs_2026-10-01T18_58_32__s50_v4.wav",
+          "type": "File",
+          "artifact": {
+            "size": 1286558,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/audio/ElevenLabs_2026-10-01T18_58_32__s50_v4.wav",
+            "MD5": "fe334650f1a6a1ab578a3d8025c7bffa",
+            "path": "config/bbs/assets/audio/ElevenLabs_2026-10-01T18_58_32__s50_v4.wav"
+          }
+        },
+        {
+          "id": "lider_planta.wav",
+          "name": "lider_planta.wav",
+          "type": "File",
+          "artifact": {
+            "size": 412494,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/audio/lider_planta.wav",
+            "MD5": "43fa7002e0098c97bdcafd4b777246dd",
+            "path": "config/bbs/assets/audio/lider_planta.wav"
+          }
+        },
+        {
+          "id": "lider_planta.wav.json",
+          "name": "lider_planta.wav.json",
+          "type": "File",
+          "artifact": {
+            "size": 2,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/audio/lider_planta.wav.json",
+            "MD5": "d751713988987e9331980363e24189ce",
+            "path": "config/bbs/assets/audio/lider_planta.wav.json"
+          }
+        },
+        {
+          "id": "musica_inicio.wav",
+          "name": "musica_inicio.wav",
+          "type": "File",
+          "artifact": {
+            "size": 16007246,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/audio/musica_inicio.wav",
+            "MD5": "11e1046f37dfee3218745329fadccc4b",
+            "path": "config/bbs/assets/audio/musica_inicio.wav"
+          }
+        },
+        {
+          "id": "musica_lider_planta.wav",
+          "name": "musica_lider_planta.wav",
+          "type": "File",
+          "artifact": {
+            "size": 52879438,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/audio/musica_lider_planta.wav",
+            "MD5": "c8bda185550fa097d208a35a8a316364",
+            "path": "config/bbs/assets/audio/musica_lider_planta.wav"
+          }
+        },
+        {
+          "id": "musica_rival.wav",
+          "name": "musica_rival.wav",
+          "type": "File",
+          "artifact": {
+            "size": 36839502,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/audio/musica_rival.wav",
+            "MD5": "2ceeb7e54116ebea2a947e28e9418204",
+            "path": "config/bbs/assets/audio/musica_rival.wav"
+          }
+        },
+        {
+          "id": "pasos.wav",
+          "name": "pasos.wav",
+          "type": "File",
+          "artifact": {
+            "size": 806990,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/audio/pasos.wav",
+            "MD5": "6e65b1386fa05824a6f1db421f86761e",
+            "path": "config/bbs/assets/audio/pasos.wav"
+          }
+        },
+        {
+          "id": "pokeball-opening-sound-FX.wav",
+          "name": "pokeball-opening-sound-FX.wav",
+          "type": "File",
+          "artifact": {
+            "size": 888910,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/audio/pokeball-opening-sound-FX.wav",
+            "MD5": "50390c130adea9f38a72ccc31e7779ed",
+            "path": "config/bbs/assets/audio/pokeball-opening-sound-FX.wav"
+          }
+        },
+        {
+          "id": "voz1_cientifico_mega.wav",
+          "name": "voz1_cientifico_mega.wav",
+          "type": "File",
+          "artifact": {
+            "size": 1286558,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/audio/voz1_cientifico_mega.wav",
+            "MD5": "fe334650f1a6a1ab578a3d8025c7bffa",
+            "path": "config/bbs/assets/audio/voz1_cientifico_mega.wav"
+          }
+        },
+        {
+          "id": "voz2_cientifico_mega.wav",
+          "name": "voz2_cientifico_mega.wav",
+          "type": "File",
+          "artifact": {
+            "size": 1808170,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/audio/voz2_cientifico_mega.wav",
+            "MD5": "d600873b6bf111172f2a5dba18335f43",
+            "path": "config/bbs/assets/audio/voz2_cientifico_mega.wav"
+          }
+        },
+        {
+          "id": "voz3_cientifico_mega.wav",
+          "name": "voz3_cientifico_mega.wav",
+          "type": "File",
+          "artifact": {
+            "size": 6525258,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/audio/voz3_cientifico_mega.wav",
+            "MD5": "36619f1c10b1e20f0593e2202f36514a",
+            "path": "config/bbs/assets/audio/voz3_cientifico_mega.wav"
+          }
+        },
+        {
+          "id": "voz_cientifico_mega.wav",
+          "name": "voz_cientifico_mega.wav",
+          "type": "File",
+          "artifact": {
+            "size": 1778078,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/audio/voz_cientifico_mega.wav",
+            "MD5": "f7949f342a60f6a61be51b5a2ea06c61",
+            "path": "config/bbs/assets/audio/voz_cientifico_mega.wav"
+          }
+        },
+        {
+          "id": "voz_escaner_vertice.wav",
+          "name": "voz_escaner_vertice.wav",
+          "type": "File",
+          "artifact": {
+            "size": 2322260,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/audio/voz_escaner_vertice.wav",
+            "MD5": "f277c1fca9fed98072ee181f1dc6e310",
+            "path": "config/bbs/assets/audio/voz_escaner_vertice.wav"
+          }
+        },
+        {
+          "id": "voz_profesora_elara_inicio.wav",
+          "name": "voz_profesora_elara_inicio.wav",
+          "type": "File",
+          "artifact": {
+            "size": 6078030,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/audio/voz_profesora_elara_inicio.wav",
+            "MD5": "3bc0dfaf3aab73f2776ae56076d297b2",
+            "path": "config/bbs/assets/audio/voz_profesora_elara_inicio.wav"
+          }
+        },
+        {
+          "id": "voz_rival1.wav",
+          "name": "voz_rival1.wav",
+          "type": "File",
+          "artifact": {
+            "size": 1734990,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/audio/voz_rival1.wav",
+            "MD5": "602abb454fc35f503dd8292562baac02",
+            "path": "config/bbs/assets/audio/voz_rival1.wav"
+          }
+        },
+        {
+          "id": "config.json",
+          "name": "config.json",
+          "type": "File",
+          "artifact": {
+            "size": 51,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/models/mega/config.json",
+            "MD5": "c7a42755dba34ddc24e09ce5ca69c98c",
+            "path": "config/bbs/assets/models/mega/config.json"
+          }
+        },
+        {
+          "id": "model.bbs.json",
+          "name": "model.bbs.json",
+          "type": "File",
+          "artifact": {
+            "size": 900,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/models/mega/model.bbs.json",
+            "MD5": "e4a0697ac5afb54b2f47d47513bca6ba",
+            "path": "config/bbs/assets/models/mega/model.bbs.json"
+          }
+        },
+        {
+          "id": "5386875a8819e829.png",
+          "name": "5386875a8819e829.png",
+          "type": "File",
+          "artifact": {
+            "size": 2686,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/models/player/5386875a8819e829.png",
+            "MD5": "5406b8bf75f156a1463a3128f845fddf",
+            "path": "config/bbs/assets/models/player/5386875a8819e829.png"
+          }
+        },
+        {
+          "id": "5386875a8819e829.png.dat",
+          "name": "5386875a8819e829.png.dat",
+          "type": "File",
+          "artifact": {
+            "size": 2590,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/models/player/5386875a8819e829.png.dat",
+            "MD5": "16bff98d0e79c2dfc71293cd671dde3c",
+            "path": "config/bbs/assets/models/player/5386875a8819e829.png.dat"
+          }
+        },
+        {
+          "id": "2e367f0724df8057.png",
+          "name": "2e367f0724df8057.png",
+          "type": "File",
+          "artifact": {
+            "size": 2037,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/models/player/alex/2e367f0724df8057.png",
+            "MD5": "6db97a6e5d72c9abbfcf362ffa875320",
+            "path": "config/bbs/assets/models/player/alex/2e367f0724df8057.png"
+          }
+        },
+        {
+          "id": "9d026f8114fec0d7.png",
+          "name": "9d026f8114fec0d7.png",
+          "type": "File",
+          "artifact": {
+            "size": 1455,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/models/player/alex/9d026f8114fec0d7.png",
+            "MD5": "26973a18be39ef4b03bcdaf58fe61e6e",
+            "path": "config/bbs/assets/models/player/alex/9d026f8114fec0d7.png"
+          }
+        },
+        {
+          "id": "a01f93c820b84892.png",
+          "name": "a01f93c820b84892.png",
+          "type": "File",
+          "artifact": {
+            "size": 704,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/models/player/alex/a01f93c820b84892.png",
+            "MD5": "3ac604bfd85168d5fc361f09afd91573",
+            "path": "config/bbs/assets/models/player/alex/a01f93c820b84892.png"
+          }
+        },
+        {
+          "id": "skin_cientificobob.png",
+          "name": "skin_cientificobob.png",
+          "type": "File",
+          "artifact": {
+            "size": 1894,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/models/player/alex/skin_cientificobob.png",
+            "MD5": "cb82c44e180f19f8cdb8bebdd4eba697",
+            "path": "config/bbs/assets/models/player/alex/skin_cientificobob.png"
+          }
+        },
+        {
+          "id": "skin_cientificoelias.png",
+          "name": "skin_cientificoelias.png",
+          "type": "File",
+          "artifact": {
+            "size": 1111,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/models/player/alex/skin_cientificoelias.png",
+            "MD5": "0c0808360495b41ac7703a6f21f31b7a",
+            "path": "config/bbs/assets/models/player/alex/skin_cientificoelias.png"
+          }
+        },
+        {
+          "id": "skin_profesora_elana.png",
+          "name": "skin_profesora_elana.png",
+          "type": "File",
+          "artifact": {
+            "size": 2714,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/models/player/alex/skin_profesora_elana.png",
+            "MD5": "727a09518ed3d1d9eacd416a3e6dd6bb",
+            "path": "config/bbs/assets/models/player/alex/skin_profesora_elana.png"
+          }
+        },
+        {
+          "id": "2e367f0724df8057.png",
+          "name": "2e367f0724df8057.png",
+          "type": "File",
+          "artifact": {
+            "size": 2037,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/models/player/steve/2e367f0724df8057.png",
+            "MD5": "6db97a6e5d72c9abbfcf362ffa875320",
+            "path": "config/bbs/assets/models/player/steve/2e367f0724df8057.png"
+          }
+        },
+        {
+          "id": "pueblerino.png",
+          "name": "pueblerino.png",
+          "type": "File",
+          "artifact": {
+            "size": 2891,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/models/player/steve/pueblerino.png",
+            "MD5": "8e1ba2f6502ba06757417a16d726ca53",
+            "path": "config/bbs/assets/models/player/steve/pueblerino.png"
+          }
+        },
+        {
+          "id": "fuecoco.bbs.json",
+          "name": "fuecoco.bbs.json",
+          "type": "File",
+          "artifact": {
+            "size": 26770,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/models/pokemon/fuecoco.bbs.json",
+            "MD5": "a1e428191a57b18fbd64ea3e22c0247a",
+            "path": "config/bbs/assets/models/pokemon/fuecoco.bbs.json"
+          }
+        },
+        {
+          "id": "fuecoco.png",
+          "name": "fuecoco.png",
+          "type": "File",
+          "artifact": {
+            "size": 3313,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/models/pokemon/fuecoco.png",
+            "MD5": "67f2f109d420670e7c95f934f28a2d53",
+            "path": "config/bbs/assets/models/pokemon/fuecoco.png"
+          }
+        },
+        {
+          "id": "mega_evolution.particle.json",
+          "name": "mega_evolution.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 4657,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution.particle.json",
+            "MD5": "6fdbcfdae6da5e2480f8d38adff69404",
+            "path": "config/bbs/assets/particles/mega_evolution.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_buildup.particle.json",
+          "name": "mega_evolution_buildup.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 1773,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_buildup.particle.json",
+            "MD5": "b1b7c040e45430e0c6b347dd660ba54c",
+            "path": "config/bbs/assets/particles/mega_evolution_buildup.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_burst2.particle.json",
+          "name": "mega_evolution_burst2.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 2168,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_burst2.particle.json",
+            "MD5": "92bc01add93efd2c9cf92a45d2fc89c5",
+            "path": "config/bbs/assets/particles/mega_evolution_burst2.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_bursttrail.particle.json",
+          "name": "mega_evolution_bursttrail.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 2255,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_bursttrail.particle.json",
+            "MD5": "e778693ee43c836c6396bf8a97f1071a",
+            "path": "config/bbs/assets/particles/mega_evolution_bursttrail.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_disc.particle.json",
+          "name": "mega_evolution_disc.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 2103,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_disc.particle.json",
+            "MD5": "394cde3127631f5c72a10bce35ae6be4",
+            "path": "config/bbs/assets/particles/mega_evolution_disc.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_disc1.particle.json",
+          "name": "mega_evolution_disc1.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 1458,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_disc1.particle.json",
+            "MD5": "cb5cebf566046d03427840fbd7a7e4cc",
+            "path": "config/bbs/assets/particles/mega_evolution_disc1.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_disc2.particle.json",
+          "name": "mega_evolution_disc2.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 1458,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_disc2.particle.json",
+            "MD5": "dfae819fc844142f43795a4a5981a253",
+            "path": "config/bbs/assets/particles/mega_evolution_disc2.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_disc3.particle.json",
+          "name": "mega_evolution_disc3.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 1458,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_disc3.particle.json",
+            "MD5": "77d0dc690a8da8e1bedd0cef2147718d",
+            "path": "config/bbs/assets/particles/mega_evolution_disc3.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_disc4.particle.json",
+          "name": "mega_evolution_disc4.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 1454,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_disc4.particle.json",
+            "MD5": "7b7d533c8b70083f5ebf64b647e977ac",
+            "path": "config/bbs/assets/particles/mega_evolution_disc4.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_dust.particle.json",
+          "name": "mega_evolution_dust.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 1696,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_dust.particle.json",
+            "MD5": "19019c65cb7ea539efa363c2aea1223a",
+            "path": "config/bbs/assets/particles/mega_evolution_dust.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_endtrail.particle.json",
+          "name": "mega_evolution_endtrail.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 3096,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_endtrail.particle.json",
+            "MD5": "7c1e056fdf6b359b14a98d82b6d05cf6",
+            "path": "config/bbs/assets/particles/mega_evolution_endtrail.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_icon.particle.json",
+          "name": "mega_evolution_icon.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 1884,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_icon.particle.json",
+            "MD5": "990fd943ffa6c05e5788f155d4a883a0",
+            "path": "config/bbs/assets/particles/mega_evolution_icon.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_icon_silhouette.particle.json",
+          "name": "mega_evolution_icon_silhouette.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 1717,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_icon_silhouette.particle.json",
+            "MD5": "e812898e28bf11591671fd088780ca8a",
+            "path": "config/bbs/assets/particles/mega_evolution_icon_silhouette.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_inward_godrays.particle.json",
+          "name": "mega_evolution_inward_godrays.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 1702,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_inward_godrays.particle.json",
+            "MD5": "8da8580a9bc4786cee0bdd0035ea568e",
+            "path": "config/bbs/assets/particles/mega_evolution_inward_godrays.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_outward_godrays.particle.json",
+          "name": "mega_evolution_outward_godrays.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 1856,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_outward_godrays.particle.json",
+            "MD5": "8881ddbe0913b0cff0da6d80d09d6e5d",
+            "path": "config/bbs/assets/particles/mega_evolution_outward_godrays.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_scythe1.particle.json",
+          "name": "mega_evolution_scythe1.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 1856,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_scythe1.particle.json",
+            "MD5": "20065f82ca31afc45522b715a691fa81",
+            "path": "config/bbs/assets/particles/mega_evolution_scythe1.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_scythe2.particle.json",
+          "name": "mega_evolution_scythe2.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 1888,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_scythe2.particle.json",
+            "MD5": "cf353f490eba35ab84a3a2a736de7918",
+            "path": "config/bbs/assets/particles/mega_evolution_scythe2.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_scythe3.particle.json",
+          "name": "mega_evolution_scythe3.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 1888,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_scythe3.particle.json",
+            "MD5": "17cc9a6350188a4e4e2d6698ea041a03",
+            "path": "config/bbs/assets/particles/mega_evolution_scythe3.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_sparkleburst.particle.json",
+          "name": "mega_evolution_sparkleburst.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 1985,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_sparkleburst.particle.json",
+            "MD5": "e539b19d44cd37d4fb483520f1273696",
+            "path": "config/bbs/assets/particles/mega_evolution_sparkleburst.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_sphere1.particle.json",
+          "name": "mega_evolution_sphere1.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 1728,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_sphere1.particle.json",
+            "MD5": "a171d2e00bec57f654da22c35dbb416d",
+            "path": "config/bbs/assets/particles/mega_evolution_sphere1.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_sphere2.particle.json",
+          "name": "mega_evolution_sphere2.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 1617,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_sphere2.particle.json",
+            "MD5": "38978920c95876bd4118b6a27c61b85c",
+            "path": "config/bbs/assets/particles/mega_evolution_sphere2.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_sphere3.particle.json",
+          "name": "mega_evolution_sphere3.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 1764,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_sphere3.particle.json",
+            "MD5": "98dd2b0499234b19179b6c501bc1ae4c",
+            "path": "config/bbs/assets/particles/mega_evolution_sphere3.particle.json"
+          }
+        },
+        {
+          "id": "mega_evolution_trail.particle.json",
+          "name": "mega_evolution_trail.particle.json",
+          "type": "File",
+          "artifact": {
+            "size": 2583,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/mega_evolution_trail.particle.json",
+            "MD5": "6032fd4bec2b41615082b47455d65238",
+            "path": "config/bbs/assets/particles/mega_evolution_trail.particle.json"
+          }
+        },
+        {
+          "id": "orbshrink_white.png",
+          "name": "orbshrink_white.png",
+          "type": "File",
+          "artifact": {
+            "size": 111,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/orbshrink_white.png",
+            "MD5": "73387f194306e379cfb77913c064e267",
+            "path": "config/bbs/assets/particles/orbshrink_white.png"
+          }
+        },
+        {
+          "id": "pokemon_fuera.json",
+          "name": "pokemon_fuera.json",
+          "type": "File",
+          "artifact": {
+            "size": 2625,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/pokemon_fuera.json",
+            "MD5": "d0405ef2f73f009a0cfc2ace12f336c1",
+            "path": "config/bbs/assets/particles/pokemon_fuera.json"
+          }
+        },
+        {
+          "id": "pokemon_fuera1.json",
+          "name": "pokemon_fuera1.json",
+          "type": "File",
+          "artifact": {
+            "size": 2388,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/pokemon_fuera1.json",
+            "MD5": "6d770bc7aa084ccde56b32c878a02581",
+            "path": "config/bbs/assets/particles/pokemon_fuera1.json"
+          }
+        },
+        {
+          "id": "pokemon_fuera2.json",
+          "name": "pokemon_fuera2.json",
+          "type": "File",
+          "artifact": {
+            "size": 2478,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/pokemon_fuera2.json",
+            "MD5": "0c790dab7c430b0d559c0c502c27d4de",
+            "path": "config/bbs/assets/particles/pokemon_fuera2.json"
+          }
+        },
+        {
+          "id": "shinesparkle_rainbow.png",
+          "name": "shinesparkle_rainbow.png",
+          "type": "File",
+          "artifact": {
+            "size": 318,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/particles/shinesparkle_rainbow.png",
+            "MD5": "4e9fd3981f7cc441d3812f3f6593f2e1",
+            "path": "config/bbs/assets/particles/shinesparkle_rainbow.png"
+          }
+        },
+        {
+          "id": "5386875a8819e829.png",
+          "name": "5386875a8819e829.png",
+          "type": "File",
+          "artifact": {
+            "size": 2686,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/textures/5386875a8819e829.png",
+            "MD5": "5406b8bf75f156a1463a3128f845fddf",
+            "path": "config/bbs/assets/textures/5386875a8819e829.png"
+          }
+        },
+        {
+          "id": "874090fb4afced9e.png",
+          "name": "874090fb4afced9e.png",
+          "type": "File",
+          "artifact": {
+            "size": 2714,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/textures/874090fb4afced9e.png",
+            "MD5": "727a09518ed3d1d9eacd416a3e6dd6bb",
+            "path": "config/bbs/assets/textures/874090fb4afced9e.png"
+          }
+        },
+        {
+          "id": "EeveeAurora.png",
+          "name": "EeveeAurora.png",
+          "type": "File",
+          "artifact": {
+            "size": 4527,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/textures/EeveeAurora.png",
+            "MD5": "2a1aa88a76a727cc881c718505c7db08",
+            "path": "config/bbs/assets/textures/EeveeAurora.png"
+          }
+        },
+        {
+          "id": "glowingsparkle_pink.png",
+          "name": "glowingsparkle_pink.png",
+          "type": "File",
+          "artifact": {
+            "size": 138,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/textures/glowingsparkle_pink.png",
+            "MD5": "4ed9980ff5483d524a8319e40f5fa7f3",
+            "path": "config/bbs/assets/textures/glowingsparkle_pink.png"
+          }
+        },
+        {
+          "id": "glowingsparkle_yellow.png",
+          "name": "glowingsparkle_yellow.png",
+          "type": "File",
+          "artifact": {
+            "size": 127,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/textures/glowingsparkle_yellow.png",
+            "MD5": "456ba5faf90e20da729e25f1f3eb5d78",
+            "path": "config/bbs/assets/textures/glowingsparkle_yellow.png"
+          }
+        },
+        {
+          "id": "lider_roy.png",
+          "name": "lider_roy.png",
+          "type": "File",
+          "artifact": {
+            "size": 1134,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/textures/lider_roy.png",
+            "MD5": "6d868060cd62d0ba8b85620fc67dbb06",
+            "path": "config/bbs/assets/textures/lider_roy.png"
+          }
+        },
+        {
+          "id": "mega_stone.png",
+          "name": "mega_stone.png",
+          "type": "File",
+          "artifact": {
+            "size": 366,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/textures/mega_stone.png",
+            "MD5": "d6cd3a91d4aec0d13d6ce9ed12cc4bed",
+            "path": "config/bbs/assets/textures/mega_stone.png"
+          }
+        },
+        {
+          "id": "skin_Adventure_Anime_be6776c20b571c1099f9a67e91ccd1d9.png",
+          "name": "skin_Adventure_Anime_be6776c20b571c1099f9a67e91ccd1d9.png",
+          "type": "File",
+          "artifact": {
+            "size": 931,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/assets/textures/skin_Adventure_Anime_be6776c20b571c1099f9a67e91ccd1d9.png",
+            "MD5": "955e6b10a9f43251a3d27c54ff9285a6",
+            "path": "config/bbs/assets/textures/skin_Adventure_Anime_be6776c20b571c1099f9a67e91ccd1d9.png"
+          }
+        },
+        {
+          "id": "liked_sounds.dat",
+          "name": "liked_sounds.dat",
+          "type": "File",
+          "artifact": {
+            "size": 11,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/data/audio/liked_sounds.dat",
+            "MD5": "09844c9af593782787f249096dcff4ca",
+            "path": "config/bbs/data/audio/liked_sounds.dat"
+          }
+        },
+        {
+          "id": "prueba.dat",
+          "name": "prueba.dat",
+          "type": "File",
+          "artifact": {
+            "size": 119,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/data/films/prueba.dat",
+            "MD5": "863ef33760fca5d52414fe19955a6e48",
+            "path": "config/bbs/data/films/prueba.dat"
+          }
+        },
+        {
+          "id": "prueba.2026_07_25_16_00.dat",
+          "name": "prueba.2026_07_25_16_00.dat",
+          "type": "File",
+          "artifact": {
+            "size": 119,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/data/films/_prueba/prueba.2026_07_25_16_00.dat",
+            "MD5": "863ef33760fca5d52414fe19955a6e48",
+            "path": "config/bbs/data/films/_prueba/prueba.2026_07_25_16_00.dat"
+          }
+        },
+        {
+          "id": "priority_announcement_last_seen_id.dat",
+          "name": "priority_announcement_last_seen_id.dat",
+          "type": "File",
+          "artifact": {
+            "size": 20,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/data/news/priority_announcement_last_seen_id.dat",
+            "MD5": "773bed6e62d4f464b6ba5b6ad864ac9c",
+            "path": "config/bbs/data/news/priority_announcement_last_seen_id.dat"
+          }
+        },
+        {
+          "id": "read_news_ids.dat",
+          "name": "read_news_ids.dat",
+          "type": "File",
+          "artifact": {
+            "size": 25,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/data/news/read_news_ids.dat",
+            "MD5": "f4b7cfebf831702bac3718eb89912e78",
+            "path": "config/bbs/data/news/read_news_ids.dat"
+          }
+        },
+        {
+          "id": "2026-07-25_15-51-03.log",
+          "name": "2026-07-25_15-51-03.log",
+          "type": "File",
+          "artifact": {
+            "size": 0,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-07-25_15-51-03.log",
+            "MD5": "d41d8cd98f00b204e9800998ecf8427e",
+            "path": "config/bbs/movies/2026-07-25_15-51-03.log"
+          }
+        },
+        {
+          "id": "2026-07-25_15-51-05.log",
+          "name": "2026-07-25_15-51-05.log",
+          "type": "File",
+          "artifact": {
+            "size": 0,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-07-25_15-51-05.log",
+            "MD5": "d41d8cd98f00b204e9800998ecf8427e",
+            "path": "config/bbs/movies/2026-07-25_15-51-05.log"
+          }
+        },
+        {
+          "id": "2026-09-30_22-35-59.log",
+          "name": "2026-09-30_22-35-59.log",
+          "type": "File",
+          "artifact": {
+            "size": 9328,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-09-30_22-35-59.log",
+            "MD5": "97c76041e92b87c8bf2c9bc76e78e603",
+            "path": "config/bbs/movies/2026-09-30_22-35-59.log"
+          }
+        },
+        {
+          "id": "2026-09-30_22-35-59.mp4",
+          "name": "2026-09-30_22-35-59.mp4",
+          "type": "File",
+          "artifact": {
+            "size": 94123,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-09-30_22-35-59.mp4",
+            "MD5": "f0d6da080ec0aa85a2b596efb0a6a3c7",
+            "path": "config/bbs/movies/2026-09-30_22-35-59.mp4"
+          }
+        },
+        {
+          "id": "2026-10-01_23-26-15.log",
+          "name": "2026-10-01_23-26-15.log",
+          "type": "File",
+          "artifact": {
+            "size": 79508,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-01_23-26-15.log",
+            "MD5": "fafdb8f2add57ac9ad8f19ae82b73ca9",
+            "path": "config/bbs/movies/2026-10-01_23-26-15.log"
+          }
+        },
+        {
+          "id": "2026-10-01_23-26-15.mp4",
+          "name": "2026-10-01_23-26-15.mp4",
+          "type": "File",
+          "artifact": {
+            "size": 1380387,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-01_23-26-15.mp4",
+            "MD5": "b40ef1137da54b6f4157a1ecdc8b8c90",
+            "path": "config/bbs/movies/2026-10-01_23-26-15.mp4"
+          }
+        },
+        {
+          "id": "2026-10-01_23-34-25.log",
+          "name": "2026-10-01_23-34-25.log",
+          "type": "File",
+          "artifact": {
+            "size": 24412,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-01_23-34-25.log",
+            "MD5": "f70fe4c43a6f7a238e4fff8f9d812768",
+            "path": "config/bbs/movies/2026-10-01_23-34-25.log"
+          }
+        },
+        {
+          "id": "2026-10-01_23-34-25.mp4",
+          "name": "2026-10-01_23-34-25.mp4",
+          "type": "File",
+          "artifact": {
+            "size": 467898,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-01_23-34-25.mp4",
+            "MD5": "864c2c7106fd9d522242e3aa39c6b442",
+            "path": "config/bbs/movies/2026-10-01_23-34-25.mp4"
+          }
+        },
+        {
+          "id": "2026-10-01_23-39-00.log",
+          "name": "2026-10-01_23-39-00.log",
+          "type": "File",
+          "artifact": {
+            "size": 8846,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-01_23-39-00.log",
+            "MD5": "31fcfdc40ba060d9f8404d9915ee1c13",
+            "path": "config/bbs/movies/2026-10-01_23-39-00.log"
+          }
+        },
+        {
+          "id": "2026-10-01_23-39-00.mp4",
+          "name": "2026-10-01_23-39-00.mp4",
+          "type": "File",
+          "artifact": {
+            "size": 421394,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-01_23-39-00.mp4",
+            "MD5": "c5fea720592a279d814812c808a7bbee",
+            "path": "config/bbs/movies/2026-10-01_23-39-00.mp4"
+          }
+        },
+        {
+          "id": "2026-10-01_23-44-35.log",
+          "name": "2026-10-01_23-44-35.log",
+          "type": "File",
+          "artifact": {
+            "size": 11122,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-01_23-44-35.log",
+            "MD5": "3f3724b675cc23eb49bdb76dd5421a02",
+            "path": "config/bbs/movies/2026-10-01_23-44-35.log"
+          }
+        },
+        {
+          "id": "2026-10-01_23-44-35.mp4",
+          "name": "2026-10-01_23-44-35.mp4",
+          "type": "File",
+          "artifact": {
+            "size": 445052,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-01_23-44-35.mp4",
+            "MD5": "a0526872fcf3a299cf2cfc935b44fb78",
+            "path": "config/bbs/movies/2026-10-01_23-44-35.mp4"
+          }
+        },
+        {
+          "id": "2026-10-02_15-20-24.log",
+          "name": "2026-10-02_15-20-24.log",
+          "type": "File",
+          "artifact": {
+            "size": 6411,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-02_15-20-24.log",
+            "MD5": "7036ccef29f3657a1779f4d2ca87e664",
+            "path": "config/bbs/movies/2026-10-02_15-20-24.log"
+          }
+        },
+        {
+          "id": "2026-10-02_15-20-24.mp4",
+          "name": "2026-10-02_15-20-24.mp4",
+          "type": "File",
+          "artifact": {
+            "size": 132557,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-02_15-20-24.mp4",
+            "MD5": "a39c1d0271dc52d0a1bc9981240f7716",
+            "path": "config/bbs/movies/2026-10-02_15-20-24.mp4"
+          }
+        },
+        {
+          "id": "2026-10-03_23-41-28.log",
+          "name": "2026-10-03_23-41-28.log",
+          "type": "File",
+          "artifact": {
+            "size": 7135,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-03_23-41-28.log",
+            "MD5": "0b4e407c1afc84e04e913334ab62c810",
+            "path": "config/bbs/movies/2026-10-03_23-41-28.log"
+          }
+        },
+        {
+          "id": "2026-10-03_23-41-28.mp4",
+          "name": "2026-10-03_23-41-28.mp4",
+          "type": "File",
+          "artifact": {
+            "size": 51173,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-03_23-41-28.mp4",
+            "MD5": "91d5ea2984131450687ecf75b1cf9f36",
+            "path": "config/bbs/movies/2026-10-03_23-41-28.mp4"
+          }
+        },
+        {
+          "id": "2026-10-10_00-22-07.log",
+          "name": "2026-10-10_00-22-07.log",
+          "type": "File",
+          "artifact": {
+            "size": 11604,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-10_00-22-07.log",
+            "MD5": "976134f2536c2cb76b52f0e72ea41a92",
+            "path": "config/bbs/movies/2026-10-10_00-22-07.log"
+          }
+        },
+        {
+          "id": "2026-10-10_00-22-07.mp4",
+          "name": "2026-10-10_00-22-07.mp4",
+          "type": "File",
+          "artifact": {
+            "size": 64285,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-10_00-22-07.mp4",
+            "MD5": "2055c92d8f1b28a38a8ccef351f71dde",
+            "path": "config/bbs/movies/2026-10-10_00-22-07.mp4"
+          }
+        },
+        {
+          "id": "2026-10-12_02-43-05.log",
+          "name": "2026-10-12_02-43-05.log",
+          "type": "File",
+          "artifact": {
+            "size": 24897,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-12_02-43-05.log",
+            "MD5": "1576c10542125d0588f9e8b31aa40e74",
+            "path": "config/bbs/movies/2026-10-12_02-43-05.log"
+          }
+        },
+        {
+          "id": "2026-10-12_02-43-05.mp4",
+          "name": "2026-10-12_02-43-05.mp4",
+          "type": "File",
+          "artifact": {
+            "size": 260701,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-12_02-43-05.mp4",
+            "MD5": "1f461a9022ba1609f1d16069f75d559f",
+            "path": "config/bbs/movies/2026-10-12_02-43-05.mp4"
+          }
+        },
+        {
+          "id": "2026-10-17_01-53-28.log",
+          "name": "2026-10-17_01-53-28.log",
+          "type": "File",
+          "artifact": {
+            "size": 7988,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-17_01-53-28.log",
+            "MD5": "1c13ee321d8a0a5bc547e3a60f4166d5",
+            "path": "config/bbs/movies/2026-10-17_01-53-28.log"
+          }
+        },
+        {
+          "id": "2026-10-17_01-53-28.mp4",
+          "name": "2026-10-17_01-53-28.mp4",
+          "type": "File",
+          "artifact": {
+            "size": 82004,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/movies/2026-10-17_01-53-28.mp4",
+            "MD5": "76eb9c1f81a5267d84a3973c1ca1448c",
+            "path": "config/bbs/movies/2026-10-17_01-53-28.mp4"
+          }
+        },
+        {
+          "id": "bbs.json",
+          "name": "bbs.json",
+          "type": "File",
+          "artifact": {
+            "size": 9698,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/settings/bbs.json",
+            "MD5": "1ae1e3c364152bc4bb500a0381f65097",
+            "path": "config/bbs/settings/bbs.json"
+          }
+        },
+        {
+          "id": "categories.json",
+          "name": "categories.json",
+          "type": "File",
+          "artifact": {
+            "size": 280,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/settings/categories.json",
+            "MD5": "eb20b361fce49b2e802f85b429135ca1",
+            "path": "config/bbs/settings/categories.json"
+          }
+        },
+        {
+          "id": "cml.json",
+          "name": "cml.json",
+          "type": "File",
+          "artifact": {
+            "size": 1167,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/settings/cml.json",
+            "MD5": "090537dade5c6f9160ba47d0c8df2af5",
+            "path": "config/bbs/settings/cml.json"
+          }
+        },
+        {
+          "id": "converter.log",
+          "name": "converter.log",
+          "type": "File",
+          "artifact": {
+            "size": 1500,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/settings/converter.log",
+            "MD5": "a070d482620ddbda9c10c87010dfff76",
+            "path": "config/bbs/settings/converter.log"
+          }
+        },
+        {
+          "id": "ffmpeg.exe",
+          "name": "ffmpeg.exe",
+          "type": "File",
+          "artifact": {
+            "size": 101897728,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/settings/ffmpeg/ffmpeg.exe",
+            "MD5": "2ca4461e420e98f140cc2a4a98d589d3",
+            "path": "config/bbs/settings/ffmpeg/ffmpeg.exe"
+          }
+        },
+        {
+          "id": "keybinds.json",
+          "name": "keybinds.json",
+          "type": "File",
+          "artifact": {
+            "size": 3470,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/settings/keybinds.json",
+            "MD5": "8d416103374d92faec582126102a638f",
+            "path": "config/bbs/settings/keybinds.json"
+          }
+        },
+        {
+          "id": "recent_assets.dat",
+          "name": "recent_assets.dat",
+          "type": "File",
+          "artifact": {
+            "size": 44,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/settings/recent_assets.dat",
+            "MD5": "5545e135321b48d3bfcca2dd110d7215",
+            "path": "config/bbs/settings/recent_assets.dat"
+          }
+        },
+        {
+          "id": "recent_models.json",
+          "name": "recent_models.json",
+          "type": "File",
+          "artifact": {
+            "size": 8,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/settings/recent_models.json",
+            "MD5": "cb01e7511aa4d81cd63849cdc7ba7a56",
+            "path": "config/bbs/settings/recent_models.json"
+          }
+        },
+        {
+          "id": "recent_particles.json",
+          "name": "recent_particles.json",
+          "type": "File",
+          "artifact": {
+            "size": 119,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/settings/recent_particles.json",
+            "MD5": "84094e8a16469c01ff004de3b45d3794",
+            "path": "config/bbs/settings/recent_particles.json"
+          }
+        },
+        {
+          "id": "sections.json",
+          "name": "sections.json",
+          "type": "File",
+          "artifact": {
+            "size": 1904,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/settings/sections.json",
+            "MD5": "2d4ec66b2e694aef4e627591906a6c8e",
+            "path": "config/bbs/settings/sections.json"
+          }
+        },
+        {
+          "id": "selectors.json",
+          "name": "selectors.json",
+          "type": "File",
+          "artifact": {
+            "size": 70,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/settings/selectors.json",
+            "MD5": "93650cbcfeaeb18aef9f1eb1068143f8",
+            "path": "config/bbs/settings/selectors.json"
+          }
+        },
+        {
+          "id": "adasdas.png",
+          "name": "adasdas.png",
+          "type": "File",
+          "artifact": {
+            "size": 1734,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/thumbnails/films/adasdas.png",
+            "MD5": "787b8953e31239f37545fe32ef2190e4",
+            "path": "config/bbs/thumbnails/films/adasdas.png"
+          }
+        },
+        {
+          "id": "asd.png",
+          "name": "asd.png",
+          "type": "File",
+          "artifact": {
+            "size": 10995,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/thumbnails/films/asd.png",
+            "MD5": "f46f9fa372e0af266955fe774fa5e435",
+            "path": "config/bbs/thumbnails/films/asd.png"
+          }
+        },
+        {
+          "id": "test.png",
+          "name": "test.png",
+          "type": "File",
+          "artifact": {
+            "size": 8234,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/bbs/thumbnails/films/test.png",
+            "MD5": "a6639f8de01add075a1e5bb649c29ee9",
+            "path": "config/bbs/thumbnails/films/test.png"
+          }
+        },
+        {
+          "id": "catchindicator-client.cfg",
+          "name": "catchindicator-client.cfg",
+          "type": "File",
+          "artifact": {
+            "size": 1107,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/catchindicator-client.cfg",
+            "MD5": "097b7c5d235866f5001e2bbcfb9bb2b4",
+            "path": "config/catchindicator-client.cfg"
+          }
+        },
+        {
+          "id": "options.txt",
+          "name": "options.txt",
+          "type": "File",
+          "artifact": {
+            "size": 2465,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/drippyloadingscreen/options.txt",
+            "MD5": "8cb60f41a51a70a5c4912e3d24d904b6",
+            "path": "config/drippyloadingscreen/options.txt"
+          }
+        },
+        {
+          "id": "button_click.wav",
+          "name": "button_click.wav",
+          "type": "File",
+          "artifact": {
+            "size": 11068,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/audio/button_click.wav",
+            "MD5": "954d34dfa0a4fac747901578b4a5fcbc",
+            "path": "config/fancymenu/assets/pokeaurora/audio/button_click.wav"
+          }
+        },
+        {
+          "id": "button_hover.wav",
+          "name": "button_hover.wav",
+          "type": "File",
+          "artifact": {
+            "size": 7540,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/audio/button_hover.wav",
+            "MD5": "dc2ca1c9a94daa62b542969bbbf6c8b4",
+            "path": "config/fancymenu/assets/pokeaurora/audio/button_hover.wav"
+          }
+        },
+        {
+          "id": "off.png",
+          "name": "off.png",
+          "type": "File",
+          "artifact": {
+            "size": 438339,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/buttons/off.png",
+            "MD5": "10a23e2f07f5bb248b0903ca584df867",
+            "path": "config/fancymenu/assets/pokeaurora/buttons/off.png"
+          }
+        },
+        {
+          "id": "on.png",
+          "name": "on.png",
+          "type": "File",
+          "artifact": {
+            "size": 555551,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/buttons/on.png",
+            "MD5": "1bc32f4087c5fbf6ed009b714c18dc9d",
+            "path": "config/fancymenu/assets/pokeaurora/buttons/on.png"
+          }
+        },
+        {
+          "id": "fondo_pokeaurora.png",
+          "name": "fondo_pokeaurora.png",
+          "type": "File",
+          "artifact": {
+            "size": 2222736,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/fondo_pokeaurora.png",
+            "MD5": "4172f4e1070a27e3f1e2b0eaa2825a5d",
+            "path": "config/fancymenu/assets/pokeaurora/fondo_pokeaurora.png"
+          }
+        },
+        {
+          "id": "novedades.md",
+          "name": "novedades.md",
+          "type": "File",
+          "artifact": {
+            "size": 256,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/novedades.md",
+            "MD5": "8eea228e49e88361a8e4e810531d23e2",
+            "path": "config/fancymenu/assets/pokeaurora/novedades.md"
+          }
+        },
+        {
+          "id": "menu_panel.png",
+          "name": "menu_panel.png",
+          "type": "File",
+          "artifact": {
+            "size": 17527,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/panels/menu_panel.png",
+            "MD5": "bed672db0d6e15b0034ad404c628f094",
+            "path": "config/fancymenu/assets/pokeaurora/panels/menu_panel.png"
+          }
+        },
+        {
+          "id": "discord_off.png",
+          "name": "discord_off.png",
+          "type": "File",
+          "artifact": {
+            "size": 130031,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/social/discord_off.png",
+            "MD5": "933798b1dee16fda30d9099f6efd6c30",
+            "path": "config/fancymenu/assets/pokeaurora/social/discord_off.png"
+          }
+        },
+        {
+          "id": "discord_on.png",
+          "name": "discord_on.png",
+          "type": "File",
+          "artifact": {
+            "size": 129307,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/social/discord_on.png",
+            "MD5": "dbc60f473daef060ed29037979482874",
+            "path": "config/fancymenu/assets/pokeaurora/social/discord_on.png"
+          }
+        },
+        {
+          "id": "tiktok_off.png",
+          "name": "tiktok_off.png",
+          "type": "File",
+          "artifact": {
+            "size": 158918,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/social/tiktok_off.png",
+            "MD5": "dae594343180ac93cfd9dac7b6820290",
+            "path": "config/fancymenu/assets/pokeaurora/social/tiktok_off.png"
+          }
+        },
+        {
+          "id": "tiktok_on.png",
+          "name": "tiktok_on.png",
+          "type": "File",
+          "artifact": {
+            "size": 154344,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/social/tiktok_on.png",
+            "MD5": "52b1eff1ed5b8085543e92d56b47fbbd",
+            "path": "config/fancymenu/assets/pokeaurora/social/tiktok_on.png"
+          }
+        },
+        {
+          "id": "web_off.png",
+          "name": "web_off.png",
+          "type": "File",
+          "artifact": {
+            "size": 200336,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/social/web_off.png",
+            "MD5": "936c404920ec9207327a9e7d62fba72e",
+            "path": "config/fancymenu/assets/pokeaurora/social/web_off.png"
+          }
+        },
+        {
+          "id": "web_on.png",
+          "name": "web_on.png",
+          "type": "File",
+          "artifact": {
+            "size": 184990,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/social/web_on.png",
+            "MD5": "a01ed5d10dfca7a366a2a37c6bc9a3ed",
+            "path": "config/fancymenu/assets/pokeaurora/social/web_on.png"
+          }
+        },
+        {
+          "id": "youtube_off.png",
+          "name": "youtube_off.png",
+          "type": "File",
+          "artifact": {
+            "size": 1922,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/social/youtube_off.png",
+            "MD5": "7709120d5dcc9fc7595d0a7a47b8ccbc",
+            "path": "config/fancymenu/assets/pokeaurora/social/youtube_off.png"
+          }
+        },
+        {
+          "id": "youtube_on.png",
+          "name": "youtube_on.png",
+          "type": "File",
+          "artifact": {
+            "size": 2031,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/social/youtube_on.png",
+            "MD5": "74a4a12e6625e87084c4dc8184d4adfb",
+            "path": "config/fancymenu/assets/pokeaurora/social/youtube_on.png"
+          }
+        },
+        {
+          "id": "title.png",
+          "name": "title.png",
+          "type": "File",
+          "artifact": {
+            "size": 2148078,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/title.png",
+            "MD5": "1cc4c00120bf23f04094759d1d2c18c5",
+            "path": "config/fancymenu/assets/pokeaurora/title.png"
+          }
+        },
+        {
+          "id": "jugar_compact_glow.apng",
+          "name": "jugar_compact_glow.apng",
+          "type": "File",
+          "artifact": {
+            "size": 869197,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/jugar_compact_glow.apng",
+            "MD5": "16667c142711da4c324c90f98218e2a2",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/jugar_compact_glow.apng"
+          }
+        },
+        {
+          "id": "jugar_compact_off.apng",
+          "name": "jugar_compact_off.apng",
+          "type": "File",
+          "artifact": {
+            "size": 707677,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/jugar_compact_off.apng",
+            "MD5": "db7de102138e1a816dbc294b5e2d602d",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/jugar_compact_off.apng"
+          }
+        },
+        {
+          "id": "jugar_compact_off.png",
+          "name": "jugar_compact_off.png",
+          "type": "File",
+          "artifact": {
+            "size": 657519,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/jugar_compact_off.png",
+            "MD5": "02a5bb06e70392b6d4134a70e83c7e13",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/jugar_compact_off.png"
+          }
+        },
+        {
+          "id": "jugar_compact_on.apng",
+          "name": "jugar_compact_on.apng",
+          "type": "File",
+          "artifact": {
+            "size": 353869,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/jugar_compact_on.apng",
+            "MD5": "e3c0d9b89d945f905a80427ff8a6a43a",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/jugar_compact_on.apng"
+          }
+        },
+        {
+          "id": "jugar_compact_on.png",
+          "name": "jugar_compact_on.png",
+          "type": "File",
+          "artifact": {
+            "size": 329599,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/jugar_compact_on.png",
+            "MD5": "e94392789c443c0eb417bb60c22e84b2",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/jugar_compact_on.png"
+          }
+        },
+        {
+          "id": "jugar_glow.apng",
+          "name": "jugar_glow.apng",
+          "type": "File",
+          "artifact": {
+            "size": 1081261,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/jugar_glow.apng",
+            "MD5": "4662d59625757d15c240b2ca8b5472dc",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/jugar_glow.apng"
+          }
+        },
+        {
+          "id": "jugar_off.apng",
+          "name": "jugar_off.apng",
+          "type": "File",
+          "artifact": {
+            "size": 924893,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/jugar_off.apng",
+            "MD5": "83074bcf8745ed486c937fc40e187263",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/jugar_off.apng"
+          }
+        },
+        {
+          "id": "jugar_off.png",
+          "name": "jugar_off.png",
+          "type": "File",
+          "artifact": {
+            "size": 866799,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/jugar_off.png",
+            "MD5": "aedb5954ccd0df7c3adb6f3ca5aa3515",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/jugar_off.png"
+          }
+        },
+        {
+          "id": "jugar_on.apng",
+          "name": "jugar_on.apng",
+          "type": "File",
+          "artifact": {
+            "size": 462477,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/jugar_on.apng",
+            "MD5": "526309b56b2cfec88437c3fc7eff0b82",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/jugar_on.apng"
+          }
+        },
+        {
+          "id": "jugar_on.png",
+          "name": "jugar_on.png",
+          "type": "File",
+          "artifact": {
+            "size": 434367,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/jugar_on.png",
+            "MD5": "38c674090945ead60bfca182ff6f3e6a",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/jugar_on.png"
+          }
+        },
+        {
+          "id": "multijugador_compact_off.png",
+          "name": "multijugador_compact_off.png",
+          "type": "File",
+          "artifact": {
+            "size": 619,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/multijugador_compact_off.png",
+            "MD5": "7309df4fb8df91b503dba40ca7e63bd6",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/multijugador_compact_off.png"
+          }
+        },
+        {
+          "id": "multijugador_compact_on.apng",
+          "name": "multijugador_compact_on.apng",
+          "type": "File",
+          "artifact": {
+            "size": 287725,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/multijugador_compact_on.apng",
+            "MD5": "85c40bdd9f2ecc2c0b04752bf50671db",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/multijugador_compact_on.apng"
+          }
+        },
+        {
+          "id": "multijugador_compact_on.png",
+          "name": "multijugador_compact_on.png",
+          "type": "File",
+          "artifact": {
+            "size": 264175,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/multijugador_compact_on.png",
+            "MD5": "de20b878e7dbcb9e583f6fc79241f8aa",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/multijugador_compact_on.png"
+          }
+        },
+        {
+          "id": "multijugador_off.png",
+          "name": "multijugador_off.png",
+          "type": "File",
+          "artifact": {
+            "size": 675,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/multijugador_off.png",
+            "MD5": "a2bad82d35d8d2b2422caca33586a73c",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/multijugador_off.png"
+          }
+        },
+        {
+          "id": "multijugador_on.apng",
+          "name": "multijugador_on.apng",
+          "type": "File",
+          "artifact": {
+            "size": 385581,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/multijugador_on.apng",
+            "MD5": "ebd3f978b55b93b0a370b5bd4a0063af",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/multijugador_on.apng"
+          }
+        },
+        {
+          "id": "multijugador_on.png",
+          "name": "multijugador_on.png",
+          "type": "File",
+          "artifact": {
+            "size": 358191,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/multijugador_on.png",
+            "MD5": "e6e7dcb0297161c09d628876a8c44269",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/multijugador_on.png"
+          }
+        },
+        {
+          "id": "opciones_compact_off.png",
+          "name": "opciones_compact_off.png",
+          "type": "File",
+          "artifact": {
+            "size": 709,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/opciones_compact_off.png",
+            "MD5": "308dacccc228c6c3dd7596d4c667ec1b",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/opciones_compact_off.png"
+          }
+        },
+        {
+          "id": "opciones_compact_on.apng",
+          "name": "opciones_compact_on.apng",
+          "type": "File",
+          "artifact": {
+            "size": 287725,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/opciones_compact_on.apng",
+            "MD5": "6da892dac2f5250761610a5d14fc77fe",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/opciones_compact_on.apng"
+          }
+        },
+        {
+          "id": "opciones_compact_on.png",
+          "name": "opciones_compact_on.png",
+          "type": "File",
+          "artifact": {
+            "size": 264175,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/opciones_compact_on.png",
+            "MD5": "807c00edc3b0e43e3c45bc231dccca7d",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/opciones_compact_on.png"
+          }
+        },
+        {
+          "id": "opciones_off.png",
+          "name": "opciones_off.png",
+          "type": "File",
+          "artifact": {
+            "size": 756,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/opciones_off.png",
+            "MD5": "c66ed6e374fb6db326c6fdb6418abd09",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/opciones_off.png"
+          }
+        },
+        {
+          "id": "opciones_on.apng",
+          "name": "opciones_on.apng",
+          "type": "File",
+          "artifact": {
+            "size": 385581,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/opciones_on.apng",
+            "MD5": "8e07dbeddb4e7dbdbaf4903a9ffe56bd",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/opciones_on.apng"
+          }
+        },
+        {
+          "id": "opciones_on.png",
+          "name": "opciones_on.png",
+          "type": "File",
+          "artifact": {
+            "size": 358191,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/opciones_on.png",
+            "MD5": "9312556228ad2be8294344063a075900",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/opciones_on.png"
+          }
+        },
+        {
+          "id": "salir_compact_off.png",
+          "name": "salir_compact_off.png",
+          "type": "File",
+          "artifact": {
+            "size": 667,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/salir_compact_off.png",
+            "MD5": "015e14ed967b7ac88d774601fd33473e",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/salir_compact_off.png"
+          }
+        },
+        {
+          "id": "salir_compact_on.apng",
+          "name": "salir_compact_on.apng",
+          "type": "File",
+          "artifact": {
+            "size": 287725,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/salir_compact_on.apng",
+            "MD5": "3688341a0b303ad5f7faca48c1f46e4a",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/salir_compact_on.apng"
+          }
+        },
+        {
+          "id": "salir_compact_on.png",
+          "name": "salir_compact_on.png",
+          "type": "File",
+          "artifact": {
+            "size": 65705,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/salir_compact_on.png",
+            "MD5": "a7cd9c35c95eece596d90b23bad584a0",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/salir_compact_on.png"
+          }
+        },
+        {
+          "id": "salir_off.png",
+          "name": "salir_off.png",
+          "type": "File",
+          "artifact": {
+            "size": 697,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/salir_off.png",
+            "MD5": "fff2597cc2c2457a728c999a3185cc7e",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/salir_off.png"
+          }
+        },
+        {
+          "id": "salir_on.apng",
+          "name": "salir_on.apng",
+          "type": "File",
+          "artifact": {
+            "size": 385581,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/salir_on.apng",
+            "MD5": "65fb6d4cd1310129c402efa2b2ea4e56",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/salir_on.apng"
+          }
+        },
+        {
+          "id": "salir_on.png",
+          "name": "salir_on.png",
+          "type": "File",
+          "artifact": {
+            "size": 89633,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/salir_on.png",
+            "MD5": "88098b23290f0f83795bf749b32f07e8",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/salir_on.png"
+          }
+        },
+        {
+          "id": "unjugador_compact_off.png",
+          "name": "unjugador_compact_off.png",
+          "type": "File",
+          "artifact": {
+            "size": 600,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/unjugador_compact_off.png",
+            "MD5": "a9d9bcaa09878014963d48313994de9f",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/unjugador_compact_off.png"
+          }
+        },
+        {
+          "id": "unjugador_compact_on.apng",
+          "name": "unjugador_compact_on.apng",
+          "type": "File",
+          "artifact": {
+            "size": 287725,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/unjugador_compact_on.apng",
+            "MD5": "cb3649ec65943527cb74d9194a860314",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/unjugador_compact_on.apng"
+          }
+        },
+        {
+          "id": "unjugador_compact_on.png",
+          "name": "unjugador_compact_on.png",
+          "type": "File",
+          "artifact": {
+            "size": 264175,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/unjugador_compact_on.png",
+            "MD5": "9e9dd7351d1cb2468d6c81e27afd3ba9",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/unjugador_compact_on.png"
+          }
+        },
+        {
+          "id": "unjugador_off.png",
+          "name": "unjugador_off.png",
+          "type": "File",
+          "artifact": {
+            "size": 649,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/unjugador_off.png",
+            "MD5": "50e511f05b6d4cdb0cfe7aadfe44aed5",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/unjugador_off.png"
+          }
+        },
+        {
+          "id": "unjugador_on.apng",
+          "name": "unjugador_on.apng",
+          "type": "File",
+          "artifact": {
+            "size": 385581,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/unjugador_on.apng",
+            "MD5": "24f4b1b15d15f205a64b8f84b92537bd",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/unjugador_on.apng"
+          }
+        },
+        {
+          "id": "unjugador_on.png",
+          "name": "unjugador_on.png",
+          "type": "File",
+          "artifact": {
+            "size": 358191,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/buttons/unjugador_on.png",
+            "MD5": "c30e526245b5bfe9d80db14e059272c1",
+            "path": "config/fancymenu/assets/pokeaurora/ui/buttons/unjugador_on.png"
+          }
+        },
+        {
+          "id": "emblem.apng",
+          "name": "emblem.apng",
+          "type": "File",
+          "artifact": {
+            "size": 3767885,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/emblem.apng",
+            "MD5": "4b6213d893915266c65426fdafb1138b",
+            "path": "config/fancymenu/assets/pokeaurora/ui/emblem.apng"
+          }
+        },
+        {
+          "id": "emblem.png",
+          "name": "emblem.png",
+          "type": "File",
+          "artifact": {
+            "size": 3483855,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/emblem.png",
+            "MD5": "94570a0c99d2dde85ae123a9f8af02b4",
+            "path": "config/fancymenu/assets/pokeaurora/ui/emblem.png"
+          }
+        },
+        {
+          "id": "emblem_static.png",
+          "name": "emblem_static.png",
+          "type": "File",
+          "artifact": {
+            "size": 5158,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/emblem_static.png",
+            "MD5": "537549113ff13193db7d4769b27a5904",
+            "path": "config/fancymenu/assets/pokeaurora/ui/emblem_static.png"
+          }
+        },
+        {
+          "id": "button_hover.png",
+          "name": "button_hover.png",
+          "type": "File",
+          "artifact": {
+            "size": 259,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/global/button_hover.png",
+            "MD5": "a8eb0cd3cbb2173264d6055d364431b8",
+            "path": "config/fancymenu/assets/pokeaurora/ui/global/button_hover.png"
+          }
+        },
+        {
+          "id": "button_inactive.png",
+          "name": "button_inactive.png",
+          "type": "File",
+          "artifact": {
+            "size": 244,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/global/button_inactive.png",
+            "MD5": "12c277ac50e1976b80a1c2ed1d5a9a84",
+            "path": "config/fancymenu/assets/pokeaurora/ui/global/button_inactive.png"
+          }
+        },
+        {
+          "id": "button_normal.png",
+          "name": "button_normal.png",
+          "type": "File",
+          "artifact": {
+            "size": 266,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/global/button_normal.png",
+            "MD5": "66596f1f80e8095aab4affb38badee91",
+            "path": "config/fancymenu/assets/pokeaurora/ui/global/button_normal.png"
+          }
+        },
+        {
+          "id": "slider_background.png",
+          "name": "slider_background.png",
+          "type": "File",
+          "artifact": {
+            "size": 248,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/global/slider_background.png",
+            "MD5": "c7c7b8a82e9def08c9751a1dfd61fead",
+            "path": "config/fancymenu/assets/pokeaurora/ui/global/slider_background.png"
+          }
+        },
+        {
+          "id": "slider_handle_hover.png",
+          "name": "slider_handle_hover.png",
+          "type": "File",
+          "artifact": {
+            "size": 172,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/global/slider_handle_hover.png",
+            "MD5": "eece50966b02912e269bdc1356aea4d7",
+            "path": "config/fancymenu/assets/pokeaurora/ui/global/slider_handle_hover.png"
+          }
+        },
+        {
+          "id": "slider_handle_inactive.png",
+          "name": "slider_handle_inactive.png",
+          "type": "File",
+          "artifact": {
+            "size": 176,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/global/slider_handle_inactive.png",
+            "MD5": "191d3c6f6695fc51841eaca205f0fb77",
+            "path": "config/fancymenu/assets/pokeaurora/ui/global/slider_handle_inactive.png"
+          }
+        },
+        {
+          "id": "slider_handle_normal.png",
+          "name": "slider_handle_normal.png",
+          "type": "File",
+          "artifact": {
+            "size": 186,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/global/slider_handle_normal.png",
+            "MD5": "72ea5999f9a32d9f95915b22cf1fd000",
+            "path": "config/fancymenu/assets/pokeaurora/ui/global/slider_handle_normal.png"
+          }
+        },
+        {
+          "id": "icon.icns",
+          "name": "icon.icns",
+          "type": "File",
+          "artifact": {
+            "size": 675412,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/icon/icon.icns",
+            "MD5": "b46295dc60b94d2a7343074fe1d6567e",
+            "path": "config/fancymenu/assets/pokeaurora/ui/icon/icon.icns"
+          }
+        },
+        {
+          "id": "icon16.png",
+          "name": "icon16.png",
+          "type": "File",
+          "artifact": {
+            "size": 1050,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/icon/icon16.png",
+            "MD5": "dc19db23c0acc594e052f8cf42058285",
+            "path": "config/fancymenu/assets/pokeaurora/ui/icon/icon16.png"
+          }
+        },
+        {
+          "id": "icon32.png",
+          "name": "icon32.png",
+          "type": "File",
+          "artifact": {
+            "size": 3618,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/icon/icon32.png",
+            "MD5": "ad81b215e5d7ed11ac88c5d3aeb8908e",
+            "path": "config/fancymenu/assets/pokeaurora/ui/icon/icon32.png"
+          }
+        },
+        {
+          "id": "news_panel.png",
+          "name": "news_panel.png",
+          "type": "File",
+          "artifact": {
+            "size": 1612,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/news_panel.png",
+            "MD5": "dbbd046254fae4cff01f5e9e5a231af0",
+            "path": "config/fancymenu/assets/pokeaurora/ui/news_panel.png"
+          }
+        },
+        {
+          "id": "panel.png",
+          "name": "panel.png",
+          "type": "File",
+          "artifact": {
+            "size": 1991,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/panel.png",
+            "MD5": "017844f3ef7e9ce4f91220f43d7eff30",
+            "path": "config/fancymenu/assets/pokeaurora/ui/panel.png"
+          }
+        },
+        {
+          "id": "panel_aurora.apng",
+          "name": "panel_aurora.apng",
+          "type": "File",
+          "artifact": {
+            "size": 1374061,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/panel_aurora.apng",
+            "MD5": "89f830dc0934c37e76b85d5188f79def",
+            "path": "config/fancymenu/assets/pokeaurora/ui/panel_aurora.apng"
+          }
+        },
+        {
+          "id": "panel_aurora.png",
+          "name": "panel_aurora.png",
+          "type": "File",
+          "artifact": {
+            "size": 1052491,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/panel_aurora.png",
+            "MD5": "e421f1f929cd8b9aa742217fea339837",
+            "path": "config/fancymenu/assets/pokeaurora/ui/panel_aurora.png"
+          }
+        },
+        {
+          "id": "panel_compact.png",
+          "name": "panel_compact.png",
+          "type": "File",
+          "artifact": {
+            "size": 1752,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/panel_compact.png",
+            "MD5": "40e83f959499b615a95bf8f1dfc790d7",
+            "path": "config/fancymenu/assets/pokeaurora/ui/panel_compact.png"
+          }
+        },
+        {
+          "id": "panel_compact_aurora.apng",
+          "name": "panel_compact_aurora.apng",
+          "type": "File",
+          "artifact": {
+            "size": 994101,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/panel_compact_aurora.apng",
+            "MD5": "de61114af7369e803814de0b4904fc67",
+            "path": "config/fancymenu/assets/pokeaurora/ui/panel_compact_aurora.apng"
+          }
+        },
+        {
+          "id": "panel_compact_aurora.png",
+          "name": "panel_compact_aurora.png",
+          "type": "File",
+          "artifact": {
+            "size": 756447,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/panel_compact_aurora.png",
+            "MD5": "608045427aa034989a1331e1dd86aa75",
+            "path": "config/fancymenu/assets/pokeaurora/ui/panel_compact_aurora.png"
+          }
+        },
+        {
+          "id": "panel_mp.png",
+          "name": "panel_mp.png",
+          "type": "File",
+          "artifact": {
+            "size": 1307,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/panel_mp.png",
+            "MD5": "a34529b3dbb893318ddb602f9be3a4ba",
+            "path": "config/fancymenu/assets/pokeaurora/ui/panel_mp.png"
+          }
+        },
+        {
+          "id": "shooting_star.apng",
+          "name": "shooting_star.apng",
+          "type": "File",
+          "artifact": {
+            "size": 2115458,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/shooting_star.apng",
+            "MD5": "08b2c7ff69aaa1c4ff8638590d9c7d69",
+            "path": "config/fancymenu/assets/pokeaurora/ui/shooting_star.apng"
+          }
+        },
+        {
+          "id": "sparkles.apng",
+          "name": "sparkles.apng",
+          "type": "File",
+          "artifact": {
+            "size": 4567541,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/sparkles.apng",
+            "MD5": "a1c20d8aaceb69bd38f84a1895688762",
+            "path": "config/fancymenu/assets/pokeaurora/ui/sparkles.apng"
+          }
+        },
+        {
+          "id": "sparkles_compact.apng",
+          "name": "sparkles_compact.apng",
+          "type": "File",
+          "artifact": {
+            "size": 3232301,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/sparkles_compact.apng",
+            "MD5": "bdb711d18cf79216595c820b929feecb",
+            "path": "config/fancymenu/assets/pokeaurora/ui/sparkles_compact.apng"
+          }
+        },
+        {
+          "id": "wordmark.png",
+          "name": "wordmark.png",
+          "type": "File",
+          "artifact": {
+            "size": 4780,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/wordmark.png",
+            "MD5": "bdeb745bb2ed7d917c0aa55982e1d2ca",
+            "path": "config/fancymenu/assets/pokeaurora/ui/wordmark.png"
+          }
+        },
+        {
+          "id": "wordmark_compact.png",
+          "name": "wordmark_compact.png",
+          "type": "File",
+          "artifact": {
+            "size": 3910,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/assets/pokeaurora/ui/wordmark_compact.png",
+            "MD5": "f1702a8aa179e5f9afe427bc378954a4",
+            "path": "config/fancymenu/assets/pokeaurora/ui/wordmark_compact.png"
+          }
+        },
+        {
+          "id": "customizablemenus.txt",
+          "name": "customizablemenus.txt",
+          "type": "File",
+          "artifact": {
+            "size": 773,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/customizablemenus.txt",
+            "MD5": "158f939e53aa8007d8bda202ff4098ae",
+            "path": "config/fancymenu/customizablemenus.txt"
+          }
+        },
+        {
+          "id": "customizablemenus.txt.bak-2026-10-22",
+          "name": "customizablemenus.txt.bak-2026-10-22",
+          "type": "File",
+          "artifact": {
+            "size": 744,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/customizablemenus.txt.bak-2026-10-22",
+            "MD5": "327c45411cbac2f0989904f54ce1dad7",
+            "path": "config/fancymenu/customizablemenus.txt.bak-2026-10-22"
+          }
+        },
+        {
+          "id": "pokeaurora_connect.txt",
+          "name": "pokeaurora_connect.txt",
+          "type": "File",
+          "artifact": {
+            "size": 6947,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/customization/pokeaurora_connect.txt",
+            "MD5": "df7e3f55b8edd7db6d4448b73e5d32a9",
+            "path": "config/fancymenu/customization/pokeaurora_connect.txt"
+          }
+        },
+        {
+          "id": "pokeaurora_level_loading.txt",
+          "name": "pokeaurora_level_loading.txt",
+          "type": "File",
+          "artifact": {
+            "size": 6979,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/customization/pokeaurora_level_loading.txt",
+            "MD5": "9dc570637f346419d9de1249044e759a",
+            "path": "config/fancymenu/customization/pokeaurora_level_loading.txt"
+          }
+        },
+        {
+          "id": "pokeaurora_loading.txt",
+          "name": "pokeaurora_loading.txt",
+          "type": "File",
+          "artifact": {
+            "size": 10415,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/customization/pokeaurora_loading.txt",
+            "MD5": "39a4eddd662a2d7702223e27684cda46",
+            "path": "config/fancymenu/customization/pokeaurora_loading.txt"
+          }
+        },
+        {
+          "id": "pokeaurora_main.txt",
+          "name": "pokeaurora_main.txt",
+          "type": "File",
+          "artifact": {
+            "size": 138403,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/customization/pokeaurora_main.txt",
+            "MD5": "c1c84b6de2f951d95680c220953a85f9",
+            "path": "config/fancymenu/customization/pokeaurora_main.txt"
+          }
+        },
+        {
+          "id": "pokeaurora_main_compact.txt",
+          "name": "pokeaurora_main_compact.txt",
+          "type": "File",
+          "artifact": {
+            "size": 133067,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/customization/pokeaurora_main_compact.txt",
+            "MD5": "bb8561a55ddcc2688d8128eb6a7b6fa9",
+            "path": "config/fancymenu/customization/pokeaurora_main_compact.txt"
+          }
+        },
+        {
+          "id": "pokeaurora_multiplayer.txt",
+          "name": "pokeaurora_multiplayer.txt",
+          "type": "File",
+          "artifact": {
+            "size": 72312,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/customization/pokeaurora_multiplayer.txt",
+            "MD5": "4ba315fd5498d487b58d42f7bfc59ff6",
+            "path": "config/fancymenu/customization/pokeaurora_multiplayer.txt"
+          }
+        },
+        {
+          "id": "pokeaurora_pause.txt",
+          "name": "pokeaurora_pause.txt",
+          "type": "File",
+          "artifact": {
+            "size": 2318,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/customization/pokeaurora_pause.txt",
+            "MD5": "93233955917ba150d44e36abbb380849",
+            "path": "config/fancymenu/customization/pokeaurora_pause.txt"
+          }
+        },
+        {
+          "id": "pokeaurora_progress.txt",
+          "name": "pokeaurora_progress.txt",
+          "type": "File",
+          "artifact": {
+            "size": 6954,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/customization/pokeaurora_progress.txt",
+            "MD5": "02931cb9217b0734120c2781946ce0d9",
+            "path": "config/fancymenu/customization/pokeaurora_progress.txt"
+          }
+        },
+        {
+          "id": "pokeaurora_receiving_level.txt",
+          "name": "pokeaurora_receiving_level.txt",
+          "type": "File",
+          "artifact": {
+            "size": 7006,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/customization/pokeaurora_receiving_level.txt",
+            "MD5": "3ee112f70eac5c2969702073a51dc849",
+            "path": "config/fancymenu/customization/pokeaurora_receiving_level.txt"
+          }
+        },
+        {
+          "id": "pokeaurora_universal_background.txt",
+          "name": "pokeaurora_universal_background.txt",
+          "type": "File",
+          "artifact": {
+            "size": 1315,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/customization/pokeaurora_universal_background.txt",
+            "MD5": "0dd7105da5320c35b209dd6b50e112d9",
+            "path": "config/fancymenu/customization/pokeaurora_universal_background.txt"
+          }
+        },
+        {
+          "id": "pokeaurora_universal_hover_sound.txt",
+          "name": "pokeaurora_universal_hover_sound.txt",
+          "type": "File",
+          "artifact": {
+            "size": 3254,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/customization/pokeaurora_universal_hover_sound.txt",
+            "MD5": "152fcc69da7ac3019f3a5f318f36853b",
+            "path": "config/fancymenu/customization/pokeaurora_universal_hover_sound.txt"
+          }
+        },
+        {
+          "id": "custom_gui_screens.txt",
+          "name": "custom_gui_screens.txt",
+          "type": "File",
+          "artifact": {
+            "size": 51,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/custom_gui_screens.txt",
+            "MD5": "106e52948415f0879c53304f50783b28",
+            "path": "config/fancymenu/custom_gui_screens.txt"
+          }
+        },
+        {
+          "id": "element_layer_control.lewidget",
+          "name": "element_layer_control.lewidget",
+          "type": "File",
+          "artifact": {
+            "size": 198,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/layout_editor/widgets/element_layer_control.lewidget",
+            "MD5": "43a5ab1a30249caf7dafc2f7ad4b0ed9",
+            "path": "config/fancymenu/layout_editor/widgets/element_layer_control.lewidget"
+          }
+        },
+        {
+          "id": "legacy_checklist.txt",
+          "name": "legacy_checklist.txt",
+          "type": "File",
+          "artifact": {
+            "size": 42,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/legacy_checklist.txt",
+            "MD5": "bc03e01c4f1bf1e24e9b86591baa512b",
+            "path": "config/fancymenu/legacy_checklist.txt"
+          }
+        },
+        {
+          "id": "options.txt",
+          "name": "options.txt",
+          "type": "File",
+          "artifact": {
+            "size": 5253,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/options.txt",
+            "MD5": "0c77b583984b4e1783c7f08817df08b4",
+            "path": "config/fancymenu/options.txt"
+          }
+        },
+        {
+          "id": "panorama_0.png",
+          "name": "panorama_0.png",
+          "type": "File",
+          "artifact": {
+            "size": 817107,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/panoramas/pokeaurora/panorama/panorama_0.png",
+            "MD5": "c42d0be576d2478c58e1166aaed01c30",
+            "path": "config/fancymenu/panoramas/pokeaurora/panorama/panorama_0.png"
+          }
+        },
+        {
+          "id": "panorama_1.png",
+          "name": "panorama_1.png",
+          "type": "File",
+          "artifact": {
+            "size": 204148,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/panoramas/pokeaurora/panorama/panorama_1.png",
+            "MD5": "3b8b5a19a6a3fa09aaa30e325d9ff8f8",
+            "path": "config/fancymenu/panoramas/pokeaurora/panorama/panorama_1.png"
+          }
+        },
+        {
+          "id": "panorama_2.png",
+          "name": "panorama_2.png",
+          "type": "File",
+          "artifact": {
+            "size": 10421,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/panoramas/pokeaurora/panorama/panorama_2.png",
+            "MD5": "8cb4aa5ed5e9c0c0bd04089e5758aa76",
+            "path": "config/fancymenu/panoramas/pokeaurora/panorama/panorama_2.png"
+          }
+        },
+        {
+          "id": "panorama_3.png",
+          "name": "panorama_3.png",
+          "type": "File",
+          "artifact": {
+            "size": 202285,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/panoramas/pokeaurora/panorama/panorama_3.png",
+            "MD5": "b360f85d48dbfe309c668c75e9f00242",
+            "path": "config/fancymenu/panoramas/pokeaurora/panorama/panorama_3.png"
+          }
+        },
+        {
+          "id": "panorama_4.png",
+          "name": "panorama_4.png",
+          "type": "File",
+          "artifact": {
+            "size": 124999,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/panoramas/pokeaurora/panorama/panorama_4.png",
+            "MD5": "040480ddebf515879f4b2cb600935046",
+            "path": "config/fancymenu/panoramas/pokeaurora/panorama/panorama_4.png"
+          }
+        },
+        {
+          "id": "panorama_5.png",
+          "name": "panorama_5.png",
+          "type": "File",
+          "artifact": {
+            "size": 125881,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/panoramas/pokeaurora/panorama/panorama_5.png",
+            "MD5": "c66b41ee92038a9a3965109e678bce46",
+            "path": "config/fancymenu/panoramas/pokeaurora/panorama/panorama_5.png"
+          }
+        },
+        {
+          "id": "properties.txt",
+          "name": "properties.txt",
+          "type": "File",
+          "artifact": {
+            "size": 117,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/panoramas/pokeaurora/properties.txt",
+            "MD5": "f46d593edf802ce22d0b51410dd49dc3",
+            "path": "config/fancymenu/panoramas/pokeaurora/properties.txt"
+          }
+        },
+        {
+          "id": "cherry_blossom.json",
+          "name": "cherry_blossom.json",
+          "type": "File",
+          "artifact": {
+            "size": 9349,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/ui_themes/cherry_blossom.json",
+            "MD5": "90e358ee1c6bbd1d17bbcdad0a504f3d",
+            "path": "config/fancymenu/ui_themes/cherry_blossom.json"
+          }
+        },
+        {
+          "id": "cozy_campfire.json",
+          "name": "cozy_campfire.json",
+          "type": "File",
+          "artifact": {
+            "size": 9347,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/ui_themes/cozy_campfire.json",
+            "MD5": "02b0cd78a482dbd7ec793e123f4c007b",
+            "path": "config/fancymenu/ui_themes/cozy_campfire.json"
+          }
+        },
+        {
+          "id": "dark.json",
+          "name": "dark.json",
+          "type": "File",
+          "artifact": {
+            "size": 9329,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/ui_themes/dark.json",
+            "MD5": "cbf30e731636c918d598f1ad9b0ea371",
+            "path": "config/fancymenu/ui_themes/dark.json"
+          }
+        },
+        {
+          "id": "dark_high_contrast.json",
+          "name": "dark_high_contrast.json",
+          "type": "File",
+          "artifact": {
+            "size": 9359,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/ui_themes/dark_high_contrast.json",
+            "MD5": "4b532a7a5c5ecd839e55a3c083c8bca3",
+            "path": "config/fancymenu/ui_themes/dark_high_contrast.json"
+          }
+        },
+        {
+          "id": "light.json",
+          "name": "light.json",
+          "type": "File",
+          "artifact": {
+            "size": 9331,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/ui_themes/light.json",
+            "MD5": "f3980d6eed1064c36d794d7b1030fd06",
+            "path": "config/fancymenu/ui_themes/light.json"
+          }
+        },
+        {
+          "id": "light_high_contrast.json",
+          "name": "light_high_contrast.json",
+          "type": "File",
+          "artifact": {
+            "size": 9361,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/ui_themes/light_high_contrast.json",
+            "MD5": "700ff9cd0e95ac2234e0494af729226a",
+            "path": "config/fancymenu/ui_themes/light_high_contrast.json"
+          }
+        },
+        {
+          "id": "pumpkin_soup.json",
+          "name": "pumpkin_soup.json",
+          "type": "File",
+          "artifact": {
+            "size": 9345,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/ui_themes/pumpkin_soup.json",
+            "MD5": "d322c4bde872420ddeb2eaa124d0f16a",
+            "path": "config/fancymenu/ui_themes/pumpkin_soup.json"
+          }
+        },
+        {
+          "id": "purple_void.json",
+          "name": "purple_void.json",
+          "type": "File",
+          "artifact": {
+            "size": 9343,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/ui_themes/purple_void.json",
+            "MD5": "79df3b7ab7a74d55e3f5bb70cd996dea",
+            "path": "config/fancymenu/ui_themes/purple_void.json"
+          }
+        },
+        {
+          "id": "spooky_season.json",
+          "name": "spooky_season.json",
+          "type": "File",
+          "artifact": {
+            "size": 9347,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/ui_themes/spooky_season.json",
+            "MD5": "c45cc6e6bd9c4a296227e764dcf1e953",
+            "path": "config/fancymenu/ui_themes/spooky_season.json"
+          }
+        },
+        {
+          "id": "user_variables.db",
+          "name": "user_variables.db",
+          "type": "File",
+          "artifact": {
+            "size": 23,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/fancymenu/user_variables.db",
+            "MD5": "458e4f3f673e3fea22fb92bf76fcf912",
+            "path": "config/fancymenu/user_variables.db"
+          }
+        },
+        {
+          "id": "itemzoomer.json",
+          "name": "itemzoomer.json",
+          "type": "File",
+          "artifact": {
+            "size": 206,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/itemzoomer.json",
+            "MD5": "1f46a06283625efac75ddbe80267aca2",
+            "path": "config/itemzoomer.json"
+          }
+        },
+        {
+          "id": "punchy_config.json",
+          "name": "punchy_config.json",
+          "type": "File",
+          "artifact": {
+            "size": 1324,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/punchy/punchy_config.json",
+            "MD5": "67f4ba8302180feedb819c9677de57b9",
+            "path": "config/punchy/punchy_config.json"
+          }
+        },
+        {
+          "id": "travelerstitles-fabric-1_21.toml",
+          "name": "travelerstitles-fabric-1_21.toml",
+          "type": "File",
+          "artifact": {
+            "size": 726,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/config/travelerstitles-fabric-1_21.toml",
+            "MD5": "51ad04b4988bfae0d652ffe5315bc15d",
+            "path": "config/travelerstitles-fabric-1_21.toml"
+          }
+        },
+        {
+          "id": "animated-items 1.21.x-26.1.x-26.2 - v1.6.3.zip",
+          "name": "animated-items 1.21.x-26.1.x-26.2 - v1.6.3.zip",
+          "type": "File",
+          "artifact": {
+            "size": 1903630,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/resourcepacks/animated-items%201.21.x-26.1.x-26.2%20-%20v1.6.3.zip",
+            "MD5": "593eff5b3bbd5ff8375f57d69e01b9e8",
+            "path": "resourcepacks/animated-items 1.21.x-26.1.x-26.2 - v1.6.3.zip"
+          }
+        },
+        {
+          "id": "Cobblemon Interface v1.6.0.zip",
+          "name": "Cobblemon Interface v1.6.0.zip",
+          "type": "File",
+          "artifact": {
+            "size": 14108266,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/resourcepacks/Cobblemon%20Interface%20v1.6.0.zip",
+            "MD5": "03cacbf0b647173ae6707cc74c10866c",
+            "path": "resourcepacks/Cobblemon Interface v1.6.0.zip"
+          }
+        },
+        {
+          "id": "E19 Cobblemon Minimap Icons.zip",
+          "name": "E19 Cobblemon Minimap Icons.zip",
+          "type": "File",
+          "artifact": {
+            "size": 23411485,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/resourcepacks/E19%20Cobblemon%20Minimap%20Icons.zip",
+            "MD5": "4a0c575fca9b4e3bc59b52844628d640",
+            "path": "resourcepacks/E19 Cobblemon Minimap Icons.zip"
+          }
+        },
+        {
+          "id": "FA+Player-v1.1.zip",
+          "name": "FA+Player-v1.1.zip",
+          "type": "File",
+          "artifact": {
+            "size": 110203,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/resourcepacks/FA+Player-v1.1.zip",
+            "MD5": "8b7d38c1f46a1152e240cb91a95abf1a",
+            "path": "resourcepacks/FA+Player-v1.1.zip"
+          }
+        },
+        {
+          "id": "FreshAnimations_v1.11.2_1.20+.zip",
+          "name": "FreshAnimations_v1.11.2_1.20+.zip",
+          "type": "File",
+          "artifact": {
+            "size": 742790,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/resourcepacks/FreshAnimations_v1.11.2_1.20+.zip",
+            "MD5": "dda3ecf6f634d718594c58240bac183e",
+            "path": "resourcepacks/FreshAnimations_v1.11.2_1.20+.zip"
+          }
+        },
+        {
+          "id": "qrafty's-capitalized-font-3.1.zip",
+          "name": "qrafty's-capitalized-font-3.1.zip",
+          "type": "File",
+          "artifact": {
+            "size": 237577,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/resourcepacks/qrafty's-capitalized-font-3.1.zip",
+            "MD5": "0ec9ee7839ac402291309de6de36cfc2",
+            "path": "resourcepacks/qrafty's-capitalized-font-3.1.zip"
+          }
+        },
+        {
+          "id": "§6Immersive§8_§6Interfaces§8.zip",
+          "name": "§6Immersive§8_§6Interfaces§8.zip",
+          "type": "File",
+          "artifact": {
+            "size": 1197001,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/resourcepacks/%C2%A76Immersive%C2%A78_%C2%A76Interfaces%C2%A78.zip",
+            "MD5": "596bdcf1d90a2a986f9cd95626fc6776",
+            "path": "resourcepacks/§6Immersive§8_§6Interfaces§8.zip"
+          }
+        },
+        {
+          "id": "servers.dat",
+          "name": "servers.dat",
+          "type": "File",
+          "artifact": {
+            "size": 3206,
+            "url": "https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-1.21.1/files/servers.dat",
+            "MD5": "e1f98eeb65e865203dd008a3df2a7914",
+            "path": "servers.dat"
+          }
+        }
+      ],
+      "pokeauroraProfiles": {
+        "default": "normal",
+        "profiles": {
+          "lite": {
+            "name": "Lite",
+            "ramGB": 4,
+            "off": [
+              "de.keksuccino:fancymenu",
+              "com.levelsfr:catchindicator",
+              "name.modid:cobblemon-battle-extras",
+              "me.justahuman:more_cobblemon_tweaks",
+              "net.darkhax.enchdesc.fabric.impl:enchdesc",
+              "yalter.mousetweaks:mousetweaks",
+              "generated.fabricmod:languagereload",
+              "com.github.exopandora:shouldersurfing",
+              "io.github.kosmx.emotes:emotecraft",
+              "generated.fabricmod:packed_packs",
+              "me.drex.quickpack:quick-pack",
+              "dzwdz.chat_heads:chat_heads",
+              "com.anthonyhilyard:advancementplaques",
+              "com.yungnickyoung.minecraft:travelerstitles",
+              "com.anthonyhilyard:legendarytooltips",
+              "com.anthonyhilyard:itemborders",
+              "it.hurts.octostudios:immersiveui",
+              "com.imeetake:itemzoomer",
+              "mix.cinematiczoom:cinematiczoom",
+              "me.jfenn.scoreboardoverhaul:scoreboard-overhaul",
+              "de.keksuccino:drippyloadingscreen",
+              "generated.fabricmod:ji_afk_cinematic_group",
+              "com.ezzenix:chatanimation",
+              "ru.tpsd.eatinganimationmod:eatinganimationid",
+              "me.zipestudio.ebte.entrypoint:emotecraft_borrow_their_emote",
+              "traben.entity_model_features:entity_model_features",
+              "traben.entity_texture_features:entity_texture_features",
+              "punchy:punchy",
+              "com.qendolin:betterclouds",
+              "einstein.subtle_effects:subtle_effects",
+              "pigcart.particlerain.loaders:particlerain",
+              "com.goby56:wakes",
+              "visuality:visuality",
+              "generated.fabricmod:iris"
+            ],
+            "graphics": {
+              "renderDistance": 8,
+              "simulationDistance": 6,
+              "graphicsMode": 0,
+              "particles": 1,
+              "disableResourcePacks": [
+                "file/FreshAnimations",
+                "file/FA+",
+                "file/animated-items"
+              ]
+            }
+          },
+          "normal": {
+            "name": "Normal",
+            "ramGB": 6,
+            "off": [
+              "einstein.subtle_effects:subtle_effects",
+              "pigcart.particlerain.loaders:particlerain",
+              "com.goby56:wakes",
+              "visuality:visuality",
+              "generated.fabricmod:iris"
+            ],
+            "graphics": {
+              "renderDistance": 10,
+              "simulationDistance": 8,
+              "graphicsMode": 1,
+              "particles": 0,
+              "disableResourcePacks": []
+            }
+          },
+          "pro": {
+            "name": "Pro",
+            "ramGB": 8,
+            "off": [],
+            "graphics": {
+              "renderDistance": 12,
+              "simulationDistance": 10,
+              "graphicsMode": 1,
+              "particles": 0,
+              "disableResourcePacks": []
+            }
+          }
+        }
+      }
+    }
+  ]
+}

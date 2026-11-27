@@ -1,0 +1,6 @@
+{
+  "name": "pokeaurora-staff-worker",
+  "private": true,
+  "type": "module",
+  "description": "Worker de staff.pokeaurora.com: lista de staff y capa del servidor de pruebas."
+}

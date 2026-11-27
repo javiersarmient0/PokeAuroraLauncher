@@ -43,5 +43,29 @@ export default [
             'no-async-promise-executor': 'off',
             'no-unused-vars': ['error', { args: 'none', caughtErrors: 'none' }]
         }
+    },
+    {
+        // Worker de Cloudflare (staff.pokeaurora.com): ESM con las APIs web del runtime.
+        files: ['staff-worker/**/*.mjs'],
+        languageOptions: {
+            ecmaVersion: 2022,
+            sourceType: 'module',
+            globals: {
+                crypto: 'readonly',
+                btoa: 'readonly',
+                atob: 'readonly',
+                TextEncoder: 'readonly',
+                Request: 'readonly',
+                Response: 'readonly',
+                Headers: 'readonly',
+                URL: 'readonly',
+                console: 'readonly',
+                process: 'readonly',
+                Buffer: 'readonly'
+            }
+        },
+        rules: {
+            'no-unused-vars': ['error', { args: 'none', caughtErrors: 'none' }]
+        }
     }
 ]

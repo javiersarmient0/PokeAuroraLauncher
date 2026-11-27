@@ -4,6 +4,8 @@ const { DistributionAPI } = require('helios-core/common')
 const { FullRepair } = require('helios-core/dl')
 const { LoggerUtil } = require('helios-core')
 const { sanitizeDistribution } = require('./distributionsanitizer')
+const { REMOTE_DISTRO_URLS, pullFirstValid, readBundledDistribution } = require('./distrofetch')
+const { PRUEBAS_ID, applyStaffAccess } = require('./staffaccess')
 const {
     getModulePaths,
     writeManifest,
@@ -12,7 +14,9 @@ const {
 
 const ConfigManager = require('./configmanager')
 
-exports.REMOTE_DISTRO_URL = 'https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/distribution.json'
+exports.REMOTE_DISTRO_URLS = REMOTE_DISTRO_URLS
+exports.REMOTE_DISTRO_URL = REMOTE_DISTRO_URLS[0]
+const APP_DIR = path.join(__dirname, '..', '..')
 
 const logger = LoggerUtil.getLogger('PokeAuroraDistributionAPI')
 const MANAGED_FILE_CLEANUP_HOOK = Symbol('pokeAuroraManagedFileCleanupHook')
@@ -72,42 +76,64 @@ installManagedFileCleanupHook()
 
 class PokeAuroraDistributionAPI extends DistributionAPI {
     async pullRemote(){
-        const separator = exports.REMOTE_DISTRO_URL.includes('?') ? '&' : '?'
-        const remoteUrl = `${exports.REMOTE_DISTRO_URL}${separator}_=${Date.now()}`
         const originalRemoteUrl = this.remoteUrl
-        this.remoteUrl = remoteUrl
-
         try {
-            const response = await super.pullRemote()
-            if(response.data != null){
-                try {
-                    response.data = sanitizeDistribution(response.data)
-                    const moduleCount = countDistributionModules(response.data)
-                    logger.info(`Loaded remote distribution successfully (${response.data.servers.length} server(s), ${moduleCount} module file(s)).`)
-                } catch(error) {
-                    DistributionAPI.log.error('Rejected an unsafe or malformed remote distribution.', error)
-                    response.data = null
-                }
-            } else {
-                logger.warn('Remote distribution could not be loaded; Helios will use the cached distribution if available.')
+            const pullOne = async url => {
+                const separator = url.includes('?') ? '&' : '?'
+                this.remoteUrl = `${url}${separator}_=${Date.now()}`
+                return await super.pullRemote()
             }
-            return response
+            const pulled = await pullFirstValid(exports.REMOTE_DISTRO_URLS, pullOne, sanitizeDistribution)
+            const url = pulled.url
+            let data = pulled.data
+            if(data != null){
+                data = await applyStaffAccess(data, {
+                    nick: ConfigManager.getSelectedAccount()?.displayName,
+                    cachedPruebas: await this.readCachedPruebas(),
+                    sanitize: sanitizeDistribution,
+                    logger
+                })
+                const moduleCount = countDistributionModules(data)
+                logger.info(`Loaded remote distribution from ${url} (${data.servers.length} server(s), ${moduleCount} module file(s)).`)
+                this.usingBundledFallback = false
+            } else {
+                logger.warn('No remote distribution could be loaded; using the cached or bundled copy.')
+            }
+            return { data, responseStatus: data != null ? 0 : 1 }
         } finally {
             this.remoteUrl = originalRemoteUrl
         }
     }
 
-    async pullLocal(){
-        const local = await super.pullLocal()
-        if(local == null){
-            return null
+    // Servidor de pruebas de la última distribución conocida (memoria o disco), para staff sin conexión al Worker.
+    async readCachedPruebas(){
+        const fromMemory = this.rawDistribution?.servers?.find(server => server?.id === PRUEBAS_ID)
+        if(fromMemory != null){
+            return fromMemory
         }
         try {
-            return sanitizeDistribution(local)
-        } catch(error) {
-            DistributionAPI.log.error('Rejected unsafe or malformed cached distribution.', error)
+            const cached = await super.pullLocal()
+            return cached?.servers?.find(server => server?.id === PRUEBAS_ID) || null
+        } catch {
             return null
         }
+    }
+
+    async pullLocal(){
+        const local = await super.pullLocal()
+        if(local != null){
+            try {
+                return sanitizeDistribution(local)
+            } catch(error) {
+                DistributionAPI.log.error('Rejected unsafe or malformed cached distribution.', error)
+            }
+        }
+        const bundled = readBundledDistribution(APP_DIR, sanitizeDistribution)
+        if(bundled != null){
+            logger.warn('Using the distribution bundled with the launcher (offline mode).')
+            this.usingBundledFallback = true
+        }
+        return bundled
     }
 
     async writeDistributionToDisk(distribution){

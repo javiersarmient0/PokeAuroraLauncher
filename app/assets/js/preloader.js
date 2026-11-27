@@ -17,6 +17,7 @@ const launcherConfigPath = path.join(runtimeInfo.userDataPath, 'config.json')
 const windowProxy = {
     close: () => ipcRenderer.send('launcher:window-action', 'close'),
     minimize: () => ipcRenderer.send('launcher:window-action', 'minimize'),
+    reload: () => ipcRenderer.send('launcher:window-action', 'reload'),
     maximize: () => ipcRenderer.send('launcher:window-action', 'maximize'),
     unmaximize: () => ipcRenderer.send('launcher:window-action', 'unmaximize'),
     toggleDevTools: () => ipcRenderer.send('launcher:window-action', 'toggle-devtools'),

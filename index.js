@@ -172,6 +172,9 @@ ipcMain.on(WINDOW_ACTION_CHANNEL, (event, action, value) => {
         case 'unmaximize':
             target.unmaximize()
             break
+        case 'reload':
+            target.webContents.reload()
+            break
         case 'toggle-devtools':
             if(isDev){
                 target.webContents.toggleDevTools()

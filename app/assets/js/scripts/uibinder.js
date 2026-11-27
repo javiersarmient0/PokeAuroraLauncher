@@ -56,6 +56,9 @@ function switchView(current, next, currentFadeTime = 500, nextFadeTime = 500, on
         await onCurrentFade()
         $(`${next}`).fadeIn(nextFadeTime, async () => {
             await onNextFade()
+            if(next === VIEWS.landing){
+                maybePromptProfile()
+            }
         })
     })
 }
@@ -71,13 +74,12 @@ function getCurrentView(){
 
 async function showMainUI(data){
 
-    if(!isDev){
-        loggerAutoUpdater.info('Initializing..')
-        ipcRenderer.send('autoUpdateAction', 'initAutoUpdater', ConfigManager.getAllowPrerelease())
-    }
-
     await prepareSettings(true)
-    updateSelectedServer(data.getServerById(ConfigManager.getSelectedServer()))
+    updateSelectedServer(resolveSelectedServer(data))
+    markStaffAccessLoaded()
+    renderNotice(DistroAPI.usingBundledFallback
+        ? { title: Lang.queryJS('uibinder.startup.offlineNoticeTitle'), body: Lang.queryJS('uibinder.startup.offlineNoticeBody'), url: null, until: null }
+        : data.getMainServer()?.rawServer?.pokeauroraNotice)
 
     refreshServerStatus()
     startServerStatusPolling()
@@ -101,7 +103,7 @@ async function showMainUI(data){
         } else {
             if(isLoggedIn){
                 currentView = VIEWS.landing
-                $(VIEWS.landing).fadeIn(1000)
+                $(VIEWS.landing).fadeIn(1000, maybePromptProfile)
             } else {
                 loginOptionsCancelEnabled(false)
                 loginOptionsViewOnLoginSuccess = VIEWS.landing
@@ -126,20 +128,35 @@ async function showMainUI(data){
     })
 }
 
+let fatalOverlayShown = false
+
+function renderFatalOverlay(){
+    const hasUpdate = typeof updateReadyInfo !== 'undefined' && updateReadyInfo != null
+    setOverlayContent(
+        Lang.queryJS('uibinder.startup.fatalErrorTitle'),
+        Lang.queryJS('uibinder.startup.fatalErrorMessage'),
+        Lang.queryJS(hasUpdate ? 'uibinder.startup.installUpdateButton' : 'uibinder.startup.retryButton'),
+        Lang.queryJS('uibinder.startup.closeButton')
+    )
+    setOverlayHandler(() => {
+        if(hasUpdate){
+            ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
+        } else {
+            remote.getCurrentWindow().reload()
+        }
+    })
+    setDismissHandler(() => {
+        remote.getCurrentWindow().close()
+    })
+}
+
 function showFatalStartupError(){
     setTimeout(() => {
         $('#loadingContainer').fadeOut(250, () => {
             document.getElementById('overlayContainer').style.background = 'none'
-            setOverlayContent(
-                Lang.queryJS('uibinder.startup.fatalErrorTitle'),
-                Lang.queryJS('uibinder.startup.fatalErrorMessage'),
-                Lang.queryJS('uibinder.startup.closeButton')
-            )
-            setOverlayHandler(() => {
-                const window = remote.getCurrentWindow()
-                window.close()
-            })
-            toggleOverlay(true)
+            fatalOverlayShown = true
+            renderFatalOverlay()
+            toggleOverlay(true, true)
         })
     }, 750)
 }
@@ -150,7 +167,7 @@ function showFatalStartupError(){
  * @param {Object} data The distro index object.
  */
 function onDistroRefresh(data){
-    updateSelectedServer(data.getServerById(ConfigManager.getSelectedServer()))
+    updateSelectedServer(resolveSelectedServer(data))
     refreshServerStatus()
     initNews()
     syncModConfigurations(data)

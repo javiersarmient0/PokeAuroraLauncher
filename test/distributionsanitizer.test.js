@@ -70,3 +70,114 @@ test('rejects artifacts outside the trusted HTTPS host', () => {
 test('rejects a remote manifest that is not the pinned release', () => {
     assert.throws(() => assertTrustedDistribution(sample()), /fingerprint/)
 })
+const { sanitizeProfiles, sanitizeNotice } = require('../app/assets/js/distributionsanitizer')
+const { DEFAULT_PROFILES } = require('../app/assets/js/profiles')
+
+function profilesCopy(){
+    return JSON.parse(JSON.stringify(DEFAULT_PROFILES))
+}
+
+test('keeps valid pokeauroraProfiles', () => {
+    const input = sample()
+    input.servers[0].pokeauroraProfiles = profilesCopy()
+    const result = sanitizeDistribution(input)
+    assert.deepEqual(result.servers[0].pokeauroraProfiles, profilesCopy())
+})
+
+test('drops profiles with a missing tier', () => {
+    const input = sample()
+    const profiles = profilesCopy()
+    delete profiles.profiles.pro
+    input.servers[0].pokeauroraProfiles = profiles
+    assert.equal(sanitizeDistribution(input).servers[0].pokeauroraProfiles, undefined)
+})
+
+test('drops profiles with bad ramGB', () => {
+    const profiles = profilesCopy()
+    profiles.profiles.lite.ramGB = 64
+    assert.equal(sanitizeProfiles(profiles), null)
+})
+
+test('drops profiles with a malformed mod id', () => {
+    const profiles = profilesCopy()
+    profiles.profiles.lite.off.push('not an id')
+    assert.equal(sanitizeProfiles(profiles), null)
+})
+
+test('unknown default profile falls back to normal', () => {
+    const profiles = profilesCopy()
+    profiles.default = 'ultra'
+    assert.equal(sanitizeProfiles(profiles).default, 'normal')
+})
+
+test('keeps unknown server fields', () => {
+    const input = sample()
+    input.servers[0].foo = 1
+    assert.equal(sanitizeDistribution(input).servers[0].foo, 1)
+})
+
+test('notice rejects http url but keeps the notice', () => {
+    assert.deepEqual(
+        sanitizeNotice({ title: 'Evento', body: 'Hoy a las 20', url: 'http://pokeaurora.com' }),
+        { title: 'Evento', body: 'Hoy a las 20', url: null, until: null }
+    )
+})
+
+test('notice without body is dropped', () => {
+    const input = sample()
+    input.servers[0].pokeauroraNotice = { title: 'Evento' }
+    assert.equal(sanitizeDistribution(input).servers[0].pokeauroraNotice, undefined)
+})
+
+test('notice keeps https url and valid until', () => {
+    assert.deepEqual(
+        sanitizeNotice({ title: 'T', body: 'B', url: 'https://pokeaurora.com/evento', until: '2026-12-01T00:00:00Z' }),
+        { title: 'T', body: 'B', url: 'https://pokeaurora.com/evento', until: '2026-12-01T00:00:00Z' }
+    )
+    assert.equal(sanitizeNotice({ title: 'T', body: 'B', until: 'mañana' }).until, null)
+})
+
+test('accepts artifacts from launcher.pokeaurora.com', () => {
+    const input = sample()
+    input.servers[0].modules[0].artifact.url = 'https://launcher.pokeaurora.com/fancy.jar'
+    assert.equal(sanitizeDistribution(input).servers[0].modules[0].artifact.url, 'https://launcher.pokeaurora.com/fancy.jar')
+})
+
+const { composePruebasServer, mergeStaffServer, PRUEBAS_ID } = require('../app/assets/js/staffaccess')
+
+function pruebasLayer(url){
+    return {
+        id: PRUEBAS_ID,
+        name: 'Pruebas',
+        address: 'pruebas.pokeaurora.com',
+        base: 'PokeAurora-1.21.1',
+        replace: {
+            'de.keksuccino:fancymenu:3.9.1@jar': { id: 'generated.fabricmod:pokeaurora:1.0.0-pruebas.1@jar', name: 'PokeAurora (pruebas)', type: 'FabricMod', artifact: { size: 5, MD5: '0123456789abcdef0123456789abcdef', url } }
+        },
+        add: [],
+        remove: []
+    }
+}
+
+test('composed pruebas server passes the sanitizer as a secondary server', () => {
+    const base = sanitizeDistribution(sample())
+    base.servers[0].pokeauroraProfiles = { default: 'normal', profiles: {} }
+    const merged = mergeStaffServer(base, { status: 'staff', layer: pruebasLayer('https://pub-16d8232ded904a1bbed89826fb24c57e.r2.dev/servers/PokeAurora-pruebas/p.jar') }, null)
+    const result = sanitizeDistribution(merged)
+    assert.deepEqual(result.servers.map(s => [s.id, s.mainServer]), [['PokeAurora-1.21.1', true], [PRUEBAS_ID, false]])
+    assert.equal(result.servers[1].pokeauroraProfiles, undefined)
+    assert.equal(result.servers[1].address, 'pruebas.pokeaurora.com')
+})
+
+test('pruebas layer with a foreign artifact host is rejected', () => {
+    const base = sanitizeDistribution(sample())
+    const server = composePruebasServer(base, pruebasLayer('https://evil.example.com/p.jar'))
+    const merged = { ...base, servers: [...base.servers, server] }
+    assert.throws(() => sanitizeDistribution(merged), /host is not allowed/)
+})
+
+test('accepts artifacts from video.pokeaurora.com (R2 propio, jar de pruebas)', () => {
+    const input = sample()
+    input.servers[0].modules[0].artifact.url = 'https://video.pokeaurora.com/launcher/pruebas/p.jar'
+    assert.equal(sanitizeDistribution(input).servers[0].modules[0].artifact.url, 'https://video.pokeaurora.com/launcher/pruebas/p.jar')
+})

@@ -113,6 +113,8 @@ webFrame.setVisualZoomLevelLimits(1, 1)
 
 // Initialize auto updates in production environments.
 var updateCheckListener
+// Último update descargado; la pantalla de error fatal lo ofrece para instalar.
+var updateReadyInfo = null
 if(!isDev){
     ipcRenderer.on('autoUpdateNotification', (event, arg, info) => {
         switch(arg){
@@ -141,6 +143,10 @@ if(!isDev){
                 break
             case 'update-downloaded':
                 loggerAutoUpdater.info('Update ' + info.version + ' ready to be installed.')
+                updateReadyInfo = info
+                if(typeof fatalOverlayShown !== 'undefined' && fatalOverlayShown){
+                    renderFatalOverlay()
+                }
                 settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.installNowButton'), false, () => {
                     if(!isDev){
                         ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
@@ -176,6 +182,9 @@ if(!isDev){
                 break
         }
     })
+    // Se inicia antes de cargar la distribución: así un launcher que no puede descargarla igual se actualiza.
+    loggerAutoUpdater.info('Initializing..')
+    ipcRenderer.send('autoUpdateAction', 'initAutoUpdater', require('./assets/js/configmanager').getAllowPrerelease())
 }
 
 /**
@@ -385,6 +394,9 @@ function switchView(current, next, currentFadeTime = 500, nextFadeTime = 500, on
         await onCurrentFade()
         $(`${next}`).fadeIn(nextFadeTime, async () => {
             await onNextFade()
+            if(next === VIEWS.landing){
+                maybePromptProfile()
+            }
         })
     })
 }
@@ -400,13 +412,12 @@ function getCurrentView(){
 
 async function showMainUI(data){
 
-    if(!isDev){
-        loggerAutoUpdater.info('Initializing..')
-        ipcRenderer.send('autoUpdateAction', 'initAutoUpdater', ConfigManager.getAllowPrerelease())
-    }
-
     await prepareSettings(true)
-    updateSelectedServer(data.getServerById(ConfigManager.getSelectedServer()))
+    updateSelectedServer(resolveSelectedServer(data))
+    markStaffAccessLoaded()
+    renderNotice(DistroAPI.usingBundledFallback
+        ? { title: Lang.queryJS('uibinder.startup.offlineNoticeTitle'), body: Lang.queryJS('uibinder.startup.offlineNoticeBody'), url: null, until: null }
+        : data.getMainServer()?.rawServer?.pokeauroraNotice)
 
     refreshServerStatus()
     startServerStatusPolling()
@@ -430,7 +441,7 @@ async function showMainUI(data){
         } else {
             if(isLoggedIn){
                 currentView = VIEWS.landing
-                $(VIEWS.landing).fadeIn(1000)
+                $(VIEWS.landing).fadeIn(1000, maybePromptProfile)
             } else {
                 loginOptionsCancelEnabled(false)
                 loginOptionsViewOnLoginSuccess = VIEWS.landing
@@ -455,20 +466,35 @@ async function showMainUI(data){
     })
 }
 
+var fatalOverlayShown = false
+
+function renderFatalOverlay(){
+    const hasUpdate = typeof updateReadyInfo !== 'undefined' && updateReadyInfo != null
+    setOverlayContent(
+        Lang.queryJS('uibinder.startup.fatalErrorTitle'),
+        Lang.queryJS('uibinder.startup.fatalErrorMessage'),
+        Lang.queryJS(hasUpdate ? 'uibinder.startup.installUpdateButton' : 'uibinder.startup.retryButton'),
+        Lang.queryJS('uibinder.startup.closeButton')
+    )
+    setOverlayHandler(() => {
+        if(hasUpdate){
+            ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
+        } else {
+            remote.getCurrentWindow().reload()
+        }
+    })
+    setDismissHandler(() => {
+        remote.getCurrentWindow().close()
+    })
+}
+
 function showFatalStartupError(){
     setTimeout(() => {
         $('#loadingContainer').fadeOut(250, () => {
             document.getElementById('overlayContainer').style.background = 'none'
-            setOverlayContent(
-                Lang.queryJS('uibinder.startup.fatalErrorTitle'),
-                Lang.queryJS('uibinder.startup.fatalErrorMessage'),
-                Lang.queryJS('uibinder.startup.closeButton')
-            )
-            setOverlayHandler(() => {
-                const window = remote.getCurrentWindow()
-                window.close()
-            })
-            toggleOverlay(true)
+            fatalOverlayShown = true
+            renderFatalOverlay()
+            toggleOverlay(true, true)
         })
     }, 750)
 }
@@ -479,7 +505,7 @@ function showFatalStartupError(){
  * @param {Object} data The distro index object.
  */
 function onDistroRefresh(data){
-    updateSelectedServer(data.getServerById(ConfigManager.getSelectedServer()))
+    updateSelectedServer(resolveSelectedServer(data))
     refreshServerStatus()
     initNews()
     syncModConfigurations(data)
@@ -1112,6 +1138,10 @@ var fs = require('fs-extra');
 var LangLoader                                   = require('./assets/js/langloader')
 var DropinModUtil                                = require('./assets/js/dropinmodutil')
 var SkinUtil                                     = require('./assets/js/skinutil')
+var ModFilterLib                                 = require('./assets/js/modfilter')
+var ModsProfilesLib                              = require('./assets/js/profiles')
+var ModIconsLib                                  = require('./assets/js/modicons')
+var modIconPathLib                               = require('path')
 var { MSFT_OPCODE, MSFT_REPLY_TYPE, MSFT_ERROR } = require('./assets/js/ipcconstants')
 var logger = LoggerUtil.getLogger('Settings')
 
@@ -1437,6 +1467,7 @@ function fullSettingsSave() {
     ConfigManager.save()
     saveDropinModConfiguration()
     saveShaderpackSettings()
+    refreshProfileButton()
 }
 
 /* Closes the settings view and saves all data. */
@@ -1891,10 +1922,160 @@ async function resolveModsForUI(){
     const distro = await DistroAPI.getDistribution()
     const servConf = ConfigManager.getModConfiguration(serv)
 
-    const modStr = parseModulesForUI(distro.getServerById(serv).modules, false, servConf.mods)
+    const server = distro.getServerById(serv)
+    modsUIProfiles = server.rawServer.id === PROFILE_PRUEBAS_ID ? null : ModsProfilesLib.resolveProfiles(server.rawServer)
+    const modStr = parseModulesForUI(server.modules, false, servConf.mods)
 
     document.getElementById('settingsReqModsContent').innerHTML = modStr.reqMods
     document.getElementById('settingsOptModsContent').innerHTML = modStr.optMods
+    document.getElementById('settingsReqModsCount').textContent =
+        document.querySelectorAll('#settingsReqModsContent > .settingsBaseMod').length
+    const inPruebas = server.rawServer.id === PROFILE_PRUEBAS_ID
+    document.getElementById('settingsProfileRow').style.display = inPruebas ? 'none' : ''
+    if(!inPruebas){
+        document.getElementById('settingsProfileName').textContent = await currentProfileLabel()
+    }
+    applyModsFilter()
+    loadModIcons(server.modules).catch(error => console.warn('No se pudieron cargar los íconos de los mods.', error))
+}
+
+// Íconos oficiales: se leen del jar descargado, se achican a 96 px y se guardan en <launcher>/mod-icons.
+var MOD_ICON_SIZE = 96
+var modIconMemory = new Map()
+var modIconsRun = 0
+
+function shrinkModIcon(buffer, mime){
+    return new Promise(resolve => {
+        const img = new Image()
+        img.onload = () => {
+            const canvas = document.createElement('canvas')
+            canvas.width = MOD_ICON_SIZE
+            canvas.height = MOD_ICON_SIZE
+            const ctx = canvas.getContext('2d')
+            // Los íconos chicos suelen ser pixel art: se agrandan sin suavizar para que no queden borrosos.
+            ctx.imageSmoothingEnabled = Math.max(img.naturalWidth, img.naturalHeight) > 48
+            ctx.imageSmoothingQuality = 'high'
+            const scale = Math.min(MOD_ICON_SIZE / img.naturalWidth, MOD_ICON_SIZE / img.naturalHeight)
+            const width = img.naturalWidth * scale
+            const height = img.naturalHeight * scale
+            ctx.drawImage(img, (MOD_ICON_SIZE - width) / 2, (MOD_ICON_SIZE - height) / 2, width, height)
+            resolve(canvas.toDataURL('image/png'))
+        }
+        img.onerror = () => resolve(null)
+        img.src = `data:${mime};base64,${buffer.toString('base64')}`
+    })
+}
+
+/**
+ * @param {string} jarPath
+ * @returns {Promise<string|null>} data URL del ícono o null
+ */
+async function resolveModIcon(jarPath){
+    if(modIconMemory.has(jarPath)) return modIconMemory.get(jarPath)
+    const cacheDir = modIconPathLib.join(ConfigManager.getLauncherDirectory(), 'mod-icons')
+    const cacheFile = modIconPathLib.join(cacheDir, ModIconsLib.iconCacheName(jarPath))
+    let url = null
+    try {
+        if(await fs.pathExists(cacheFile)){
+            url = `data:image/png;base64,${(await fs.readFile(cacheFile)).toString('base64')}`
+        } else {
+            if(!await fs.pathExists(jarPath)){
+                // Todavía no se descargó: se vuelve a intentar la próxima vez que se abra la pestaña.
+                return null
+            }
+            const icon = await ModIconsLib.readModIconFromJar(jarPath)
+            if(icon != null){
+                url = await shrinkModIcon(icon.data, icon.mime)
+                if(url != null){
+                    await fs.ensureDir(cacheDir)
+                    await fs.writeFile(cacheFile, Buffer.from(url.slice(url.indexOf(',') + 1), 'base64'))
+                }
+            }
+        }
+    } catch(error) {
+        console.warn(`No se pudo leer el ícono de ${jarPath}.`, error)
+        return null
+    }
+    modIconMemory.set(jarPath, url)
+    return url
+}
+
+async function loadModIcons(modules){
+    const run = ++modIconsRun
+    for(const mdl of modules){
+        if(run !== modIconsRun) return
+        const row = document.getElementById(mdl.getVersionlessMavenIdentifier())
+        const slot = row?.querySelector(':scope > .settingsModContent .settingsModIconWrap')
+        if(slot == null || slot.querySelector('img') != null) continue
+        const url = await resolveModIcon(mdl.getPath())
+        if(url != null && run === modIconsRun && slot.isConnected){
+            slot.classList.remove('settingsModIconFallback')
+            slot.classList.add('settingsModIconLoaded')
+            slot.innerHTML = `<img class="settingsModIcon" src="${url}" alt="">`
+        }
+    }
+}
+
+// Perfiles con los que se etiquetan los mods opcionales (se resuelven al pintar la pestaña).
+var modsUIProfiles = null
+var modsFilterState = 'all'
+
+/**
+ * Muestra u oculta filas según el buscador y el chip elegido. El chip solo afecta a los opcionales.
+ */
+function applyModsFilter(){
+    const query = document.getElementById('settingsModsSearch').value
+    const searching = ModFilterLib.normalizeSearch(query) !== ''
+    let visibleReq = 0
+    let visibleOpt = 0
+    for(const row of document.querySelectorAll('#settingsReqModsContent > .settingsBaseMod')){
+        const show = ModFilterLib.modMatches({ name: row.getAttribute('data-mod-name'), enabled: true }, query, 'all')
+        row.style.display = show ? '' : 'none'
+        if(show) visibleReq++
+    }
+    for(const row of document.querySelectorAll('#settingsOptModsContent > .settingsBaseMod')){
+        const show = ModFilterLib.modMatches({ name: row.getAttribute('data-mod-name'), enabled: row.hasAttribute('enabled') }, query, modsFilterState)
+        row.style.display = show ? '' : 'none'
+        if(show) visibleOpt++
+    }
+    // Al buscar, los obligatorios que coinciden se muestran aunque la sección esté plegada.
+    const reqToggle = document.getElementById('settingsReqModsToggle')
+    const reqOpen = reqToggle.getAttribute('aria-expanded') === 'true'
+    document.getElementById('settingsReqModsContent').style.display = (reqOpen || (searching && visibleReq > 0)) ? '' : 'none'
+    document.getElementById('settingsReqModsContainer').style.display = (searching && visibleReq === 0) ? 'none' : ''
+    document.getElementById('settingsModsEmpty').style.display = (visibleOpt === 0 && (!searching || visibleReq === 0)) ? '' : 'none'
+}
+
+document.getElementById('settingsModsSearch').addEventListener('input', applyModsFilter)
+
+for(const chip of document.querySelectorAll('.settingsModsChip')){
+    chip.addEventListener('click', () => {
+        modsFilterState = chip.getAttribute('data-filter')
+        for(const other of document.querySelectorAll('.settingsModsChip')){
+            other.setAttribute('aria-checked', String(other === chip))
+        }
+        applyModsFilter()
+    })
+}
+
+document.getElementById('settingsReqModsToggle').addEventListener('click', () => {
+    const toggle = document.getElementById('settingsReqModsToggle')
+    toggle.setAttribute('aria-expanded', String(toggle.getAttribute('aria-expanded') !== 'true'))
+    applyModsFilter()
+})
+
+function buildModProfileTag(modId){
+    if(modsUIProfiles == null) return ''
+    const tag = ModsProfilesLib.profileTagFor(modId, modsUIProfiles)
+    const label = Lang.queryJS(`profiles.tag${tag.charAt(0).toUpperCase()}${tag.slice(1)}`)
+    return `<span class="settingsModTag settingsModTag-${tag}" title="${escapeHTML(Lang.queryJS('profiles.tagTitle', { profile: label }))}">${escapeHTML(label)}</span>`
+}
+
+document.getElementById('settingsProfileChange').onclick = async () => {
+    // Guarda lo que se tocó a mano antes de abrir el panel, para que el perfil "actual" sea el real.
+    saveModConfiguration()
+    ConfigManager.save()
+    await openProfileSelection()
 }
 
 /**
@@ -1911,14 +2092,17 @@ function parseModulesForUI(mdls, submodules, servConf){
 
     resolveLanguageForUI()
 
-    for(const mdl of mdls){
+    // Orden alfabético por nombre visible (la distribución los trae en el orden en que se agregaron).
+    const sorted = [...mdls].sort((x, y) => String(x.rawModule.name || '').localeCompare(String(y.rawModule.name || ''), 'es', { sensitivity: 'base' }))
+
+    for(const mdl of sorted){
 
         if(mdl.rawModule.type === Type.ForgeMod || mdl.rawModule.type === Type.LiteMod || mdl.rawModule.type === Type.LiteLoader || mdl.rawModule.type === Type.FabricMod){
 
             if(mdl.getRequired().value){
                 const modIcon = buildModIconMarkup(mdl.rawModule.name, mdl.rawModule.icon || mdl.rawModule.logo || mdl.rawModule.image)
 
-                reqMods += `<div id="${mdl.getVersionlessMavenIdentifier()}" class="settingsBaseMod settings${submodules ? 'Sub' : ''}Mod" enabled>
+                reqMods += `<div id="${mdl.getVersionlessMavenIdentifier()}" class="settingsBaseMod settings${submodules ? 'Sub' : ''}Mod" data-mod-id="${escapeHTML(mdl.getVersionlessMavenIdentifier())}" data-mod-name="${escapeHTML(String(mdl.rawModule.name || '').toLowerCase())}" enabled>
                     <div class="settingsModContent">
                         <div class="settingsModMainWrapper">
                             ${modIcon}
@@ -1944,14 +2128,14 @@ function parseModulesForUI(mdls, submodules, servConf){
                 const val = typeof conf === 'object' ? conf.value : conf
                 const modIcon = buildModIconMarkup(mdl.rawModule.name, mdl.rawModule.icon || mdl.rawModule.logo || mdl.rawModule.image)
 
-                optMods += `<div id="${mdl.getVersionlessMavenIdentifier()}" class="settingsBaseMod settings${submodules ? 'Sub' : ''}Mod" ${val ? 'enabled' : ''}>
+                optMods += `<div id="${mdl.getVersionlessMavenIdentifier()}" class="settingsBaseMod settings${submodules ? 'Sub' : ''}Mod" data-mod-id="${escapeHTML(mdl.getVersionlessMavenIdentifier())}" data-mod-name="${escapeHTML(String(mdl.rawModule.name || '').toLowerCase())}" ${val ? 'enabled' : ''}>
                     <div class="settingsModContent">
                         <div class="settingsModMainWrapper">
                             ${modIcon}
                             <div class="settingsModStatus"></div>
                             <div class="settingsModDetails">
                                 <span class="settingsModName">${escapeHTML(mdl.rawModule.name)}</span>
-                                <span class="settingsModVersion">v${escapeHTML(mdl.mavenComponents.version)}</span>
+                                <span class="settingsModVersion">v${escapeHTML(mdl.mavenComponents.version)}${submodules ? '' : buildModProfileTag(mdl.getVersionlessMavenIdentifier())}</span>
                             </div>
                         </div>
                         <label class="toggleSwitch">
@@ -2892,6 +3076,7 @@ var { URL }                 = require('url')
 var fs                      = require('fs-extra')
 var https                   = require('https')
 var path                    = require('path')
+var ServerStatusLib         = require('./assets/js/serverstatus')
 var {
     MojangRestAPI,
     getServerStatus
@@ -3135,6 +3320,42 @@ async function updateSelectedAccount(authUser) {
     }
 
     user_text.textContent = username
+    refreshStaffAccessIfAccountChanged(authUser)
+}
+
+var { PRUEBAS_ID: LANDING_PRUEBAS_ID } = require('./assets/js/staffaccess')
+
+// Nick con el que se pidió por última vez el servidor de pruebas. undefined = la portada todavía no cargó.
+var staffAccessNick = undefined
+
+/**
+ * Recuerda el nick con el que se cargó la distribución (lo llama showMainUI).
+ */
+function markStaffAccessLoaded(){
+    staffAccessNick = (ConfigManager.getSelectedAccount()?.displayName || '').trim().toLowerCase()
+}
+
+/**
+ * Al cambiar de cuenta, vuelve a pedir la distribución para mostrar u ocultar Pruebas sin reiniciar.
+ */
+async function refreshStaffAccessIfAccountChanged(authUser){
+    if(staffAccessNick === undefined) return
+    const nick = (authUser?.displayName || '').trim().toLowerCase()
+    if(nick === staffAccessNick) return
+    staffAccessNick = nick
+    try {
+        const data = await DistroAPI.refreshDistributionOrFallback()
+        if(data != null) onDistroRefresh(data)
+    } catch(error) {
+        loggerLanding.warn('No se pudo actualizar el acceso al servidor de pruebas.', error)
+    }
+}
+
+/**
+ * El servidor guardado o, si ya no existe (por ejemplo, te quitaron de Pruebas), el principal.
+ */
+function resolveSelectedServer(data){
+    return data.getServerById(ConfigManager.getSelectedServer()) ?? data.getMainServer()
 }
 
 // Call the function with the selected account
@@ -3147,8 +3368,11 @@ function updateSelectedServer(serv){
     }
     ConfigManager.setSelectedServer(serv != null ? serv.rawServer.id : null)
     ConfigManager.save()
- server_selection_button.innerHTML = '&#8226; ' +
-    (serv != null ? serv.rawServer.name : Lang.queryJS('landing.noSelection'))
+    if(serv != null){
+        refreshProfileButton()
+    } else {
+        server_selection_button.textContent = Lang.queryJS('landing.noSelection')
+    }
     if(getCurrentView() === VIEWS.settings){
         animateSettingsTabRefresh()
     }
@@ -3157,14 +3381,79 @@ function updateSelectedServer(serv){
 // Real text is set in uibinder.js on distributionIndexDone.
 server_selection_button.innerHTML = '&#8226; ' +
     Lang.queryJS('landing.selectedServer.loading')
+// Con un solo servidor, este botón abre el panel de perfiles (Lite / Normal / Pro).
 server_selection_button.onclick = async e => {
     e.target.blur()
-    const distribution = await DistroAPI.getDistribution()
-    if(distribution.servers.length > 1){
-        await toggleServerSelection(true)
+    await openProfileSelection()
+}
+
+
+/**
+ * Muestra el perfil actual en el botón de la barra inferior.
+ */
+async function refreshProfileButton(){
+    try {
+        const distro = await DistroAPI.getDistribution()
+        const hasPruebas = distro.getServerById(LANDING_PRUEBAS_ID) != null
+        const inPruebas = hasPruebas && ConfigManager.getSelectedServer() === LANDING_PRUEBAS_ID
+        document.body.classList.toggle('isPruebas', inPruebas)
+        if(inPruebas){
+            server_selection_button.textContent = `${Lang.queryJS('profiles.serverPruebas')} · ${Lang.queryJS('profiles.staffName')}`
+        } else {
+            const prefix = hasPruebas ? Lang.queryJS('profiles.serverMain') : Lang.queryJS('profiles.buttonPrefix')
+            server_selection_button.textContent = `${prefix} · ${await currentProfileLabel()}`
+        }
+    } catch(error) {
+        loggerLanding.warn('No se pudo detectar el perfil actual.', error)
     }
 }
 
+/**
+ * Muestra el aviso de la portada (pokeauroraNotice de la distribución, o el de modo sin conexión).
+ *
+ * @param {{title: string, body: string, url: string|null, until: string|null}|null|undefined} notice
+ */
+function renderNotice(notice){
+    const card = document.getElementById('landingNotice')
+    if(card == null) return
+    const expired = notice?.until != null && Date.parse(notice.until) < Date.now()
+    if(notice == null || expired){
+        card.style.display = 'none'
+        return
+    }
+    document.getElementById('landingNoticeTitle').textContent = notice.title
+    document.getElementById('landingNoticeBody').textContent = notice.body
+    const more = document.getElementById('landingNoticeMore')
+    if(notice.url){
+        more.textContent = Lang.queryJS('landing.notice.moreButton')
+        more.onclick = () => shell.openExternal(notice.url)
+        more.style.display = ''
+    } else {
+        more.style.display = 'none'
+        more.onclick = null
+    }
+    card.style.display = ''
+}
+
+/**
+ * Pide el estado a la dirección de la distribución y, si no responde, a los registros SRV de
+ * pokeaurora.com (así una IP vieja en la distribución no deja la portada en "sin conexión").
+ */
+async function queryServerStatusWithFallback(hostname, port){
+    try {
+        return await getServerStatus(767, hostname, port)
+    } catch(firstError) {
+        const targets = ServerStatusLib.statusTargets(hostname, port, await ServerStatusLib.resolveSrvSafe('pokeaurora.com')).slice(1)
+        for(const target of targets){
+            try {
+                return await getServerStatus(767, target.host, target.port)
+            } catch {
+                // Se prueba el siguiente registro.
+            }
+        }
+        throw firstError
+    }
+}
 
 var refreshServerStatus = async (fade = false) => {
     loggerLanding.info('Refreshing Server Status')
@@ -3176,7 +3465,7 @@ var refreshServerStatus = async (fade = false) => {
     let serverOnline = false
 
     try {
-        const servStat = await getServerStatus(767, serv.hostname, serv.port)
+        const servStat = await queryServerStatusWithFallback(serv.hostname, serv.port)
 
         const icon = document.getElementById('mojang_status_icon')
         if(icon){
@@ -4443,5 +4732,229 @@ function prepareAccountSelectionList(){
     populateAccountListings()
     setAccountListingHandlers()
 }
+
+/* Profile Select View */
+
+var ProfilesLib = require('./assets/js/profiles')
+var GameOptionsLib = require('./assets/js/gameoptions')
+var profileOsLib = require('os')
+var profilePathLib = require('path')
+
+var { PRUEBAS_ID: PROFILE_PRUEBAS_ID } = require('./assets/js/staffaccess')
+
+var PROFILE_MOD_TYPES = new Set([Type.ForgeMod, Type.LiteMod, Type.LiteLoader, Type.FabricMod])
+var profileSelected = null
+// 'main' o 'pruebas': qué servidor muestra el panel. Solo cambia si la distribución trae Pruebas (staff).
+var profileViewServer = 'main'
+var profilePreselect = null
+
+// Los perfiles Lite/Normal/Pro son siempre del servidor principal; Pruebas no tiene perfiles.
+async function getProfileContext(){
+    const distro = await DistroAPI.getDistribution()
+    const server = distro.getMainServer()
+    const profiles = ProfilesLib.resolveProfiles(server.rawServer)
+    const modsCfg = ConfigManager.getModConfiguration(server.rawServer.id)?.mods || {}
+    const requiredCount = server.modules.filter(m => PROFILE_MOD_TYPES.has(m.rawModule.type) && m.getRequired().value).length
+    return { server, profiles, modsCfg, requiredCount }
+}
+
+/**
+ * Nombre visible del perfil actual (detectado por el estado de los mods).
+ *
+ * @returns {Promise<string>}
+ */
+async function currentProfileLabel(){
+    const ctx = await getProfileContext()
+    const id = ProfilesLib.detectProfile(ctx.modsCfg, ctx.profiles)
+    return id === 'custom' ? Lang.queryJS('profiles.custom') : ctx.profiles.profiles[id].name
+}
+
+function renderProfileCards(ctx, current, recommended){
+    const totalMem = profileOsLib.totalmem()
+    const cards = ProfilesLib.PROFILE_IDS.map(id => {
+        const profile = ctx.profiles.profiles[id]
+        const mods = ctx.requiredCount + ProfilesLib.countEnabledOptional(ctx.modsCfg, profile).enabled
+        const ram = ProfilesLib.recommendedRamGB(profile, totalMem)
+        const badges = [
+            id === recommended ? `<span class="profileBadge profileBadgeRecommended">${escapeHTML(Lang.queryJS('profiles.recommended'))}</span>` : '',
+            id === current ? `<span class="profileBadge">${escapeHTML(Lang.queryJS('profiles.current'))}</span>` : ''
+        ].join('')
+        return `<button class="profileCard" role="radio" data-profile="${id}" aria-checked="${id === profileSelected}">
+            <span class="profileCardTop"><span class="profileCardName">${escapeHTML(profile.name)}</span></span>
+            <span class="profileCardBadges">${badges}</span>
+            <span class="profileCardDesc">${escapeHTML(Lang.queryJS(`profiles.${id}Desc`))}</span>
+            <span class="profileCardMeta">${escapeHTML(Lang.queryJS('profiles.modsMeta', { mods, ram }))}</span>
+        </button>`
+    }).join('')
+    const container = document.getElementById('profileCards')
+    container.innerHTML = cards
+    for(const card of container.querySelectorAll('.profileCard')){
+        card.onclick = () => {
+            profileSelected = card.getAttribute('data-profile')
+            for(const other of container.querySelectorAll('.profileCard')){
+                other.setAttribute('aria-checked', String(other === card))
+            }
+        }
+    }
+}
+
+/**
+ * Tarjeta única de Pruebas: todos los mods del servidor de pruebas (los opcionales van prendidos).
+ */
+function renderStaffCard(pruebas){
+    const mods = pruebas.modules.filter(m => PROFILE_MOD_TYPES.has(m.rawModule.type)).length
+    profileSelected = 'staff'
+    document.getElementById('profileCards').innerHTML = `<button class="profileCard profileCardStaff" role="radio" data-profile="staff" aria-checked="true">
+            <span class="profileCardTop"><span class="profileCardName">${escapeHTML(Lang.queryJS('profiles.staffName'))}</span></span>
+            <span class="profileCardDesc">${escapeHTML(Lang.queryJS('profiles.staffDesc'))}</span>
+            <span class="profileCardMeta">${escapeHTML(Lang.queryJS('profiles.staffMods', { mods }))}</span>
+        </button>`
+}
+
+/**
+ * Selector PokeAurora | Pruebas, visible solo si la distribución trae el servidor de pruebas.
+ */
+function renderProfileServerSwitch(hasPruebas){
+    const container = document.getElementById('profileServerSwitch')
+    if(!hasPruebas){
+        container.style.display = 'none'
+        container.innerHTML = ''
+        return
+    }
+    const tabs = [['main', 'profiles.serverMain'], ['pruebas', 'profiles.serverPruebas']]
+    container.setAttribute('aria-label', Lang.queryJS('profiles.chooseServer'))
+    container.innerHTML = tabs.map(([id, key]) =>
+        `<button class="profileServerTab" role="tab" data-server="${id}" aria-selected="${id === profileViewServer}">${escapeHTML(Lang.queryJS(key))}</button>`
+    ).join('')
+    container.style.display = ''
+    for(const tab of container.querySelectorAll('.profileServerTab')){
+        tab.onclick = () => {
+            profileViewServer = tab.getAttribute('data-server')
+            renderProfilePanel().catch(error => loggerLanding.warn('No se pudo cambiar de servidor en el panel.', error))
+        }
+    }
+}
+
+async function renderProfilePanel(){
+    const distro = await DistroAPI.getDistribution()
+    const pruebas = distro.getServerById(PROFILE_PRUEBAS_ID)
+    if(pruebas == null) profileViewServer = 'main'
+    renderProfileServerSwitch(pruebas != null)
+
+    const inPruebas = profileViewServer === 'pruebas'
+    document.getElementById('profileSelectContent').classList.toggle('isPruebasView', inPruebas)
+    document.getElementById('profileSelectHeader').textContent = Lang.queryJS(inPruebas ? 'profiles.chooseServer' : 'profiles.chooseProfile')
+    document.getElementById('profileSelectDesc').style.display = inPruebas ? 'none' : ''
+    document.getElementById('profileGraphicsOption').style.display = inPruebas ? 'none' : ''
+
+    if(inPruebas){
+        renderStaffCard(pruebas)
+        document.getElementById('profileCustomWarning').style.display = 'none'
+        return
+    }
+
+    const ctx = await getProfileContext()
+    const current = ProfilesLib.detectProfile(ctx.modsCfg, ctx.profiles)
+    const recommended = ProfilesLib.recommendProfile(profileOsLib.totalmem())
+    profileSelected = profilePreselect || (current !== 'custom' ? current : recommended)
+    renderProfileCards(ctx, current, recommended)
+    document.getElementById('profileCustomWarning').style.display = current === 'custom' ? '' : 'none'
+}
+
+/**
+ * Abre el panel de perfiles.
+ *
+ * @param {string} [preselect] perfil marcado al abrir; por defecto el actual o el recomendado.
+ */
+async function openProfileSelection(preselect){
+    profilePreselect = preselect || null
+    profileViewServer = ConfigManager.getSelectedServer() === PROFILE_PRUEBAS_ID ? 'pruebas' : 'main'
+    document.getElementById('profileGraphicsCheck').checked = true
+    await renderProfilePanel()
+    toggleOverlay(true, 'profileSelectContent')
+}
+
+/**
+ * Selecciona un servidor por id (o el principal, si es null o ya no existe) y actualiza la portada.
+ */
+async function selectProfileServer(serverId){
+    const distro = await DistroAPI.getDistribution()
+    const server = (serverId != null ? distro.getServerById(serverId) : null) ?? distro.getMainServer()
+    if(ConfigManager.getSelectedServer() !== server.rawServer.id){
+        updateSelectedServer(server)
+        refreshServerStatus()
+    }
+}
+
+/**
+ * Aplica un perfil: mods opcionales, RAM y, si se pide y el juego está cerrado, gráficos en options.txt.
+ *
+ * @param {string} profileId lite|normal|pro
+ * @param {{graphics: boolean}} options
+ */
+async function applyProfile(profileId, { graphics }){
+    const ctx = await getProfileContext()
+    const profile = ctx.profiles.profiles[profileId]
+    const serverId = ctx.server.rawServer.id
+
+    const modConf = ConfigManager.getModConfiguration(serverId)
+    modConf.mods = ProfilesLib.applyProfileToMods(modConf.mods, profile)
+    ConfigManager.setModConfiguration(serverId, modConf)
+
+    const ram = `${ProfilesLib.recommendedRamGB(profile, profileOsLib.totalmem())}G`
+    ConfigManager.setMinRAM(serverId, ram)
+    ConfigManager.setMaxRAM(serverId, ram)
+    ConfigManager.setSelectedProfile(serverId, profileId)
+    ConfigManager.save()
+
+    const gameRunning = typeof proc !== 'undefined' && proc != null
+    if(graphics && !gameRunning){
+        const result = await GameOptionsLib.applyProfileGraphics(
+            profilePathLib.join(ConfigManager.getInstanceDirectory(), serverId, 'options.txt'),
+            profile.graphics
+        )
+        loggerLanding.info(`Perfil ${profileId}: gráficos ${result.applied ? 'aplicados' : `sin aplicar (${result.reason})`}.`)
+    }
+
+    await refreshProfileButton()
+    if(getCurrentView() === VIEWS.settings){
+        await prepareSettings()
+    }
+    if(graphics && gameRunning){
+        setOverlayContent(Lang.queryJS('profiles.gameRunningTitle'), Lang.queryJS('profiles.gameRunning'), Lang.queryJS('profiles.ok'))
+        setOverlayHandler(null)
+        toggleOverlay(true)
+    }
+}
+
+/**
+ * La primera vez que se ve la portada con la 1.1.0, propone un perfil (no aplica nada si se cancela).
+ */
+function maybePromptProfile(){
+    if(ConfigManager.getProfilePromptDone() || getCurrentView() !== VIEWS.landing || isOverlayVisible()){
+        return
+    }
+    openProfileSelection(ProfilesLib.recommendProfile(profileOsLib.totalmem()))
+        .catch(error => loggerLanding.warn('No se pudo abrir el panel de perfiles.', error))
+}
+
+document.getElementById('profileSelectConfirm').addEventListener('click', async () => {
+    const graphics = document.getElementById('profileGraphicsCheck').checked
+    ConfigManager.setProfilePromptDone(true)
+    toggleOverlay(false)
+    if(profileViewServer === 'pruebas'){
+        ConfigManager.save()
+        await selectProfileServer(PROFILE_PRUEBAS_ID)
+        return
+    }
+    await selectProfileServer(null)
+    await applyProfile(profileSelected, { graphics })
+})
+
+document.getElementById('profileSelectCancel').addEventListener('click', () => {
+    ConfigManager.setProfilePromptDone(true)
+    ConfigManager.save()
+    toggleOverlay(false)
+})
 
 }

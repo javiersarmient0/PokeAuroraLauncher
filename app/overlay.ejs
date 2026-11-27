@@ -13,6 +13,25 @@
             </div>
         </div>
     </div>
+    <div id="profileSelectContent" style="display: none;">
+        <span id="profileSelectHeader"><%- lang('overlay.profileSelectHeader') %></span>
+        <div id="profileServerSwitch" role="tablist" style="display: none;"></div>
+        <span id="profileSelectDesc"><%- lang('overlay.profileSelectDesc') %></span>
+        <div id="profileCards" role="radiogroup">
+            <!-- Perfiles populated here. -->
+        </div>
+        <label id="profileGraphicsOption">
+            <input type="checkbox" id="profileGraphicsCheck" checked>
+            <span><%- lang('overlay.profileGraphics') %></span>
+        </label>
+        <span id="profileCustomWarning" style="display: none;"><%- lang('overlay.profileCustomWarning') %></span>
+        <div id="profileSelectActions">
+            <button id="profileSelectConfirm" class="overlayKeybindEnter" type="submit"><%- lang('overlay.profileSelectConfirm') %></button>
+            <div id="profileSelectCancelWrapper">
+                <button id="profileSelectCancel" class="overlayKeybindEsc"><%- lang('overlay.profileSelectCancel') %></button>
+            </div>
+        </div>
+    </div>
     <div id="accountSelectContent" style="display: none;">
         <span id="accountSelectHeader"><%- lang('overlay.accountSelectHeader') %></span>
         <div id="accountSelectList">

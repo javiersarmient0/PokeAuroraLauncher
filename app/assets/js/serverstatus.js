@@ -63,3 +63,44 @@ exports.getStatus = function(address, port = 25565){
     })
 
 }
+function normalizeHost(host){
+    return String(host || '').toLowerCase().replace(/\.$/, '')
+}
+
+/**
+ * Direcciones a probar para el estado del servidor: primero la de la distribución y después
+ * cada registro SRV, sin repetir.
+ *
+ * @param {string} hostname
+ * @param {number} port
+ * @param {{name: string, port: number}[]} [srv]
+ * @returns {{host: string, port: number}[]}
+ */
+exports.statusTargets = function(hostname, port, srv){
+    const targets = [{ host: hostname, port }]
+    const seen = new Set([`${normalizeHost(hostname)}:${port}`])
+    for(const record of srv || []){
+        const host = normalizeHost(record.name)
+        const key = `${host}:${record.port}`
+        if(host && !seen.has(key)){
+            seen.add(key)
+            targets.push({ host, port: record.port })
+        }
+    }
+    return targets
+}
+
+/**
+ * Registros SRV de Minecraft de un dominio; lista vacía si no hay o falla el DNS.
+ *
+ * @param {string} domain
+ * @returns {Promise<{name: string, port: number}[]>}
+ */
+exports.resolveSrvSafe = async function(domain){
+    try {
+        const records = await require('dns').promises.resolveSrv(`_minecraft._tcp.${domain}`)
+        return records.map(record => ({ name: record.name, port: record.port }))
+    } catch {
+        return []
+    }
+}

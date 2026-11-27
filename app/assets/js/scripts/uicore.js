@@ -110,6 +110,8 @@ webFrame.setVisualZoomLevelLimits(1, 1)
 
 // Initialize auto updates in production environments.
 let updateCheckListener
+// Último update descargado; la pantalla de error fatal lo ofrece para instalar.
+let updateReadyInfo = null
 if(!isDev){
     ipcRenderer.on('autoUpdateNotification', (event, arg, info) => {
         switch(arg){
@@ -138,6 +140,10 @@ if(!isDev){
                 break
             case 'update-downloaded':
                 loggerAutoUpdater.info('Update ' + info.version + ' ready to be installed.')
+                updateReadyInfo = info
+                if(typeof fatalOverlayShown !== 'undefined' && fatalOverlayShown){
+                    renderFatalOverlay()
+                }
                 settingsUpdateButtonStatus(Lang.queryJS('uicore.autoUpdate.installNowButton'), false, () => {
                     if(!isDev){
                         ipcRenderer.send('autoUpdateAction', 'installUpdateNow')
@@ -173,6 +179,9 @@ if(!isDev){
                 break
         }
     })
+    // Se inicia antes de cargar la distribución: así un launcher que no puede descargarla igual se actualiza.
+    loggerAutoUpdater.info('Initializing..')
+    ipcRenderer.send('autoUpdateAction', 'initAutoUpdater', require('./assets/js/configmanager').getAllowPrerelease())
 }
 
 /**

@@ -107,7 +107,9 @@ const DEFAULT_CONFIG = {
     authenticationDatabase: {},
     modConfigurations: [],
     javaConfig: {},
-    repairRequested: false
+    repairRequested: false,
+    profiles: {},
+    profilePromptDone: false
 }
 
 let config = null
@@ -583,6 +585,31 @@ exports.setModConfiguration = function(serverid, configuration){
         }
     }
     cfgs.push(configuration)
+}
+
+/**
+ * Perfil elegido (lite|normal|pro) para un servidor, o null si nunca eligió.
+ *
+ * @param {string} serverid
+ * @returns {string|null}
+ */
+exports.getSelectedProfile = function(serverid){
+    return config.profiles?.[serverid] ?? null
+}
+
+exports.setSelectedProfile = function(serverid, profileId){
+    if(config.profiles == null || typeof config.profiles !== 'object'){
+        config.profiles = {}
+    }
+    config.profiles[serverid] = profileId
+}
+
+exports.getProfilePromptDone = function(){
+    return config.profilePromptDone === true
+}
+
+exports.setProfilePromptDone = function(value){
+    config.profilePromptDone = value === true
 }
 
 exports.requestFullRepair = function(){

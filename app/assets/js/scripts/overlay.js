@@ -327,3 +327,227 @@ function prepareAccountSelectionList(){
     populateAccountListings()
     setAccountListingHandlers()
 }
+
+/* Profile Select View */
+
+const ProfilesLib = require('./assets/js/profiles')
+const GameOptionsLib = require('./assets/js/gameoptions')
+const profileOsLib = require('os')
+const profilePathLib = require('path')
+
+const { PRUEBAS_ID: PROFILE_PRUEBAS_ID } = require('./assets/js/staffaccess')
+
+const PROFILE_MOD_TYPES = new Set([Type.ForgeMod, Type.LiteMod, Type.LiteLoader, Type.FabricMod])
+let profileSelected = null
+// 'main' o 'pruebas': qué servidor muestra el panel. Solo cambia si la distribución trae Pruebas (staff).
+let profileViewServer = 'main'
+let profilePreselect = null
+
+// Los perfiles Lite/Normal/Pro son siempre del servidor principal; Pruebas no tiene perfiles.
+async function getProfileContext(){
+    const distro = await DistroAPI.getDistribution()
+    const server = distro.getMainServer()
+    const profiles = ProfilesLib.resolveProfiles(server.rawServer)
+    const modsCfg = ConfigManager.getModConfiguration(server.rawServer.id)?.mods || {}
+    const requiredCount = server.modules.filter(m => PROFILE_MOD_TYPES.has(m.rawModule.type) && m.getRequired().value).length
+    return { server, profiles, modsCfg, requiredCount }
+}
+
+/**
+ * Nombre visible del perfil actual (detectado por el estado de los mods).
+ *
+ * @returns {Promise<string>}
+ */
+async function currentProfileLabel(){
+    const ctx = await getProfileContext()
+    const id = ProfilesLib.detectProfile(ctx.modsCfg, ctx.profiles)
+    return id === 'custom' ? Lang.queryJS('profiles.custom') : ctx.profiles.profiles[id].name
+}
+
+function renderProfileCards(ctx, current, recommended){
+    const totalMem = profileOsLib.totalmem()
+    const cards = ProfilesLib.PROFILE_IDS.map(id => {
+        const profile = ctx.profiles.profiles[id]
+        const mods = ctx.requiredCount + ProfilesLib.countEnabledOptional(ctx.modsCfg, profile).enabled
+        const ram = ProfilesLib.recommendedRamGB(profile, totalMem)
+        const badges = [
+            id === recommended ? `<span class="profileBadge profileBadgeRecommended">${escapeHTML(Lang.queryJS('profiles.recommended'))}</span>` : '',
+            id === current ? `<span class="profileBadge">${escapeHTML(Lang.queryJS('profiles.current'))}</span>` : ''
+        ].join('')
+        return `<button class="profileCard" role="radio" data-profile="${id}" aria-checked="${id === profileSelected}">
+            <span class="profileCardTop"><span class="profileCardName">${escapeHTML(profile.name)}</span></span>
+            <span class="profileCardBadges">${badges}</span>
+            <span class="profileCardDesc">${escapeHTML(Lang.queryJS(`profiles.${id}Desc`))}</span>
+            <span class="profileCardMeta">${escapeHTML(Lang.queryJS('profiles.modsMeta', { mods, ram }))}</span>
+        </button>`
+    }).join('')
+    const container = document.getElementById('profileCards')
+    container.innerHTML = cards
+    for(const card of container.querySelectorAll('.profileCard')){
+        card.onclick = () => {
+            profileSelected = card.getAttribute('data-profile')
+            for(const other of container.querySelectorAll('.profileCard')){
+                other.setAttribute('aria-checked', String(other === card))
+            }
+        }
+    }
+}
+
+/**
+ * Tarjeta única de Pruebas: todos los mods del servidor de pruebas (los opcionales van prendidos).
+ */
+function renderStaffCard(pruebas){
+    const mods = pruebas.modules.filter(m => PROFILE_MOD_TYPES.has(m.rawModule.type)).length
+    profileSelected = 'staff'
+    document.getElementById('profileCards').innerHTML = `<button class="profileCard profileCardStaff" role="radio" data-profile="staff" aria-checked="true">
+            <span class="profileCardTop"><span class="profileCardName">${escapeHTML(Lang.queryJS('profiles.staffName'))}</span></span>
+            <span class="profileCardDesc">${escapeHTML(Lang.queryJS('profiles.staffDesc'))}</span>
+            <span class="profileCardMeta">${escapeHTML(Lang.queryJS('profiles.staffMods', { mods }))}</span>
+        </button>`
+}
+
+/**
+ * Selector PokeAurora | Pruebas, visible solo si la distribución trae el servidor de pruebas.
+ */
+function renderProfileServerSwitch(hasPruebas){
+    const container = document.getElementById('profileServerSwitch')
+    if(!hasPruebas){
+        container.style.display = 'none'
+        container.innerHTML = ''
+        return
+    }
+    const tabs = [['main', 'profiles.serverMain'], ['pruebas', 'profiles.serverPruebas']]
+    container.setAttribute('aria-label', Lang.queryJS('profiles.chooseServer'))
+    container.innerHTML = tabs.map(([id, key]) =>
+        `<button class="profileServerTab" role="tab" data-server="${id}" aria-selected="${id === profileViewServer}">${escapeHTML(Lang.queryJS(key))}</button>`
+    ).join('')
+    container.style.display = ''
+    for(const tab of container.querySelectorAll('.profileServerTab')){
+        tab.onclick = () => {
+            profileViewServer = tab.getAttribute('data-server')
+            renderProfilePanel().catch(error => loggerLanding.warn('No se pudo cambiar de servidor en el panel.', error))
+        }
+    }
+}
+
+async function renderProfilePanel(){
+    const distro = await DistroAPI.getDistribution()
+    const pruebas = distro.getServerById(PROFILE_PRUEBAS_ID)
+    if(pruebas == null) profileViewServer = 'main'
+    renderProfileServerSwitch(pruebas != null)
+
+    const inPruebas = profileViewServer === 'pruebas'
+    document.getElementById('profileSelectContent').classList.toggle('isPruebasView', inPruebas)
+    document.getElementById('profileSelectHeader').textContent = Lang.queryJS(inPruebas ? 'profiles.chooseServer' : 'profiles.chooseProfile')
+    document.getElementById('profileSelectDesc').style.display = inPruebas ? 'none' : ''
+    document.getElementById('profileGraphicsOption').style.display = inPruebas ? 'none' : ''
+
+    if(inPruebas){
+        renderStaffCard(pruebas)
+        document.getElementById('profileCustomWarning').style.display = 'none'
+        return
+    }
+
+    const ctx = await getProfileContext()
+    const current = ProfilesLib.detectProfile(ctx.modsCfg, ctx.profiles)
+    const recommended = ProfilesLib.recommendProfile(profileOsLib.totalmem())
+    profileSelected = profilePreselect || (current !== 'custom' ? current : recommended)
+    renderProfileCards(ctx, current, recommended)
+    document.getElementById('profileCustomWarning').style.display = current === 'custom' ? '' : 'none'
+}
+
+/**
+ * Abre el panel de perfiles.
+ *
+ * @param {string} [preselect] perfil marcado al abrir; por defecto el actual o el recomendado.
+ */
+async function openProfileSelection(preselect){
+    profilePreselect = preselect || null
+    profileViewServer = ConfigManager.getSelectedServer() === PROFILE_PRUEBAS_ID ? 'pruebas' : 'main'
+    document.getElementById('profileGraphicsCheck').checked = true
+    await renderProfilePanel()
+    toggleOverlay(true, 'profileSelectContent')
+}
+
+/**
+ * Selecciona un servidor por id (o el principal, si es null o ya no existe) y actualiza la portada.
+ */
+async function selectProfileServer(serverId){
+    const distro = await DistroAPI.getDistribution()
+    const server = (serverId != null ? distro.getServerById(serverId) : null) ?? distro.getMainServer()
+    if(ConfigManager.getSelectedServer() !== server.rawServer.id){
+        updateSelectedServer(server)
+        refreshServerStatus()
+    }
+}
+
+/**
+ * Aplica un perfil: mods opcionales, RAM y, si se pide y el juego está cerrado, gráficos en options.txt.
+ *
+ * @param {string} profileId lite|normal|pro
+ * @param {{graphics: boolean}} options
+ */
+async function applyProfile(profileId, { graphics }){
+    const ctx = await getProfileContext()
+    const profile = ctx.profiles.profiles[profileId]
+    const serverId = ctx.server.rawServer.id
+
+    const modConf = ConfigManager.getModConfiguration(serverId)
+    modConf.mods = ProfilesLib.applyProfileToMods(modConf.mods, profile)
+    ConfigManager.setModConfiguration(serverId, modConf)
+
+    const ram = `${ProfilesLib.recommendedRamGB(profile, profileOsLib.totalmem())}G`
+    ConfigManager.setMinRAM(serverId, ram)
+    ConfigManager.setMaxRAM(serverId, ram)
+    ConfigManager.setSelectedProfile(serverId, profileId)
+    ConfigManager.save()
+
+    const gameRunning = typeof proc !== 'undefined' && proc != null
+    if(graphics && !gameRunning){
+        const result = await GameOptionsLib.applyProfileGraphics(
+            profilePathLib.join(ConfigManager.getInstanceDirectory(), serverId, 'options.txt'),
+            profile.graphics
+        )
+        loggerLanding.info(`Perfil ${profileId}: gráficos ${result.applied ? 'aplicados' : `sin aplicar (${result.reason})`}.`)
+    }
+
+    await refreshProfileButton()
+    if(getCurrentView() === VIEWS.settings){
+        await prepareSettings()
+    }
+    if(graphics && gameRunning){
+        setOverlayContent(Lang.queryJS('profiles.gameRunningTitle'), Lang.queryJS('profiles.gameRunning'), Lang.queryJS('profiles.ok'))
+        setOverlayHandler(null)
+        toggleOverlay(true)
+    }
+}
+
+/**
+ * La primera vez que se ve la portada con la 1.1.0, propone un perfil (no aplica nada si se cancela).
+ */
+function maybePromptProfile(){
+    if(ConfigManager.getProfilePromptDone() || getCurrentView() !== VIEWS.landing || isOverlayVisible()){
+        return
+    }
+    openProfileSelection(ProfilesLib.recommendProfile(profileOsLib.totalmem()))
+        .catch(error => loggerLanding.warn('No se pudo abrir el panel de perfiles.', error))
+}
+
+document.getElementById('profileSelectConfirm').addEventListener('click', async () => {
+    const graphics = document.getElementById('profileGraphicsCheck').checked
+    ConfigManager.setProfilePromptDone(true)
+    toggleOverlay(false)
+    if(profileViewServer === 'pruebas'){
+        ConfigManager.save()
+        await selectProfileServer(PROFILE_PRUEBAS_ID)
+        return
+    }
+    await selectProfileServer(null)
+    await applyProfile(profileSelected, { graphics })
+})
+
+document.getElementById('profileSelectCancel').addEventListener('click', () => {
+    ConfigManager.setProfilePromptDone(true)
+    ConfigManager.save()
+    toggleOverlay(false)
+})

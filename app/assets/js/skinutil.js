@@ -234,31 +234,81 @@ function hashUsername(username){
     return hash >>> 0
 }
 
-function renderFallback(kind, username){
+const FALLBACK_SKIN = ['#ffdbac', '#f1c27d', '#e0ac69', '#c68642', '#8d5524']
+const FALLBACK_HAIR = ['#2b1d14', '#4a2f1b', '#7a4a24', '#d9a441', '#1d1d24', '#a33b20']
+
+function fallbackPalette(username){
     const hash = hashUsername(username)
     const hue = hash % 360
-    if(kind === 'body'){
-        const { canvas, context } = makeCanvas(64, 128)
-        context.fillStyle = `hsl(${hue} 34% 48%)`
-        context.fillRect(16, 0, 32, 32)
-        context.fillStyle = `hsl(${(hue + 32) % 360} 42% 36%)`
-        context.fillRect(16, 32, 32, 48)
-        context.fillRect(0, 32, 16, 48)
-        context.fillRect(48, 32, 16, 48)
-        context.fillStyle = `hsl(${(hue + 210) % 360} 36% 30%)`
-        context.fillRect(16, 80, 16, 48)
-        context.fillRect(32, 80, 16, 48)
+    return {
+        skin: FALLBACK_SKIN[(hash >>> 3) % FALLBACK_SKIN.length],
+        hair: FALLBACK_HAIR[(hash >>> 7) % FALLBACK_HAIR.length],
+        shirt: `hsl(${hue} 52% 46%)`,
+        shirtShade: `hsl(${hue} 52% 36%)`,
+        pants: `hsl(${(hue + 200) % 360} 30% 28%)`,
+        pantsShade: `hsl(${(hue + 200) % 360} 30% 21%)`,
+        shoes: '#2a2d36'
+    }
+}
+
+// Cara 8x8 de un avatar genérico (no es la skin de Mojang): h pelo, s piel, w ojo, e pupila, n nariz, m boca.
+const FALLBACK_FACE = [
+    'hhhhhhhh',
+    'hhhhhhhh',
+    'hssssssh',
+    'hsssssss',
+    'swessews',
+    'sssnnsss',
+    'sssmmsss',
+    'ssssssss'
+]
+
+function drawFallbackFace(context, palette, x0, y0, unit){
+    const colors = { h: palette.hair, s: palette.skin, w: '#f4f7ff', e: '#2c3a66', n: 'rgba(0,0,0,0.12)', m: 'rgba(60,20,20,0.55)' }
+    FALLBACK_FACE.forEach((row, y) => {
+        ;[...row].forEach((cell, x) => {
+            if(cell === 'n' || cell === 'm'){
+                context.fillStyle = palette.skin
+                context.fillRect(x0 + x * unit, y0 + y * unit, unit, unit)
+            }
+            context.fillStyle = colors[cell]
+            context.fillRect(x0 + x * unit, y0 + y * unit, unit, unit)
+        })
+    })
+}
+
+function renderFallback(kind, username){
+    const palette = fallbackPalette(username)
+    if(kind !== 'body'){
+        const { canvas, context } = makeCanvas(64, 64)
+        drawFallbackFace(context, palette, 0, 0, 8)
         return canvas.toDataURL('image/png')
     }
 
-    const { canvas, context } = makeCanvas(64, 64)
-    context.fillStyle = `hsl(${hue} 34% 48%)`
-    context.fillRect(0, 0, 64, 64)
-    context.fillStyle = 'rgba(255,255,255,0.78)'
-    context.fillRect(14, 22, 10, 10)
-    context.fillRect(40, 22, 10, 10)
-    context.fillStyle = 'rgba(0,0,0,0.42)'
-    context.fillRect(22, 43, 20, 7)
+    // Cuerpo 16x32 unidades de 4 px, mismas proporciones que un personaje de Minecraft.
+    const u = 4
+    const { canvas, context } = makeCanvas(64, 128)
+    const rect = (color, x, y, w, h) => {
+        context.fillStyle = color
+        context.fillRect(x * u, y * u, w * u, h * u)
+    }
+    drawFallbackFace(context, palette, 4 * u, 0, u)
+    // Torso con cuello en V.
+    rect(palette.shirt, 4, 8, 8, 12)
+    rect(palette.skin, 7, 8, 2, 1)
+    rect(palette.shirtShade, 4, 19, 8, 1)
+    // Brazos: manga corta y mano.
+    for(const x of [0, 12]){
+        rect(palette.shirt, x, 8, 4, 4)
+        rect(palette.skin, x, 12, 4, 8)
+        rect('rgba(0,0,0,0.14)', x, 19, 4, 1)
+    }
+    rect(palette.shirtShade, 3, 8, 1, 4)
+    rect(palette.shirtShade, 12, 8, 1, 4)
+    // Piernas y zapatos.
+    rect(palette.pants, 4, 20, 8, 10)
+    rect(palette.pantsShade, 8, 20, 1, 10)
+    rect(palette.shoes, 4, 30, 8, 2)
     return canvas.toDataURL('image/png')
 }
 

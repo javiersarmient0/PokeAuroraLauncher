@@ -6,14 +6,14 @@
             </div>
             <div id="settingsNavItemsContainer">
                 <div id="settingsNavItemsContent">
-                    <button class="settingsNavItem" rSc="settingsTabAccount" id="settingsNavAccount" selected><%- lang('settings.navAccount') %></button>
-                    <button class="settingsNavItem" rSc="settingsTabMinecraft"><%- lang('settings.navMinecraft') %></button>
-                    <button class="settingsNavItem" rSc="settingsTabMods"><%- lang('settings.navMods') %></button>
-                    <button class="settingsNavItem" rSc="settingsTabJava"><%- lang('settings.navJava') %></button>
-                    <button class="settingsNavItem" rSc="settingsTabLauncher"><%- lang('settings.navLauncher') %></button>
+                    <button class="settingsNavItem" rSc="settingsTabAccount" id="settingsNavAccount" selected><svg class="settingsNavIcon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><%- lang('settings.navAccount') %></button>
+                    <button class="settingsNavItem" rSc="settingsTabMinecraft"><svg class="settingsNavIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg><%- lang('settings.navMinecraft') %></button>
+                    <button class="settingsNavItem" rSc="settingsTabMods"><svg class="settingsNavIcon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg><%- lang('settings.navMods') %></button>
+                    <button class="settingsNavItem" rSc="settingsTabJava"><svg class="settingsNavIcon" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg><%- lang('settings.navJava') %></button>
+                    <button class="settingsNavItem" rSc="settingsTabLauncher"><svg class="settingsNavIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><%- lang('settings.navLauncher') %></button>
                     <div class="settingsNavSpacer"></div>
-                    <button class="settingsNavItem" rSc="settingsTabAbout"><%- lang('settings.navAbout') %></button>
-                    <button class="settingsNavItem" rSc="settingsTabUpdate" id="settingsNavUpdate"><%- lang('settings.navUpdates') %></button>
+                    <button class="settingsNavItem" rSc="settingsTabAbout"><svg class="settingsNavIcon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><%- lang('settings.navAbout') %></button>
+                    <button class="settingsNavItem" rSc="settingsTabUpdate" id="settingsNavUpdate"><svg class="settingsNavIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.5-4.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/></svg><%- lang('settings.navUpdates') %></button>
                     <div id="settingsNavContentBottom">
                         <div class="settingsNavDivider"></div>
                         <button id="settingsNavDone"><%- lang('settings.navDone') %></button>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 
-                <div class="settingsCurrentAccounts" id="settingsCurrentMicrosoftAccounts">
+                <div class="settingsCurrentAccounts" id="settingsCurrentMicrosoftAccounts" data-empty="<%- lang('settings.noMicrosoftAccounts') %>">
                     </div>
             </div>
 
@@ -65,7 +65,7 @@
                     </div>
                 </div>
                 
-                <div class="settingsCurrentAccounts" id="settingsCurrentMojangAccounts">
+                <div class="settingsCurrentAccounts" id="settingsCurrentMojangAccounts" data-empty="<%- lang('settings.noOfflineAccounts') %>">
                     </div>
             </div>
         </div>
@@ -143,10 +143,28 @@
                 <span class="settingsTabHeaderText"><%- lang('settings.tabModsHeaderText') %></span>
                 <span class="settingsTabHeaderDesc"><%- lang('settings.tabModsHeaderDesc') %></span>
             </div>
+            <div id="settingsProfileRow">
+                <div id="settingsProfileInfo">
+                    <span id="settingsProfileLabel"><%- lang('settings.profileLabel') %></span>
+                    <span id="settingsProfileName">—</span>
+                </div>
+                <button id="settingsProfileChange"><%- lang('settings.profileChange') %></button>
+            </div>
+            <div id="settingsModsToolbar">
+                <input id="settingsModsSearch" type="search" autocomplete="off" spellcheck="false" placeholder="<%- lang('settings.modsSearchPlaceholder') %>" aria-label="<%- lang('settings.modsSearchPlaceholder') %>">
+                <div id="settingsModsChips" role="radiogroup">
+                    <button class="settingsModsChip" role="radio" data-filter="all" aria-checked="true"><%- lang('settings.modsFilterAll') %></button>
+                    <button class="settingsModsChip" role="radio" data-filter="on" aria-checked="false"><%- lang('settings.modsFilterOn') %></button>
+                    <button class="settingsModsChip" role="radio" data-filter="off" aria-checked="false"><%- lang('settings.modsFilterOff') %></button>
+                </div>
+            </div>
             <div id="settingsModsContainer">
                 <div id="settingsReqModsContainer">
-                    <div class="settingsModsHeader"><%- lang('settings.requiredMods') %></div>
-                    <div id="settingsReqModsContent">
+                    <button id="settingsReqModsToggle" class="settingsModsHeader" aria-expanded="false" aria-controls="settingsReqModsContent">
+                        <span><%- lang('settings.requiredMods') %> (<span id="settingsReqModsCount">0</span>)</span>
+                        <span class="settingsReqModsChevron" aria-hidden="true"></span>
+                    </button>
+                    <div id="settingsReqModsContent" style="display: none;">
 
                     </div>
                 </div>
@@ -155,6 +173,7 @@
                     <div id="settingsOptModsContent">
                         
                     </div>
+                    <div id="settingsModsEmpty" style="display: none;"><%- lang('settings.modsEmpty') %></div>
                 </div>
                 <div id="settingsDropinModsContainer">
                     <div class="settingsModsHeader"><%- lang('settings.dropinMods') %></div>
