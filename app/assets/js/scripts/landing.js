@@ -6,6 +6,7 @@ const { URL }                 = require('url')
 const fs                      = require('fs-extra')
 const https                   = require('https')
 const path                    = require('path')
+const ServerStatusLib         = require('./assets/js/serverstatus')
 const {
     MojangRestAPI,
     getServerStatus
@@ -249,6 +250,42 @@ async function updateSelectedAccount(authUser) {
     }
 
     user_text.textContent = username
+    refreshStaffAccessIfAccountChanged(authUser)
+}
+
+const { PRUEBAS_ID: LANDING_PRUEBAS_ID } = require('./assets/js/staffaccess')
+
+// Nick con el que se pidió por última vez el servidor de pruebas. undefined = la portada todavía no cargó.
+let staffAccessNick = undefined
+
+/**
+ * Recuerda el nick con el que se cargó la distribución (lo llama showMainUI).
+ */
+function markStaffAccessLoaded(){
+    staffAccessNick = (ConfigManager.getSelectedAccount()?.displayName || '').trim().toLowerCase()
+}
+
+/**
+ * Al cambiar de cuenta, vuelve a pedir la distribución para mostrar u ocultar Pruebas sin reiniciar.
+ */
+async function refreshStaffAccessIfAccountChanged(authUser){
+    if(staffAccessNick === undefined) return
+    const nick = (authUser?.displayName || '').trim().toLowerCase()
+    if(nick === staffAccessNick) return
+    staffAccessNick = nick
+    try {
+        const data = await DistroAPI.refreshDistributionOrFallback()
+        if(data != null) onDistroRefresh(data)
+    } catch(error) {
+        loggerLanding.warn('No se pudo actualizar el acceso al servidor de pruebas.', error)
+    }
+}
+
+/**
+ * El servidor guardado o, si ya no existe (por ejemplo, te quitaron de Pruebas), el principal.
+ */
+function resolveSelectedServer(data){
+    return data.getServerById(ConfigManager.getSelectedServer()) ?? data.getMainServer()
 }
 
 // Call the function with the selected account
@@ -261,8 +298,11 @@ function updateSelectedServer(serv){
     }
     ConfigManager.setSelectedServer(serv != null ? serv.rawServer.id : null)
     ConfigManager.save()
- server_selection_button.innerHTML = '&#8226; ' +
-    (serv != null ? serv.rawServer.name : Lang.queryJS('landing.noSelection'))
+    if(serv != null){
+        refreshProfileButton()
+    } else {
+        server_selection_button.textContent = Lang.queryJS('landing.noSelection')
+    }
     if(getCurrentView() === VIEWS.settings){
         animateSettingsTabRefresh()
     }
@@ -271,14 +311,79 @@ function updateSelectedServer(serv){
 // Real text is set in uibinder.js on distributionIndexDone.
 server_selection_button.innerHTML = '&#8226; ' +
     Lang.queryJS('landing.selectedServer.loading')
+// Con un solo servidor, este botón abre el panel de perfiles (Lite / Normal / Pro).
 server_selection_button.onclick = async e => {
     e.target.blur()
-    const distribution = await DistroAPI.getDistribution()
-    if(distribution.servers.length > 1){
-        await toggleServerSelection(true)
+    await openProfileSelection()
+}
+
+
+/**
+ * Muestra el perfil actual en el botón de la barra inferior.
+ */
+async function refreshProfileButton(){
+    try {
+        const distro = await DistroAPI.getDistribution()
+        const hasPruebas = distro.getServerById(LANDING_PRUEBAS_ID) != null
+        const inPruebas = hasPruebas && ConfigManager.getSelectedServer() === LANDING_PRUEBAS_ID
+        document.body.classList.toggle('isPruebas', inPruebas)
+        if(inPruebas){
+            server_selection_button.textContent = `${Lang.queryJS('profiles.serverPruebas')} · ${Lang.queryJS('profiles.staffName')}`
+        } else {
+            const prefix = hasPruebas ? Lang.queryJS('profiles.serverMain') : Lang.queryJS('profiles.buttonPrefix')
+            server_selection_button.textContent = `${prefix} · ${await currentProfileLabel()}`
+        }
+    } catch(error) {
+        loggerLanding.warn('No se pudo detectar el perfil actual.', error)
     }
 }
 
+/**
+ * Muestra el aviso de la portada (pokeauroraNotice de la distribución, o el de modo sin conexión).
+ *
+ * @param {{title: string, body: string, url: string|null, until: string|null}|null|undefined} notice
+ */
+function renderNotice(notice){
+    const card = document.getElementById('landingNotice')
+    if(card == null) return
+    const expired = notice?.until != null && Date.parse(notice.until) < Date.now()
+    if(notice == null || expired){
+        card.style.display = 'none'
+        return
+    }
+    document.getElementById('landingNoticeTitle').textContent = notice.title
+    document.getElementById('landingNoticeBody').textContent = notice.body
+    const more = document.getElementById('landingNoticeMore')
+    if(notice.url){
+        more.textContent = Lang.queryJS('landing.notice.moreButton')
+        more.onclick = () => shell.openExternal(notice.url)
+        more.style.display = ''
+    } else {
+        more.style.display = 'none'
+        more.onclick = null
+    }
+    card.style.display = ''
+}
+
+/**
+ * Pide el estado a la dirección de la distribución y, si no responde, a los registros SRV de
+ * pokeaurora.com (así una IP vieja en la distribución no deja la portada en "sin conexión").
+ */
+async function queryServerStatusWithFallback(hostname, port){
+    try {
+        return await getServerStatus(767, hostname, port)
+    } catch(firstError) {
+        const targets = ServerStatusLib.statusTargets(hostname, port, await ServerStatusLib.resolveSrvSafe('pokeaurora.com')).slice(1)
+        for(const target of targets){
+            try {
+                return await getServerStatus(767, target.host, target.port)
+            } catch {
+                // Se prueba el siguiente registro.
+            }
+        }
+        throw firstError
+    }
+}
 
 const refreshServerStatus = async (fade = false) => {
     loggerLanding.info('Refreshing Server Status')
@@ -290,7 +395,7 @@ const refreshServerStatus = async (fade = false) => {
     let serverOnline = false
 
     try {
-        const servStat = await getServerStatus(767, serv.hostname, serv.port)
+        const servStat = await queryServerStatusWithFallback(serv.hostname, serv.port)
 
         const icon = document.getElementById('mojang_status_icon')
         if(icon){

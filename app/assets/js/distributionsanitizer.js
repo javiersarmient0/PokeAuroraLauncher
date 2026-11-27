@@ -1,7 +1,11 @@
 const crypto = require('crypto')
+const { PROFILE_IDS } = require('./profiles')
 
 const ALLOWED_ARTIFACT_HOSTS = new Set([
-    'pub-16d8232ded904a1bbed89826fb24c57e.r2.dev'
+    'pub-16d8232ded904a1bbed89826fb24c57e.r2.dev',
+    'launcher.pokeaurora.com',
+    // R2 propio (cuenta de PokeAurora): jar del mod cliente de pruebas para el staff.
+    'video.pokeaurora.com'
 ])
 
 const REMOVED_MODULE_IDS = new Set([
@@ -110,6 +114,70 @@ function sanitizeModules(modules){
         })
 }
 
+const MOD_ID = /^[\w.-]+:[\w.-]+$/
+
+function intInRange(value, min, max){
+    return Number.isInteger(value) && value >= min && value <= max
+}
+
+function sanitizeProfile(profile){
+    if(profile == null || typeof profile !== 'object') return null
+    const { name, ramGB, off, graphics } = profile
+    if(typeof name !== 'string' || name.length === 0 || name.length > 40) return null
+    if(!intInRange(ramGB, 2, 32)) return null
+    if(!Array.isArray(off) || !off.every(id => typeof id === 'string' && MOD_ID.test(id))) return null
+    if(graphics == null || typeof graphics !== 'object') return null
+    if(!intInRange(graphics.renderDistance, 2, 32) || !intInRange(graphics.simulationDistance, 2, 32)) return null
+    if(!intInRange(graphics.graphicsMode, 0, 2) || !intInRange(graphics.particles, 0, 2)) return null
+    const packs = graphics.disableResourcePacks
+    if(!Array.isArray(packs) || !packs.every(pack => typeof pack === 'string' && pack.length <= 80)) return null
+    return {
+        name,
+        ramGB,
+        off: [...off],
+        graphics: {
+            renderDistance: graphics.renderDistance,
+            simulationDistance: graphics.simulationDistance,
+            graphicsMode: graphics.graphicsMode,
+            particles: graphics.particles,
+            disableResourcePacks: [...packs]
+        }
+    }
+}
+
+function sanitizeProfiles(raw){
+    if(raw == null || typeof raw !== 'object' || raw.profiles == null || typeof raw.profiles !== 'object') return null
+    const keys = Object.keys(raw.profiles)
+    if(keys.length !== PROFILE_IDS.length || !PROFILE_IDS.every(id => keys.includes(id))) return null
+    const profiles = {}
+    for(const id of PROFILE_IDS){
+        const profile = sanitizeProfile(raw.profiles[id])
+        if(profile == null) return null
+        profiles[id] = profile
+    }
+    return {
+        default: PROFILE_IDS.includes(raw.default) ? raw.default : 'normal',
+        profiles
+    }
+}
+
+function sanitizeNotice(raw){
+    if(raw == null || typeof raw !== 'object') return null
+    const { title, body } = raw
+    if(typeof title !== 'string' || title.length === 0 || title.length > 80) return null
+    if(typeof body !== 'string' || body.length === 0 || body.length > 400) return null
+    let url = null
+    if(typeof raw.url === 'string'){
+        try {
+            url = new URL(raw.url).protocol === 'https:' ? raw.url : null
+        } catch {
+            url = null
+        }
+    }
+    const until = typeof raw.until === 'string' && !Number.isNaN(Date.parse(raw.until)) ? raw.until : null
+    return { title, body, url, until }
+}
+
 function sanitizeDistribution(input){
     const distribution = clone(input)
     if(distribution == null || !Array.isArray(distribution.servers) || distribution.servers.length === 0){
@@ -140,6 +208,12 @@ function sanitizeDistribution(input){
             delete server.discord
         }
         server.modules = sanitizeModules(server.modules)
+        const profiles = sanitizeProfiles(server.pokeauroraProfiles)
+        if(profiles == null) delete server.pokeauroraProfiles
+        else server.pokeauroraProfiles = profiles
+        const notice = sanitizeNotice(server.pokeauroraNotice)
+        if(notice == null) delete server.pokeauroraNotice
+        else server.pokeauroraNotice = notice
         return server
     })
 
@@ -157,5 +231,7 @@ const TRUSTED_DISTRIBUTION_SHA256 = '34ccd5f27824ffdea53f2f2ad37682139fcb929bd41
 
 module.exports = {
     assertTrustedDistribution,
-    sanitizeDistribution
+    sanitizeDistribution,
+    sanitizeProfiles,
+    sanitizeNotice
 }

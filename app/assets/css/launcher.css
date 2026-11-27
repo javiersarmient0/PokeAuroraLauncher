@@ -3922,6 +3922,7 @@ input:checked+.toggleSwitchSlider:before {
 * * */
 
 /* Server selection content container. */
+#profileSelectContent,
 #serverSelectContent,
 #accountSelectContent {
     display: flex;
@@ -4145,6 +4146,7 @@ input:checked+.toggleSwitchSlider:before {
 }
 
 /* Content container which contains the server select actions. */
+#profileSelectActions,
 #serverSelectActions,
 #accountSelectActions {
     display: flex;
@@ -4155,6 +4157,7 @@ input:checked+.toggleSwitchSlider:before {
 }
 
 /* Server selection confirm button styles. */
+#profileSelectConfirm,
 #serverSelectConfirm,
 #accountSelectConfirm {
     background: none;
@@ -4169,7 +4172,9 @@ input:checked+.toggleSwitchSlider:before {
     min-height: 20.67px;
 }
 
+#profileSelectConfirm:hover,
 #serverSelectConfirm:hover,
+#profileSelectConfirm:focus,
 #serverSelectConfirm:focus,
 #accountSelectConfirm:hover,
 #accountSelectConfirm:focus {
@@ -4177,6 +4182,7 @@ input:checked+.toggleSwitchSlider:before {
     outline: none;
 }
 
+#profileSelectConfirm:active,
 #serverSelectConfirm:active,
 #accountSelectConfirm:active {
     border-color: rgba(255, 255, 255, 0.75);
@@ -4184,6 +4190,7 @@ input:checked+.toggleSwitchSlider:before {
 }
 
 /* Server selection cancel button styles. */
+#profileSelectCancel,
 #serverSelectCancel,
 #accountSelectCancel {
     font-weight: bold;
@@ -4198,13 +4205,16 @@ input:checked+.toggleSwitchSlider:before {
     cursor: pointer;
 }
 
+#profileSelectCancel:hover,
 #serverSelectCancel:hover,
+#profileSelectCancel:focus,
 #serverSelectCancel:focus,
 #accountSelectCancel:hover,
 #accountSelectCancel:focus {
     color: rgba(255, 255, 255, 0.75);
 }
 
+#profileSelectCancel:active,
 #serverSelectCancel:active,
 #accountSelectCancel:active {
     color: rgba(165, 165, 165, 0.75);

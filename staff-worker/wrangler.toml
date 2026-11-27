@@ -1,0 +1,15 @@
+# Worker de staff.pokeaurora.com. Ver LEEME.md antes de publicar.
+# Los secretos (ADMIN_PASSWORD_HASH, SESSION_SECRET) se cargan con `wrangler secret put`, nunca acá.
+name = "pokeaurora-staff"
+main = "src/index.mjs"
+compatibility_date = "2026-11-01"
+workers_dev = false
+
+routes = [
+  { pattern = "staff.pokeaurora.com", custom_domain = true }
+]
+
+[[kv_namespaces]]
+binding = "STAFF"
+# KV creado el 25/11/2026 con `npx wrangler kv namespace create STAFF`.
+id = "b7b92b3488814254ab17d06efde2fc42"

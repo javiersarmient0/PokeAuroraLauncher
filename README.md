@@ -27,10 +27,17 @@
   - Las credenciales nunca se envían a servidores de PokeAurora.
 
 * 📂 **Instalación y reparación inteligente**
-  - La versión del launcher permanece fijada en `1.0.0` hasta que el proyecto decida actualizarla.
   - Los archivos se validan antes de iniciar el juego.
   - Los archivos sin cambios usan una caché de integridad y los mods desactivados no se descargan.
   - Las descargas muestran tamaño, velocidad y tiempo restante.
+
+* 🎚️ **Perfiles Lite, Normal y Pro**
+  - **Lite**: lo mínimo para entrar al servidor, con chat de voz. Para PCs de 4 a 8 GB.
+  - **Normal**: equilibrio entre calidad y rendimiento. Para PCs de 8 a 16 GB.
+  - **Pro**: todos los efectos y detalles que ya tiene el modpack. Para PCs de 16 GB o más.
+  - El launcher recomienda uno según la memoria de tu PC; puedes cambiarlo desde la portada o desde Ajustes → Mods.
+  - Opcionalmente ajusta los gráficos del juego (distancia, partículas, packs de animaciones), con copia de seguridad de `options.txt`.
+  - Los perfiles se pueden ajustar desde la distribución (`pokeauroraProfiles`) sin publicar un launcher nuevo.
 
 * ⚙️ **Configuración avanzada**
   - Ajusta la memoria RAM asignada.

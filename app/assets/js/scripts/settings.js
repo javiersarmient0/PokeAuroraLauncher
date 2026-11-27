@@ -7,6 +7,10 @@ const fs = require('fs-extra');
 const LangLoader                                   = require('./assets/js/langloader')
 const DropinModUtil                                = require('./assets/js/dropinmodutil')
 const SkinUtil                                     = require('./assets/js/skinutil')
+const ModFilterLib                                 = require('./assets/js/modfilter')
+const ModsProfilesLib                              = require('./assets/js/profiles')
+const ModIconsLib                                  = require('./assets/js/modicons')
+const modIconPathLib                               = require('path')
 const { MSFT_OPCODE, MSFT_REPLY_TYPE, MSFT_ERROR } = require('./assets/js/ipcconstants')
 const logger = LoggerUtil.getLogger('Settings')
 
@@ -332,6 +336,7 @@ function fullSettingsSave() {
     ConfigManager.save()
     saveDropinModConfiguration()
     saveShaderpackSettings()
+    refreshProfileButton()
 }
 
 /* Closes the settings view and saves all data. */
@@ -786,10 +791,160 @@ async function resolveModsForUI(){
     const distro = await DistroAPI.getDistribution()
     const servConf = ConfigManager.getModConfiguration(serv)
 
-    const modStr = parseModulesForUI(distro.getServerById(serv).modules, false, servConf.mods)
+    const server = distro.getServerById(serv)
+    modsUIProfiles = server.rawServer.id === PROFILE_PRUEBAS_ID ? null : ModsProfilesLib.resolveProfiles(server.rawServer)
+    const modStr = parseModulesForUI(server.modules, false, servConf.mods)
 
     document.getElementById('settingsReqModsContent').innerHTML = modStr.reqMods
     document.getElementById('settingsOptModsContent').innerHTML = modStr.optMods
+    document.getElementById('settingsReqModsCount').textContent =
+        document.querySelectorAll('#settingsReqModsContent > .settingsBaseMod').length
+    const inPruebas = server.rawServer.id === PROFILE_PRUEBAS_ID
+    document.getElementById('settingsProfileRow').style.display = inPruebas ? 'none' : ''
+    if(!inPruebas){
+        document.getElementById('settingsProfileName').textContent = await currentProfileLabel()
+    }
+    applyModsFilter()
+    loadModIcons(server.modules).catch(error => console.warn('No se pudieron cargar los íconos de los mods.', error))
+}
+
+// Íconos oficiales: se leen del jar descargado, se achican a 96 px y se guardan en <launcher>/mod-icons.
+const MOD_ICON_SIZE = 96
+const modIconMemory = new Map()
+let modIconsRun = 0
+
+function shrinkModIcon(buffer, mime){
+    return new Promise(resolve => {
+        const img = new Image()
+        img.onload = () => {
+            const canvas = document.createElement('canvas')
+            canvas.width = MOD_ICON_SIZE
+            canvas.height = MOD_ICON_SIZE
+            const ctx = canvas.getContext('2d')
+            // Los íconos chicos suelen ser pixel art: se agrandan sin suavizar para que no queden borrosos.
+            ctx.imageSmoothingEnabled = Math.max(img.naturalWidth, img.naturalHeight) > 48
+            ctx.imageSmoothingQuality = 'high'
+            const scale = Math.min(MOD_ICON_SIZE / img.naturalWidth, MOD_ICON_SIZE / img.naturalHeight)
+            const width = img.naturalWidth * scale
+            const height = img.naturalHeight * scale
+            ctx.drawImage(img, (MOD_ICON_SIZE - width) / 2, (MOD_ICON_SIZE - height) / 2, width, height)
+            resolve(canvas.toDataURL('image/png'))
+        }
+        img.onerror = () => resolve(null)
+        img.src = `data:${mime};base64,${buffer.toString('base64')}`
+    })
+}
+
+/**
+ * @param {string} jarPath
+ * @returns {Promise<string|null>} data URL del ícono o null
+ */
+async function resolveModIcon(jarPath){
+    if(modIconMemory.has(jarPath)) return modIconMemory.get(jarPath)
+    const cacheDir = modIconPathLib.join(ConfigManager.getLauncherDirectory(), 'mod-icons')
+    const cacheFile = modIconPathLib.join(cacheDir, ModIconsLib.iconCacheName(jarPath))
+    let url = null
+    try {
+        if(await fs.pathExists(cacheFile)){
+            url = `data:image/png;base64,${(await fs.readFile(cacheFile)).toString('base64')}`
+        } else {
+            if(!await fs.pathExists(jarPath)){
+                // Todavía no se descargó: se vuelve a intentar la próxima vez que se abra la pestaña.
+                return null
+            }
+            const icon = await ModIconsLib.readModIconFromJar(jarPath)
+            if(icon != null){
+                url = await shrinkModIcon(icon.data, icon.mime)
+                if(url != null){
+                    await fs.ensureDir(cacheDir)
+                    await fs.writeFile(cacheFile, Buffer.from(url.slice(url.indexOf(',') + 1), 'base64'))
+                }
+            }
+        }
+    } catch(error) {
+        console.warn(`No se pudo leer el ícono de ${jarPath}.`, error)
+        return null
+    }
+    modIconMemory.set(jarPath, url)
+    return url
+}
+
+async function loadModIcons(modules){
+    const run = ++modIconsRun
+    for(const mdl of modules){
+        if(run !== modIconsRun) return
+        const row = document.getElementById(mdl.getVersionlessMavenIdentifier())
+        const slot = row?.querySelector(':scope > .settingsModContent .settingsModIconWrap')
+        if(slot == null || slot.querySelector('img') != null) continue
+        const url = await resolveModIcon(mdl.getPath())
+        if(url != null && run === modIconsRun && slot.isConnected){
+            slot.classList.remove('settingsModIconFallback')
+            slot.classList.add('settingsModIconLoaded')
+            slot.innerHTML = `<img class="settingsModIcon" src="${url}" alt="">`
+        }
+    }
+}
+
+// Perfiles con los que se etiquetan los mods opcionales (se resuelven al pintar la pestaña).
+let modsUIProfiles = null
+let modsFilterState = 'all'
+
+/**
+ * Muestra u oculta filas según el buscador y el chip elegido. El chip solo afecta a los opcionales.
+ */
+function applyModsFilter(){
+    const query = document.getElementById('settingsModsSearch').value
+    const searching = ModFilterLib.normalizeSearch(query) !== ''
+    let visibleReq = 0
+    let visibleOpt = 0
+    for(const row of document.querySelectorAll('#settingsReqModsContent > .settingsBaseMod')){
+        const show = ModFilterLib.modMatches({ name: row.getAttribute('data-mod-name'), enabled: true }, query, 'all')
+        row.style.display = show ? '' : 'none'
+        if(show) visibleReq++
+    }
+    for(const row of document.querySelectorAll('#settingsOptModsContent > .settingsBaseMod')){
+        const show = ModFilterLib.modMatches({ name: row.getAttribute('data-mod-name'), enabled: row.hasAttribute('enabled') }, query, modsFilterState)
+        row.style.display = show ? '' : 'none'
+        if(show) visibleOpt++
+    }
+    // Al buscar, los obligatorios que coinciden se muestran aunque la sección esté plegada.
+    const reqToggle = document.getElementById('settingsReqModsToggle')
+    const reqOpen = reqToggle.getAttribute('aria-expanded') === 'true'
+    document.getElementById('settingsReqModsContent').style.display = (reqOpen || (searching && visibleReq > 0)) ? '' : 'none'
+    document.getElementById('settingsReqModsContainer').style.display = (searching && visibleReq === 0) ? 'none' : ''
+    document.getElementById('settingsModsEmpty').style.display = (visibleOpt === 0 && (!searching || visibleReq === 0)) ? '' : 'none'
+}
+
+document.getElementById('settingsModsSearch').addEventListener('input', applyModsFilter)
+
+for(const chip of document.querySelectorAll('.settingsModsChip')){
+    chip.addEventListener('click', () => {
+        modsFilterState = chip.getAttribute('data-filter')
+        for(const other of document.querySelectorAll('.settingsModsChip')){
+            other.setAttribute('aria-checked', String(other === chip))
+        }
+        applyModsFilter()
+    })
+}
+
+document.getElementById('settingsReqModsToggle').addEventListener('click', () => {
+    const toggle = document.getElementById('settingsReqModsToggle')
+    toggle.setAttribute('aria-expanded', String(toggle.getAttribute('aria-expanded') !== 'true'))
+    applyModsFilter()
+})
+
+function buildModProfileTag(modId){
+    if(modsUIProfiles == null) return ''
+    const tag = ModsProfilesLib.profileTagFor(modId, modsUIProfiles)
+    const label = Lang.queryJS(`profiles.tag${tag.charAt(0).toUpperCase()}${tag.slice(1)}`)
+    return `<span class="settingsModTag settingsModTag-${tag}" title="${escapeHTML(Lang.queryJS('profiles.tagTitle', { profile: label }))}">${escapeHTML(label)}</span>`
+}
+
+document.getElementById('settingsProfileChange').onclick = async () => {
+    // Guarda lo que se tocó a mano antes de abrir el panel, para que el perfil "actual" sea el real.
+    saveModConfiguration()
+    ConfigManager.save()
+    await openProfileSelection()
 }
 
 /**
@@ -806,14 +961,17 @@ function parseModulesForUI(mdls, submodules, servConf){
 
     resolveLanguageForUI()
 
-    for(const mdl of mdls){
+    // Orden alfabético por nombre visible (la distribución los trae en el orden en que se agregaron).
+    const sorted = [...mdls].sort((x, y) => String(x.rawModule.name || '').localeCompare(String(y.rawModule.name || ''), 'es', { sensitivity: 'base' }))
+
+    for(const mdl of sorted){
 
         if(mdl.rawModule.type === Type.ForgeMod || mdl.rawModule.type === Type.LiteMod || mdl.rawModule.type === Type.LiteLoader || mdl.rawModule.type === Type.FabricMod){
 
             if(mdl.getRequired().value){
                 const modIcon = buildModIconMarkup(mdl.rawModule.name, mdl.rawModule.icon || mdl.rawModule.logo || mdl.rawModule.image)
 
-                reqMods += `<div id="${mdl.getVersionlessMavenIdentifier()}" class="settingsBaseMod settings${submodules ? 'Sub' : ''}Mod" enabled>
+                reqMods += `<div id="${mdl.getVersionlessMavenIdentifier()}" class="settingsBaseMod settings${submodules ? 'Sub' : ''}Mod" data-mod-id="${escapeHTML(mdl.getVersionlessMavenIdentifier())}" data-mod-name="${escapeHTML(String(mdl.rawModule.name || '').toLowerCase())}" enabled>
                     <div class="settingsModContent">
                         <div class="settingsModMainWrapper">
                             ${modIcon}
@@ -839,14 +997,14 @@ function parseModulesForUI(mdls, submodules, servConf){
                 const val = typeof conf === 'object' ? conf.value : conf
                 const modIcon = buildModIconMarkup(mdl.rawModule.name, mdl.rawModule.icon || mdl.rawModule.logo || mdl.rawModule.image)
 
-                optMods += `<div id="${mdl.getVersionlessMavenIdentifier()}" class="settingsBaseMod settings${submodules ? 'Sub' : ''}Mod" ${val ? 'enabled' : ''}>
+                optMods += `<div id="${mdl.getVersionlessMavenIdentifier()}" class="settingsBaseMod settings${submodules ? 'Sub' : ''}Mod" data-mod-id="${escapeHTML(mdl.getVersionlessMavenIdentifier())}" data-mod-name="${escapeHTML(String(mdl.rawModule.name || '').toLowerCase())}" ${val ? 'enabled' : ''}>
                     <div class="settingsModContent">
                         <div class="settingsModMainWrapper">
                             ${modIcon}
                             <div class="settingsModStatus"></div>
                             <div class="settingsModDetails">
                                 <span class="settingsModName">${escapeHTML(mdl.rawModule.name)}</span>
-                                <span class="settingsModVersion">v${escapeHTML(mdl.mavenComponents.version)}</span>
+                                <span class="settingsModVersion">v${escapeHTML(mdl.mavenComponents.version)}${submodules ? '' : buildModProfileTag(mdl.getVersionlessMavenIdentifier())}</span>
                             </div>
                         </div>
                         <label class="toggleSwitch">

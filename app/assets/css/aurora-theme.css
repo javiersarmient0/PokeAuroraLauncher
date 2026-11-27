@@ -464,6 +464,51 @@ input:focus-visible,
     text-transform: uppercase;
 }
 
+#landingNotice {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 460px;
+    margin-top: 18px;
+    padding: 14px 18px;
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--cyan);
+    border-radius: var(--radius-sm);
+    background: var(--card-bg);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+    animation: heroIn 500ms var(--ease) both;
+}
+
+#landingNoticeTitle {
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 750;
+}
+
+#landingNoticeBody {
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+#landingNoticeMore {
+    align-self: flex-start;
+    margin-top: 4px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--cyan);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+#landingNoticeMore:hover {
+    color: var(--green);
+}
+
 .heroStatusDot {
     width: 7px;
     height: 7px;
@@ -1191,6 +1236,7 @@ input:focus-visible,
 #loginButton,
 #settingsNavDone,
 #overlayAcknowledge,
+#profileSelectConfirm,
 #serverSelectConfirm,
 #accountSelectConfirm {
     position: relative;
@@ -1218,7 +1264,9 @@ input:focus-visible,
 #settingsNavDone:focus,
 #overlayAcknowledge:hover,
 #overlayAcknowledge:focus,
+#profileSelectConfirm:hover,
 #serverSelectConfirm:hover,
+#profileSelectConfirm:focus,
 #serverSelectConfirm:focus,
 #accountSelectConfirm:hover,
 #accountSelectConfirm:focus {
@@ -1232,6 +1280,7 @@ input:focus-visible,
 #loginButton:active,
 #settingsNavDone:active,
 #overlayAcknowledge:active,
+#profileSelectConfirm:active,
 #serverSelectConfirm:active,
 #accountSelectConfirm:active {
     transform: scale(0.985);
@@ -1350,7 +1399,7 @@ input:focus-visible,
 }
 
 .loginOptionButton::after {
-    content: '↗';
+    content: '›';
     position: absolute;
     right: 18px;
     color: var(--dim);
@@ -2868,6 +2917,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 #overlayContent,
+#profileSelectContent,
 #serverSelectContent,
 #accountSelectContent {
     position: relative;
@@ -2882,6 +2932,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 #overlayContent::before,
+#profileSelectContent::before,
 #serverSelectContent::before,
 #accountSelectContent::before {
     content: '';
@@ -2897,6 +2948,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 #overlayContainer #overlayTitle,
+#overlayContainer #profileSelectHeader,
 #overlayContainer #serverSelectHeader,
 #overlayContainer #accountSelectHeader {
     display: block;
@@ -2925,6 +2977,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 #overlayActionContainer,
+#profileSelectActions,
 #serverSelectActions,
 #accountSelectActions {
     display: flex;
@@ -2935,6 +2988,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 #overlayAcknowledge,
+#profileSelectConfirm,
 #serverSelectConfirm,
 #accountSelectConfirm {
     min-width: 200px;
@@ -2942,6 +2996,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 #overlayDismiss,
+#profileSelectCancel,
 #serverSelectCancel,
 #accountSelectCancel {
     margin-top: 6px;
@@ -2954,6 +3009,7 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 #overlayDismiss:hover,
+#profileSelectCancel:hover,
 #serverSelectCancel:hover,
 #accountSelectCancel:hover {
     color: #fff;
@@ -3165,4 +3221,477 @@ input:checked + .toggleSwitchSlider:before {
 
 #launch_progress_label {
     width: auto !important;
+}
+
+/* -------------------------------------------------------------- Perfiles */
+
+#overlayContainer #profileSelectContent {
+    width: min(880px, 92%);
+}
+
+#profileSelectDesc {
+    display: block;
+    margin-bottom: 22px;
+    color: #a6b2ca;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+#profileCards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.profileCard {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 150px;
+    padding: 18px 18px 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    background: rgba(181, 207, 255, 0.035);
+    color: var(--text-soft);
+    cursor: pointer;
+    text-align: left;
+    transition: border-color 160ms ease, background 160ms ease, transform 160ms var(--ease), box-shadow 160ms ease;
+}
+
+.profileCard:hover,
+.profileCard:focus-visible {
+    border-color: rgba(88, 221, 255, 0.4);
+    background: rgba(88, 221, 255, 0.06);
+    transform: translateY(-2px);
+}
+
+.profileCard[aria-checked="true"] {
+    border-color: var(--line-bright);
+    background: linear-gradient(155deg, rgba(131, 255, 201, 0.10), rgba(100, 120, 255, 0.08));
+    box-shadow: 0 0 0 1px rgba(131, 255, 201, 0.25) inset, 0 16px 40px rgba(88, 221, 255, 0.12);
+}
+
+.profileCardTop {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+#overlayContainer .profileCardName {
+    margin-right: auto;
+    color: #fff;
+    font-family: var(--serif);
+    font-size: 24px;
+    letter-spacing: -0.02em;
+}
+
+#overlayContainer .profileCard[aria-checked="true"] .profileCardName {
+    color: transparent;
+    background: var(--aurora-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.profileBadge {
+    padding: 3px 8px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.profileBadgeRecommended {
+    border-color: rgba(131, 255, 201, 0.4);
+    color: var(--green);
+}
+
+.profileCardDesc {
+    color: var(--text-soft);
+    font-size: 12.5px;
+    line-height: 1.55;
+}
+
+.profileCardMeta {
+    margin-top: auto;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+#profileGraphicsOption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    color: var(--text-soft);
+    font-size: 12.5px;
+    cursor: pointer;
+}
+
+#profileGraphicsOption input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--green);
+    cursor: pointer;
+}
+
+#profileCustomWarning {
+    display: block;
+    margin-top: 12px;
+    color: var(--gold);
+    font-size: 12px;
+    text-align: center;
+}
+
+#settingsProfileRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+    padding: 16px 22px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+}
+
+#settingsProfileInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#settingsProfileLabel {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+#settingsProfileName {
+    color: #fff;
+    font-family: var(--serif);
+    font-size: 22px;
+}
+
+#settingsProfileChange {
+    min-height: 40px;
+    padding: 0 18px;
+    border: 1px solid rgba(131, 255, 201, 0.35);
+    border-radius: 10px;
+    background: rgba(131, 255, 201, 0.06);
+    color: var(--green);
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition: background 160ms ease, border-color 160ms ease;
+}
+
+#settingsProfileChange:hover {
+    border-color: var(--line-bright);
+    background: rgba(131, 255, 201, 0.12);
+}
+
+/* Pestaña Mods: buscador, filtros y etiquetas de perfil */
+
+#settingsModsToolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+#settingsModsSearch {
+    flex: 1;
+    min-width: 0;
+    height: 40px;
+    padding: 0 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: rgba(6, 9, 25, 0.7);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 13px;
+    outline: none;
+    transition: border-color 160ms ease;
+}
+
+#settingsModsSearch::placeholder {
+    color: var(--dim);
+}
+
+#settingsModsSearch:focus {
+    border-color: var(--line-bright);
+}
+
+#settingsModsChips {
+    display: flex;
+    gap: 6px;
+    padding: 4px;
+    border: 1px solid var(--line-soft);
+    border-radius: 12px;
+}
+
+.settingsModsChip {
+    height: 30px;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: background 160ms ease, color 160ms ease;
+}
+
+.settingsModsChip:hover {
+    color: var(--text);
+}
+
+.settingsModsChip[aria-checked="true"] {
+    background: rgba(131, 255, 201, 0.12);
+    color: var(--green);
+}
+
+#settingsReqModsToggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    font-family: var(--sans);
+    text-align: left;
+}
+
+#settingsReqModsToggle:hover {
+    color: var(--text);
+}
+
+.settingsReqModsChevron {
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 160ms ease;
+}
+
+#settingsReqModsToggle[aria-expanded="true"] .settingsReqModsChevron {
+    transform: rotate(225deg);
+}
+
+.settingsModTag {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 1px 7px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    vertical-align: 1px;
+}
+
+.settingsModTag-lite { color: var(--green); border-color: rgba(131, 255, 201, 0.35); }
+.settingsModTag-normal { color: var(--cyan); border-color: rgba(88, 221, 255, 0.35); }
+.settingsModTag-pro { color: var(--violet); border-color: rgba(164, 122, 255, 0.4); }
+
+#settingsModsEmpty {
+    padding: 18px 2px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+#settingsReqModsToggle[aria-expanded="false"] {
+    margin-bottom: 0;
+    padding-bottom: 6px;
+}
+
+/* Íconos oficiales de los mods (leídos del jar) */
+
+.settingsModIconLoaded {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.settingsModIconLoaded .settingsModIcon {
+    object-fit: contain;
+    image-rendering: auto;
+    animation: settingsModIconIn 260ms var(--ease) both;
+}
+
+.settingsBaseMod:not([enabled]) > .settingsModContent .settingsModIconLoaded .settingsModIcon {
+    filter: grayscale(0.6);
+    opacity: 0.6;
+}
+
+@keyframes settingsModIconIn {
+    from { opacity: 0; transform: scale(0.9); }
+}
+
+/* Punto de estado: apagado = neutro (el rojo se leía como error con 34 mods apagados en Lite) */
+.settingsModStatus {
+    background-color: rgba(181, 207, 255, 0.22);
+}
+
+/* Estado vacío de las listas de cuentas */
+.settingsCurrentAccounts:empty {
+    display: block;
+}
+
+.settingsCurrentAccounts:empty::before {
+    content: attr(data-empty);
+    display: block;
+    padding: 14px 2px 4px;
+    color: var(--dim);
+    font-size: 13px;
+}
+
+/* Íconos del menú de configuración */
+.settingsNavItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.settingsNavIcon {
+    width: 17px;
+    min-width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.7;
+    transition: opacity 160ms ease, color 160ms ease;
+}
+
+.settingsNavItem:hover .settingsNavIcon,
+.settingsNavItem[selected] .settingsNavIcon {
+    opacity: 1;
+}
+
+.settingsNavItem[selected] .settingsNavIcon {
+    color: var(--green);
+}
+
+/* Tarjetas de perfil: las insignias van en su propia fila para que las descripciones queden alineadas */
+.profileCardBadges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-height: 22px;
+}
+
+/* Portada: evita una palabra sola en la última línea del subtítulo */
+#landingHero p,
+#landingHeroText,
+.landingHeroDescription {
+    text-wrap: pretty;
+}
+
+/* -------------------------------------------------------------- Staff · servidor de pruebas */
+/* Solo aparece si la distribución trae el servidor de pruebas (nick habilitado en staff.pokeaurora.com). */
+
+:root {
+    --pruebas-button: linear-gradient(110deg, #ffd27a 0%, #ffa94d 45%, #ff7a3d 100%);
+    --pruebas-line: rgba(255, 169, 77, 0.55);
+}
+
+#profileServerSwitch {
+    display: flex;
+    gap: 4px;
+    width: max-content;
+    margin: 0 auto 18px;
+    padding: 4px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(181, 207, 255, 0.04);
+}
+
+.profileServerTab {
+    padding: 7px 18px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 750;
+    letter-spacing: 0.04em;
+    transition: background 160ms ease, color 160ms ease;
+}
+
+.profileServerTab:hover,
+.profileServerTab:focus-visible {
+    color: #fff;
+}
+
+.profileServerTab[aria-selected="true"] {
+    background: var(--aurora-button);
+    color: #050817;
+}
+
+.profileServerTab[data-server="pruebas"][aria-selected="true"] {
+    background: var(--pruebas-button);
+}
+
+#profileSelectContent.isPruebasView #profileCards {
+    grid-template-columns: minmax(0, 360px);
+    justify-content: center;
+}
+
+.profileCard.profileCardStaff[aria-checked="true"] {
+    border-color: var(--pruebas-line);
+    background: linear-gradient(155deg, rgba(255, 210, 122, 0.10), rgba(255, 122, 61, 0.08));
+    box-shadow: 0 0 0 1px rgba(255, 169, 77, 0.25) inset, 0 16px 40px rgba(255, 122, 61, 0.12);
+}
+
+#overlayContainer .profileCard.profileCardStaff[aria-checked="true"] .profileCardName {
+    background: var(--pruebas-button);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+body.isPruebas #server_selection_button {
+    border-color: var(--pruebas-line);
+    background: rgba(255, 169, 77, 0.07);
+    color: #ffd9a8;
+}
+
+body.isPruebas #server_selection_button:hover,
+body.isPruebas #server_selection_button:focus {
+    border-color: rgba(255, 169, 77, 0.8);
+    background: rgba(255, 169, 77, 0.12);
+    color: #fff;
+}
+
+body.isPruebas #launch_button {
+    background: var(--pruebas-button);
+    box-shadow: 0 18px 46px rgba(255, 122, 61, 0.24), 0 0 0 1px rgba(255, 255, 255, 0.16) inset;
+}
+
+body.isPruebas #launch_button:hover,
+body.isPruebas #launch_button:focus {
+    box-shadow: 0 22px 56px rgba(255, 169, 77, 0.32), 0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+}
+
+#profileSelectContent.isPruebasView #profileSelectConfirm {
+    background: var(--pruebas-button);
 }
